@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finally Found You | Your Beauty Discovery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header-->
+    <header>
+        <div class="container header-container">
+          <!-- Hamburger Menu -->
+          <div class="menu-toggle" id="menu-toggle">☰</div>
+      
+          <!-- Logo -->
+          <a href="#" class="logo">Finally Found You</a>
+      
+          <!-- Navigation -->
+          <nav class="navbar" id="navbar">
+            <ul class="nav-links">
+              <li><a href="#home" class="active">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#categories">Categories</a></li>
+              <li><a href="#brands">Brands</a></li>
+              <li><a href="#products">Products</a></li>
+            </ul>
+          </nav>
+      
+          <!-- Shop Button -->
+          <a href="#products" class="btn">Shop Now</a>
+        </div>
+      </header>
+      
+      <script>
+        // JavaScript untuk membuka/menutup menu hamburger
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+      
+        menuToggle.addEventListener('click', () => {
+          navbar.classList.toggle('active'); // Menambahkan/removing kelas active
+        });
+      </script>             
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Discover Your Skin's Perfect Match</h1>
+                <p class="hero-subtitle">Elevate your beauty ritual with our meticulously curated collection of transformative skincare essentials. Your journey to radiant skin ends here.</p>
+                <a href="#products" class="btn btn-hero">Explore Collection</a>
+            </div>
+            <div class="hero-image">
+                <div class="browser-header">
+                    <div class="browser-dots">
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                    </div>
+                </div>
+                <img src="https://images.tokopedia.net/img/cache/1200/BgtCLw/2025/1/28/8e5f70ba-495b-487c-9616-5f415d7ac3cf.jpg" alt="Finally Found You Beauty Products">
+            </div>
+        
+            <!-- Geometric elements -->
+            <div class="geometric-elements">
+                <div class="triangle-top"></div>
+                <div class="triangle-middle"></div>
+                <div class="circle-bottom-left"></div>
+                <div class="triangle-bottom-right"></div>
+                <div class="vertical-line-right"></div>
+                <div class="horizontal-line-bottom"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="foundation" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Philosophy</h2>
+            <p class="section-subtitle">We believe that finding your perfect skincare match shouldn't be a journey of endless trials and disappointments.</p>
+            <div class="foundation-items">
+                <div class="foundation-item">
+                    <div class="foundation-icon">♥</div>
+                    <h3>Personalized Care</h3>
+                    <p>Bespoke beauty solutions tailored to your unique skin profile and concerns.</p>
+                </div>
+                <div class="foundation-item">
+                    <div class="foundation-icon">✓</div>
+                    <h3>Expert Curation</h3>
+                    <p>Each product is meticulously selected and tested to ensure it delivers on its promises.</p>
+                </div>
+                <div class="foundation-item">
+                    <div class="foundation-icon">♻</div>
+                    <h3>Sustainable Beauty</h3>
+                    <p>Eco-conscious packaging and ethically sourced ingredients for your skin and our planet.</p>
+                </div>
+                <div class="foundation-item">
+                    <div class="foundation-icon">★</div>
+                    <h3>Inclusive Formulations</h3>
+                    <p>Thoughtfully crafted products for all skin types, tones, and textures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Categories Section -->
+<section class="feature-list" id="categories">
+    <div class="container feature-container">
+      
+      <!-- Kiri: Teks -->
+      <div class="feature-content">
+        <div class="feature-dot"></div>
+        <h2 class="feature-title">Curated Skincare Categories</h2>
+        <p class="feature-description">
+          Discover our thoughtfully organized collections, each designed to address specific skin concerns.
+        </p>
+        <ul class="feature-benefits">
+          <li class="feature-benefit">
+            <span class="benefit-dot"></span>
+            <span>Luminous Cleansers - Gentle yet effective formulas that purify</span>
+          </li>
+          <li class="feature-benefit">
+            <span class="benefit-dot"></span>
+            <span>Hydration Essentials - Luxurious moisturizers for lasting hydration</span>
+          </li>
+          <li class="feature-benefit">
+            <span class="benefit-dot"></span>
+            <span>Transformative Serums - Concentrated treatments with active ingredients</span>
+          </li>
+          <li class="feature-benefit">
+            <span class="benefit-dot"></span>
+            <span>Protective Sun Care - Sophisticated protection against UV rays</span>
+          </li>
+        </ul>
+      </div>
+  
+        <!-- Kanan: Background + Quotes tanpa box -->
+        <div class="feature-media visual-feature">
+            <img src="https://i.pinimg.com/736x/f5/4d/43/f54d43ea6791f51c8a5e2998a13c2b5c.jpg" alt="Skincare Background" class="bg-image" />
+            <div class="quote-text">
+            <h3 class="beauty-subtitle">Glow With Confidence</h3>
+            <p class="beauty-message">
+                At <strong>Finally Found You</strong>, we believe skincare is self-care. Discover radiance and balance through products made to celebrate your natural beauty.
+            </p>
+            </div>
+        </div>
+    </div> <!-- .feature-container -->
+  </section>
+  
+
+    <!-- Brands Section -->
+    <section class="feature-split" id="brands">
+        <div class="feature-split-container">
+            <div class="feature-split-media">
+                <div class="media-background">
+                    <img src="https://i.pinimg.com/736x/dc/4b/55/dc4b55b0f4e4dc62890bf1253afe571f.jpg" alt="Background Image" class="background-image">
+                </div>
+                <div class="media-object">
+                    <img src="https://jois.id/wp-content/uploads/Finally-Found-You-Soy-Bright-Moisturizer.jpg" alt="Featured Beauty Collection">
+                </div>
+            </div>
+            <div class="feature-split-content">
+                <h2 class="feature-split-title">Artisanal Beauty Brands</h2>
+                <p class="feature-split-subtitle">We partner with visionary brands that share our commitment to excellence, innovation, and integrity.</p>
+                <div class="brand-features">
+                    <div class="brand-feature">
+                        <div class="brand-feature-icon">✓</div>
+                        <p>Dermatologist-tested formulations</p>
+                    </div>
+                    <div class="brand-feature">
+                        <div class="brand-feature-icon">✓</div>
+                        <p>Ethically sourced botanical ingredients</p>
+                    </div>
+                    <div class="brand-feature">
+                        <div class="brand-feature-icon">✓</div>
+                        <p>Advanced skincare technology</p>
+                    </div>
+                    <div class="brand-feature">
+                        <div class="brand-feature-icon">✓</div>
+                        <p>Free from harmful additives</p>
+                    </div>
+                </div>
+                <a href="#products" class="feature-split-button">Discover Our Brands</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="value-prop" id="value-prop">
+        <div class="value-prop-container">
+            <div class="value-prop-content">
+                <h2 class="value-prop-title">The Essence of Innovation</h2>
+                <p class="value-prop-text">Our signature 2-in-1 Hydrating & Brightening Essence Booster represents the pinnacle of skincare innovation—a revolutionary formula that seamlessly combines the benefits of an intensive moisturizer and a perfecting makeup primer.</p>
+                <p class="value-prop-subtext">Infused with a proprietary blend of triple-weight hyaluronic acid and stabilized niacinamide, this transformative essence delivers multi-dimensional hydration while visibly evening skin tone for a luminous, refined complexion.</p>
+                <div class="value-prop-author">
+                    <div class="author-avatar"></div>
+                    <p class="author-name">Dhaka Oke, Beauty Influencer</p>
+                </div>
+            </div>
+            <div class="image-stack">
+                <img src="https://i.pinimg.com/736x/9a/b9/92/9ab9922f915387c4133893cf48f3188c.jpg" alt="image Back" class="image image-back">
+                <img src="https://images.tokopedia.net/img/cache/500-square/VqbcmM/2025/3/5/24807ff1-685b-4f26-9aad-ea590855e67e.jpg.webp?ect=4g" alt="image Front"class="image image-front">
+            </div> 
+            <div class="value-prop-geometric">
+                <div class="vp-square vp-square-1"></div>
+                <div class="vp-square vp-square-2"></div>
+                <div class="vp-circle vp-circle-1"></div>
+                <div class="vp-circle vp-circle-2"></div>
+                <div class="vp-triangle vp-triangle-1"></div>
+                <div class="vp-line vp-line-1"></div>
+                <div class="vp-line vp-line-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section - More compact with better spacing -->
+    <section class="testimonial" id="testimonial">
+        <div class="container testimonial-container">
+            <p class="testimonial-text">After years of frustration and disappointment with countless skincare products that promised miracles, I've finally discovered my perfect skincare ritual with Finally Found You.</p>
+            <div class="testimonial-person">
+                <img src="https://i.pinimg.com/736x/a2/cc/55/a2cc55189457ddccadb0a6af7dfce51d.jpg" alt="Testimonial Avatar">
+            </div>
+            <p class="testimonial-author">Jessica Williams</p>
+            <p class="testimonial-role">Loyal Customer | 2 Years</p>
+        </div>
+    </section>
+
+    <!-- Products Section - More compact with better spacing -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Signature Collections</h2>
+            <p class="section-subtitle">Discover our most coveted formulations—each one a testament to our commitment to exceptional skincare.</p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp" alt="Soy Bright Gel Moisturizer">
+                        <div class="product-tag">Bestseller</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">SOY BRIGHT! Gel Moisturizer</h3>
+                        <p class="product-description">A revolutionary dual-action formula that delivers intense hydration while creating the perfect canvas for makeup application.</p>
+                        <div class="product-features">
+                            <span>Brightening</span>
+                            <span>Smoothing</span>
+                        </div>
+                        <p class="product-price">Rp 239.000</p>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp" alt="Hydrating Essence Booster">
+                        <div class="product-tag">New</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">HYDRICEING Essence Booster</h3>
+                        <p class="product-description">An innovative serum-infused toner that delivers multiple benefits in one elegant step.</p>
+                        <div class="product-features">
+                            <span>Calming</span>
+                            <span>Brightening</span>
+                        </div>
+                        <p class="product-price">Rp 149.000</p>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp" alt="Soy Clear Serum">
+                        <div class="product-tag">Popular</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Soy Clear Dark Spot Serum</h3>
+                        <p class="product-description">A powerful targeted treatment featuring 5% Micellar Cysteamine, 1% Kojic Acid, and Soybean Extract.</p>
+                        <div class="product-features">
+                            <span>Brightening</span>
+                            <span>Anti-spot</span>
+                        </div>
+                        <p class="product-price">Rp 288.000</p>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - More compact with better spacing -->
+    <footer>
+        <div class="footer-container">
+            <!-- Logo -->
+            <a href="#" class="footer-logo">FinaFound</a>
+            
+            <!-- Blog Post Section -->
+            <div class="footer-blog">
+                <p class="blog-title">Latest Journal Entry</p>
+                <h3 class="blog-heading">Begin Your Skincare Journey</h3>
+                <p class="blog-text">Discover the transformative power of finding skincare that truly understands your unique needs. Your path to radiant, healthy skin starts here.</p>
+            </div>
+            
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+            
+            <!-- Links Section -->
+            <div class="footer-links-section">
+                <!-- Product Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Collections</h4>
+                    <ul class="links-list">
+                        <li><a href="#products">Facial Care</a></li>
+                        <li><a href="#products">Treatment Serums</a></li>
+                        <li><a href="#products">Hydration</a></li>
+                        <li><a href="#products">Body Essentials</a></li>
+                        <li><a href="#products">Discovery Sets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Our World</h4>
+                    <ul class="links-list">
+                        <li><a href="#about">Philosophy</a></li>
+                        <li><a href="#about">Ingredient Standards</a></li>
+                        <li><a href="#about">Sustainability Commitment</a></li>
+                        <li><a href="#about">Journal</a></li>
+                        <li><a href="#about">Connect With Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright and Privacy -->
+            <div class="footer-copyright">© 2023 | Privacy — Terms</div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.product-card, .foundation-item');
+        
+        function reveal() {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+          
+    </script>
+</body>
+</html>
