@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Finally Found You</title>
+    <link rel="stylesheet" href="products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- Hamburger Menu -->
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+        
+            <!-- Logo -->
+            <a href="index.html" class="logo">Finally Found You</a>
+        
+            <!-- Navigation -->
+            <nav class="navbar" id="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+        
+            <!-- Shop Button -->
+            <a href="cart.html" class="btn cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Discover our meticulously curated collection of transformative skincare essentials</p>
+        </div>
+    </section>
+
+    <!-- Product Catalog -->
+    <section class="product-catalog">
+        <div class="container">
+            <div class="catalog-layout">
+                <!-- Sidebar Filters -->
+                <div class="catalog-sidebar">
+                    <div class="filter-section">
+                        <h3>Categories</h3>
+                        <ul class="filter-list">
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    All Products
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Cleansers
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Toners & Essences
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Serums
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Moisturizers
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Masks
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Sun Protection
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Skin Concerns</h3>
+                        <ul class="filter-list">
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Brightening
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Hydration
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Anti-Aging
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Acne & Blemishes
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Sensitive Skin
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Price Range</h3>
+                        <div class="price-slider">
+                            <input type="range" min="0" max="500000" value="500000" class="slider" id="price-range">
+                            <div class="price-range-values">
+                                <span>Rp 0</span>
+                                <span id="price-value">Rp 500.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn filter-btn">Apply Filters</button>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="catalog-products">
+                    <!-- Sort Options -->
+                    <div class="sort-options">
+                        <div class="product-count">Showing <span id="product-count">9</span> products</div>
+                        <div class="sort-dropdown">
+                            <label for="sort-select">Sort by:</label>
+                            <select id="sort-select">
+                                <option value="featured">Featured</option>
+                                <option value="newest">Newest</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="best-selling">Best Selling</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp" alt="SOY BRIGHT! Gel Moisturizer">
+                                <div class="product-tag bestseller">Bestseller</div>
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="1">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="1">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">SOY BRIGHT! Gel Moisturizer</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(124)</span>
+                                </div>
+                                <p class="product-price">Rp 239.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp" alt="HYDRICEING Essence Booster">
+                                <div class="product-tag new">New</div>
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="2">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="2">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">HYDRICEING Essence Booster</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(86)</span>
+                                </div>
+                                <p class="product-price">Rp 149.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp" alt="Soy Clear Dark Spot Serum">
+                                <div class="product-tag popular">Popular</div>
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="3">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="3">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Soy Clear Dark Spot Serum</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(97)</span>
+                                </div>
+                                <p class="product-price">Rp 288.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98s-lq67fip9squmbc.webp" alt="Gentle Foam Cleanser">
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="4">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="4">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Gentle Foam Cleanser</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(65)</span>
+                                </div>
+                                <p class="product-price">Rp 129.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-id.img.susercontent.com/file/sg-11134201-7ra1u-m5cize6eqb9z38.webp" alt="Brightening Eye Cream">
+                                <div class="product-tag new">New</div>
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="5">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="5">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Brightening Eye Cream</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(42)</span>
+                                </div>
+                                <p class="product-price">Rp 199.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbk6-m6td1d2k4dik7e@resize_w900_nl.webp" alt="Daily Defense SPF 50">
+                                <div class="product-tag bestseller">Bestseller</div>
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="6">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="6">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Daily Defense SPF 50</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(118)</span>
+                                </div>
+                                <p class="product-price">Rp 179.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 7 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbkb-m95mw7a61ycd8e.webp" alt="Overnight Repair Mask">
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="7">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="7">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Overnight Repair Mask</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(73)</span>
+                                </div>
+                                <p class="product-price">Rp 219.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 8 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-id.img.susercontent.com/file/id-11134207-7rasm-m4zxuuwm39ncdf.webp" alt="BERRY DEEP Exfoliating Serum">
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="8">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="8">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">BERRY DEEP Exfoliating Serum</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(58)</span>
+                                </div>
+                                <p class="product-price">Rp 139.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Product 9 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://down-id.img.susercontent.com/file/id-11134207-7rasg-m500fhaongd97f.webp" alt="PEACH + VITAMIN B12 Double Barrier & Calming Serum">
+                                <div class="product-tag popular">Popular</div>
+                                <div class="product-actions">
+                                    <button class="action-btn quick-view" data-product="9">Quick View</button>
+                                    <button class="action-btn add-to-cart" data-product="9">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">PEACH + VITAMIN B12 Double Barrier & Calming Serum</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(92)</span>
+                                </div>
+                                <p class="product-price">Rp 259.000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">5</a>
+                        <a href="#" class="next">Next →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quick-view-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-product">
+                <div class="modal-product-image">
+                    <img id="modal-image" src="/placeholder.svg" alt="Product Image">
+                </div>
+                <div class="modal-product-details">
+                    <h2 id="modal-title"></h2>
+                    <div class="modal-product-rating">
+                        <span class="stars" id="modal-rating"></span>
+                        <span class="review-count" id="modal-reviews"></span>
+                    </div>
+                    <p class="modal-product-price" id="modal-price"></p>
+                    <div class="modal-product-description">
+                        <p id="modal-description"></p>
+                    </div>
+                    <div class="modal-product-features">
+                        <h4>Key Benefits:</h4>
+                        <ul id="modal-features">
+                        </ul>
+                    </div>
+                    <div class="modal-product-quantity">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="modal-product-actions">
+                        <button class="btn add-to-cart-modal">Add to Cart</button>
+                        <a href="#" id="view-details-link" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Added to Cart Notification -->
+    <div class="notification" id="cart-notification">
+        <div class="notification-content">
+            <span class="notification-icon">✓</span>
+            <span class="notification-message">Product added to cart!</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Logo -->
+            <a href="index.html" class="footer-logo">FinaFound</a>
+            
+            <!-- Blog Post Section -->
+            <div class="footer-blog">
+                <p class="blog-title">Latest Journal Entry</p>
+                <h3 class="blog-heading">Begin Your Skincare Journey</h3>
+                <p class="blog-text">Discover the transformative power of finding skincare that truly understands your unique needs. Your path to radiant, healthy skin starts here.</p>
+            </div>
+            
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+            
+            <!-- Links Section -->
+            <div class="footer-links-section">
+                <!-- Product Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Collections</h4>
+                    <ul class="links-list">
+                        <li><a href="products.html">Facial Care</a></li>
+                        <li><a href="products.html">Treatment Serums</a></li>
+                        <li><a href="products.html">Hydration</a></li>
+                        <li><a href="products.html">Body Essentials</a></li>
+                        <li><a href="products.html">Discovery Sets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Our World</h4>
+                    <ul class="links-list">
+                        <li><a href="index.html#about">Philosophy</a></li>
+                        <li><a href="index.html#about">Ingredient Standards</a></li>
+                        <li><a href="index.html#about">Sustainability Commitment</a></li>
+                        <li><a href="articles.html">Journal</a></li>
+                        <li><a href="index.html#about">Connect With Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright and Privacy -->
+            <div class="footer-copyright">© 2025 | Privacy — Terms</div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Price range slider
+        const priceRange = document.getElementById('price-range');
+        const priceValue = document.getElementById('price-value');
+        
+        priceRange.addEventListener('input', () => {
+            const value = priceRange.value;
+            priceValue.textContent = `Rp ${parseInt(value).toLocaleString('id-ID')}`;
+        });
+
+        // Product data for quick view
+        const products = {
+            1: {
+                title: "SOY BRIGHT! Gel Moisturizer",
+                price: "Rp 239.000",
+                priceValue: 239000,
+                rating: "★★★★★",
+                reviews: "(124)",
+                image: "https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp",
+                description: "A revolutionary dual-action formula that delivers intense hydration while creating the perfect canvas for makeup application. This lightweight gel moisturizer absorbs quickly without leaving a greasy residue.",
+                features: [
+                    "Brightens and evens skin tone",
+                    "Provides 24-hour hydration",
+                    "Oil-free and non-comedogenic",
+                    "Suitable for all skin types"
+                ],
+                size: "50ml"
+            },
+            2: {
+                title: "HYDRICEING Essence Booster",
+                price: "Rp 149.000",
+                priceValue: 149000,
+                rating: "★★★★☆",
+                reviews: "(86)",
+                image: "https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp",
+                description: "An innovative serum-infused toner that delivers multiple benefits in one elegant step. This essence booster hydrates, preps, and enhances the effectiveness of subsequent skincare products.",
+                features: [
+                    "Balances skin's pH levels",
+                    "Enhances product absorption",
+                    "Contains 5 types of hyaluronic acid",
+                    "Alcohol-free formula"
+                ],
+                size: "150ml"
+            },
+            3: {
+                title: "Soy Clear Dark Spot Serum",
+                price: "Rp 288.000",
+                priceValue: 288000,
+                rating: "★★★★★",
+                reviews: "(97)",
+                image: "https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp",
+                description: "A powerful targeted treatment featuring 5% Micellar Cysteamine, 1% Kojic Acid, and Soybean Extract to visibly reduce the appearance of dark spots and hyperpigmentation.",
+                features: [
+                    "Targets stubborn dark spots",
+                    "Prevents new discoloration",
+                    "Evens overall skin tone",
+                    "Clinically tested for all skin types"
+                ],
+                size: "30ml"
+            },
+            4: {
+                title: "Gentle Foam Cleanser",
+                price: "Rp 129.000",
+                priceValue: 129000,
+                rating: "★★★★☆",
+                reviews: "(65)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7r98s-lq67fip9squmbc.webp",
+                description: "A pH-balanced foam cleanser that effectively removes impurities without stripping the skin's natural moisture. Leaves skin feeling clean, soft, and refreshed.",
+                features: [
+                    "Sulfate-free formula",
+                    "Removes makeup and impurities",
+                    "Maintains skin's natural pH",
+                    "Suitable for sensitive skin"
+                ],
+                size: "120ml"
+            },
+            5: {
+                title: "Brightening Eye Cream",
+                price: "Rp 199.000",
+                priceValue: 199000,
+                rating: "★★★★☆",
+                reviews: "(42)",
+                image: "https://down-id.img.susercontent.com/file/sg-11134201-7ra1u-m5cize6eqb9z38.webp",
+                description: "A targeted eye treatment that addresses dark circles, puffiness, and fine lines. This lightweight cream brightens and revitalizes the delicate eye area.",
+                features: [
+                    "Reduces appearance of dark circles",
+                    "Minimizes puffiness",
+                    "Hydrates and smooths fine lines",
+                    "Contains caffeine and peptides"
+                ],
+                size: "15ml"
+            },
+            6: {
+                title: "Daily Defense SPF 50",
+                price: "Rp 179.000",
+                priceValue: 179000,
+                rating: "★★★★★",
+                reviews: "(118)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rbk6-m6td1d2k4dik7e@resize_w900_nl.webp",
+                description: "A lightweight, broad-spectrum sunscreen that protects against UVA/UVB rays while providing antioxidant benefits. This non-greasy formula leaves no white cast.",
+                features: [
+                    "Broad-spectrum SPF 50 protection",
+                    "Contains antioxidants",
+                    "Water-resistant (40 minutes)",
+                    "Suitable for daily use"
+                ],
+                size: "50ml"
+            },
+            7: {
+                title: "Overnight Repair Mask",
+                price: "Rp 219.000",
+                priceValue: 219000,
+                rating: "★★★★☆",
+                reviews: "(73)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rbkb-m95mw7a61ycd8e.webp",
+                description: "An intensive overnight treatment that works while you sleep to repair, hydrate, and rejuvenate skin. Wake up to plump, radiant, and refreshed skin.",
+                features: [
+                    "Deeply hydrates overnight",
+                    "Repairs skin barrier",
+                    "Contains ceramides and peptides",
+                    "Non-greasy formula"
+                ],
+                size: "75ml"
+            },
+            8: {
+                title: "BERRY DEEP Exfoliating Serum",
+                price: "Rp 139.000",
+                priceValue: 139000,
+                rating: "★★★★☆",
+                reviews: "(58)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rasm-m4zxuuwm39ncdf.webp",
+                description: "An alcohol-free toner that balances and hydrates skin after cleansing. This gentle formula prepares skin for optimal absorption of subsequent products.",
+                features: [
+                    "Alcohol-free formula",
+                    "Balances skin's pH",
+                    "Contains hyaluronic acid",
+                    "Soothes and calms skin"
+                ],
+                size: "200ml"
+            },
+            9: {
+                title: "PEACH + VITAMIN B12 Double Barrier & Calming Serum",
+                price: "Rp 259.000",
+                priceValue: 259000,
+                rating: "★★★★★",
+                reviews: "(92)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rasg-m500fhaongd97f.webp",
+                description: "A potent serum featuring 10% Niacinamide (Vitamin B3) to minimize pores, even skin tone, and strengthen the skin barrier. This lightweight formula absorbs quickly.",
+                features: [
+                    "Reduces appearance of pores",
+                    "Evens skin tone",
+                    "Strengthens skin barrier",
+                    "Oil-free formula"
+                ],
+                size: "30ml"
+            }
+        };
+
+        // Quick view modal functionality
+        const modal = document.getElementById('quick-view-modal');
+        const quickViewButtons = document.querySelectorAll('.quick-view');
+        const closeModal = document.querySelector('.close-modal');
+
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-product');
+                const product = products[productId];
+                
+                // Populate modal with product data
+                document.getElementById('modal-image').src = product.image;
+                document.getElementById('modal-title').textContent = product.title;
+                document.getElementById('modal-rating').innerHTML = product.rating;
+                document.getElementById('modal-reviews').textContent = product.reviews;
+                document.getElementById('modal-price').textContent = product.price;
+                document.getElementById('modal-description').textContent = product.description;
+                
+                const featuresList = document.getElementById('modal-features');
+                featuresList.innerHTML = '';
+                product.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    featuresList.appendChild(li);
+                });
+                
+                // Set data-product attribute on add-to-cart-modal button
+                document.querySelector('.add-to-cart-modal').setAttribute('data-product', productId);
+                
+                // Set the correct product detail page URL
+                const detailsLink = document.getElementById('view-details-link');
+                detailsLink.href = `product-detail-${productId}.html`;
+                console.log("Setting link to:", detailsLink.href);
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Quantity selector in modal
+        const minusBtn = document.querySelector('.minus');
+        const plusBtn = document.querySelector('.plus');
+        const quantityInput = document.getElementById('quantity');
+        
+        minusBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+        
+        plusBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue < 10) {
+                quantityInput.value = currentValue + 1;
+            }
+        });
+
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const addToCartModal = document.querySelector('.add-to-cart-modal');
+        const cartNotification = document.getElementById('cart-notification');
+        const cartCount = document.getElementById('cart-count');
+        
+        let cart = [];
+        
+        // Load cart from localStorage if available
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            updateCartCount();
+        }
+        
+        function updateCartCount() {
+            let totalItems = 0;
+            cart.forEach(item => {
+                totalItems += item.quantity;
+            });
+            cartCount.textContent = totalItems;
+        }
+        
+        function showNotification() {
+            cartNotification.classList.add('show');
+            setTimeout(() => {
+                cartNotification.classList.remove('show');
+            }, 3000);
+        }
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-product');
+                const product = products[productId];
+                
+                if (!product) return;
+                
+                // Check if product already in cart
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        title: product.title,
+                        price: product.price,
+                        priceValue: product.priceValue,
+                        image: product.image,
+                        quantity: 1,
+                        size: product.size
+                    });
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                updateCartCount();
+                showNotification();
+            });
+        });
+        
+        addToCartModal.addEventListener('click', () => {
+            const productId = document.querySelector('.add-to-cart-modal').getAttribute('data-product');
+            const product = products[productId];
+            const quantity = parseInt(quantityInput.value);
+            
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    title: product.title,
+                    price: product.price,
+                    priceValue: product.priceValue,
+                    image: product.image,
+                    quantity: quantity,
+                    size: product.size
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            updateCartCount();
+            showNotification();
+            
+            // Close modal
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.product-card');
+        
+        function reveal() {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+    </script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelola Produk | Admin Finally Found You</title>
+<link rel="stylesheet" href="admin.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2 class="admin-logo">FinaFound</h2>
+                <p class="admin-subtitle">Admin Panel</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="admin-dashboard.html" class="nav-link">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-products.html" class="nav-link active">
+                            <span class="nav-icon">🧴</span>
+                            <span class="nav-text">Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-articles.html" class="nav-link">
+                            <span class="nav-icon">📝</span>
+                            <span class="nav-text">Artikel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-orders.html" class="nav-link">
+                            <span class="nav-icon">🛒</span>
+                            <span class="nav-text">Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-users.html" class="nav-link">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-text">Pengguna</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text">Kembali ke Website</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?img=32" alt="Admin Avatar">
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                </div>
+                <button class="logout-btn">Keluar</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-content">
+            <header class="content-header">
+                <div class="header-title">
+                    <h1>Kelola Produk</h1>
+                    <p>Tambah, edit, dan hapus produk dari katalog</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Cari produk...">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <button class="primary-btn" id="add-product-btn">+ Tambah Produk</button>
+                </div>
+            </header>
+            
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Daftar Produk</h2>
+                    <div class="filter-container">
+                        <select class="filter-select">
+                            <option value="all">Semua Kategori</option>
+                            <option value="facial">Perawatan Wajah</option>
+                            <option value="serum">Serum</option>
+                            <option value="hydration">Hidrasi</option>
+                            <option value="body">Perawatan Tubuh</option>
+                        </select>
+                        <select class="filter-select">
+                            <option value="all">Semua Status</option>
+                            <option value="active">Aktif</option>
+                            <option value="inactive">Tidak Aktif</option>
+                            <option value="out-of-stock">Stok Habis</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Gambar</th>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PRD001</td>
+                                <td class="product-image-cell">
+                                    <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp" alt="SOY BRIGHT! Gel Moisturizer">
+                                </td>
+                                <td>SOY BRIGHT! Gel Moisturizer</td>
+                                <td>Hidrasi</td>
+                                <td>Rp 239.000</td>
+                                <td>45</td>
+                                <td><span class="status-badge active">Aktif</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn edit">✏️</button>
+                                    <button class="action-btn view">👁️</button>
+                                    <button class="action-btn delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PRD002</td>
+                                <td class="product-image-cell">
+                                    <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp" alt="HYDRICEING Essence Booster">
+                                </td>
+                                <td>HYDRICEING Essence Booster</td>
+                                <td>Serum</td>
+                                <td>Rp 149.000</td>
+                                <td>32</td>
+                                <td><span class="status-badge active">Aktif</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn edit">✏️</button>
+                                    <button class="action-btn view">👁️</button>
+                                    <button class="action-btn delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PRD003</td>
+                                <td class="product-image-cell">
+                                    <img src="https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp" alt="Soy Clear Dark Spot Serum">
+                                </td>
+                                <td>Soy Clear Dark Spot Serum</td>
+                                <td>Serum</td>
+                                <td>Rp 288.000</td>
+                                <td>18</td>
+                                <td><span class="status-badge active">Aktif</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn edit">✏️</button>
+                                    <button class="action-btn view">👁️</button>
+                                    <button class="action-btn delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PRD004</td>
+                                <td class="product-image-cell">
+                                    <img src="https://images.tokopedia.net/img/cache/500-square/VqbcmM/2025/3/5/24807ff1-685b-4f26-9aad-ea590855e67e.jpg.webp?ect=4g" alt="Gentle Hydrating Cleanser">
+                                </td>
+                                <td>Gentle Hydrating Cleanser</td>
+                                <td>Perawatan Wajah</td>
+                                <td>Rp 129.000</td>
+                                <td>0</td>
+                                <td><span class="status-badge out-of-stock">Stok Habis</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn edit">✏️</button>
+                                    <button class="action-btn view">👁️</button>
+                                    <button class="action-btn delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PRD005</td>
+                                <td class="product-image-cell">
+                                    <img src="https://jois.id/wp-content/uploads/Finally-Found-You-Soy-Bright-Moisturizer.jpg" alt="Overnight Brightening Mask">
+                                </td>
+                                <td>Overnight Brightening Mask</td>
+                                <td>Perawatan Wajah</td>
+                                <td>Rp 199.000</td>
+                                <td>27</td>
+                                <td><span class="status-badge inactive">Tidak Aktif</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn edit">✏️</button>
+                                    <button class="action-btn view">👁️</button>
+                                    <button class="action-btn delete">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev">◀</button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn next">▶</button>
+                </div>
+            </section>
+            
+            <!-- Product Form Modal -->
+            <div class="modal" id="product-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Tambah Produk Baru</h2>
+                        <button class="close-btn">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="product-form">
+                            <div class="form-group">
+                                <label for="product-name">Nama Produk</label>
+                                <input type="text" id="product-name" class="form-input" placeholder="Masukkan nama produk">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="product-category">Kategori</label>
+                                    <select id="product-category" class="form-input">
+                                        <option value="">Pilih kategori</option>
+                                        <option value="facial">Perawatan Wajah</option>
+                                        <option value="serum">Serum</option>
+                                        <option value="hydration">Hidrasi</option>
+                                        <option value="body">Perawatan Tubuh</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="product-price">Harga (Rp)</label>
+                                    <input type="number" id="product-price" class="form-input" placeholder="Masukkan harga">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="product-stock">Stok</label>
+                                    <input type="number" id="product-stock" class="form-input" placeholder="Jumlah stok">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="product-status">Status</label>
+                                    <select id="product-status" class="form-input">
+                                        <option value="active">Aktif</option>
+                                        <option value="inactive">Tidak Aktif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-description">Deskripsi Produk</label>
+                                <textarea id="product-description" class="form-input" rows="4" placeholder="Masukkan deskripsi produk"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-features">Fitur Produk</label>
+                                <input type="text" id="product-features" class="form-input" placeholder="Pisahkan dengan koma (mis: Brightening, Smoothing, Hydrating)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Gambar Produk</label>
+                                <div class="image-upload-container">
+                                    <div class="image-preview">
+                                        <img id="image-preview" src="https://via.placeholder.com/150" alt="Preview">
+                                    </div>
+                                    <div class="upload-controls">
+                                        <button type="button" class="upload-btn">Pilih Gambar</button>
+                                        <input type="file" id="product-image" class="file-input" accept="image/*">
+                                        <p class="upload-info">Format: JPG, PNG. Maks: 2MB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="secondary-btn cancel-btn">Batal</button>
+                                <button type="submit" class="primary-btn">Simpan Produk</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal functionality
+            const modal = document.getElementById('product-modal');
+            const addProductBtn = document.getElementById('add-product-btn');
+            const closeBtn = document.querySelector('.close-btn');
+            const cancelBtn = document.querySelector('.cancel-btn');
+            
+            addProductBtn.addEventListener('click', function() {
+                modal.style.display = 'flex';
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            cancelBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Image preview functionality
+            const imageInput = document.getElementById('product-image');
+            const imagePreview = document.getElementById('image-preview');
+            const uploadBtn = document.querySelector('.upload-btn');
+            
+            uploadBtn.addEventListener('click', function() {
+                imageInput.click();
+            });
+            
+            imageInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Form submission (prevent default for demo)
+            const productForm = document.querySelector('.product-form');
+            productForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Produk berhasil disimpan!');
+                modal.style.display = 'none';
+            });
+            
+            // Action buttons functionality
+            const editButtons = document.querySelectorAll('.action-btn.edit');
+            const deleteButtons = document.querySelectorAll('.action-btn.delete');
+            const viewButtons = document.querySelectorAll('.action-btn.view');
+            
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const productId = row.cells[0].textContent;
+                    const productName = row.cells[2].textContent;
+                    alert(`Edit produk: ${productName} (${productId})`);
+                    // In a real app, you would populate the form with product data
+                    document.querySelector('.modal-header h2').textContent = 'Edit Produk';
+                    modal.style.display = 'flex';
+                });
+            });
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const productId = row.cells[0].textContent;
+                    const productName = row.cells[2].textContent;
+                    if (confirm(`Apakah Anda yakin ingin menghapus produk: ${productName} (${productId})?`)) {
+                        alert('Produk berhasil dihapus!');
+                        // In a real app, you would send a delete request to the server
+                    }
+                });
+            });
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const productId = row.cells[0].textContent;
+                    const productName = row.cells[2].textContent;
+                    alert(`Lihat detail produk: ${productName} (${productId})`);
+                    // In a real app, you would redirect to the product detail page
+                });
+            });
+        });
+    </script>
+</body>
+</html>

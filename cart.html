@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Finally Found You</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- Hamburger Menu -->
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+        
+            <!-- Logo -->
+            <a href="index.html" class="logo">Finally Found You</a>
+        
+            <!-- Navigation -->
+            <nav class="navbar" id="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html" class="active">Cart</a></li>
+                </ul>
+            </nav>
+        
+            <!-- Shop Button -->
+            <a href="products.html" class="btn">Shop Now</a>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Your Shopping Cart</h1>
+            <p>Review your items and proceed to checkout</p>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <h2>Cart Items (<span id="cart-count">0</span>)</h2>
+                    
+                    <div class="cart-table-container">
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-items-container">
+                                <!-- Cart items will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="cart-actions">
+                        <div class="coupon">
+                            <input type="text" placeholder="Coupon code" class="coupon-input" id="coupon-input">
+                            <button class="btn btn-outline" id="apply-coupon">Apply Coupon</button>
+                        </div>
+                        <button class="btn btn-outline update-cart" id="update-cart">Update Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">Rp 0</span>
+                    </div>
+                    <div class="summary-row discount-row" id="discount-row" style="display: none;">
+                        <span>Discount</span>
+                        <span id="discount">- Rp 0</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span id="total">Rp 0</span>
+                    </div>
+                    <button id="checkout-btn" class="btn checkout-btn">Proceed to Checkout</button>
+                    <a href="products.html" class="continue-shopping">Continue Shopping</a>
+                    
+                    <div class="payment-methods">
+                        <h3>We Accept</h3>
+                        <div class="payment-icons">
+                            <span class="payment-icon">💳</span>
+                            <span class="payment-icon">🏦</span>
+                            <span class="payment-icon">📱</span>
+                            <span class="payment-icon">💸</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Empty Cart Message (hidden by default) -->
+            <div class="empty-cart" id="empty-cart" style="display: none;">
+                <div class="empty-cart-content">
+                    <div class="empty-cart-icon">🛒</div>
+                    <h2>Your cart is empty</h2>
+                    <p>Looks like you haven't added any products to your cart yet.</p>
+                    <a href="products.html" class="btn">Start Shopping</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- You May Also Like Section -->
+    <section class="related-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="related-products-grid">
+                <!-- Related Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98s-lq67fip9squmbc.webp" alt="Gentle Foam Cleanser">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Gentle Hydrating Cleanser</h3>
+                        <p class="product-description">A soothing, non-stripping cleanser that removes impurities while maintaining skin's natural moisture.</p>
+                        <div class="product-features">
+                            <span>Hydrating</span>
+                            <span>Gentle</span>
+                        </div>
+                        <p class="product-price">Rp 129.000</p>
+                        <button class="btn related-add-to-cart" data-id="4" data-price="129000">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Related Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbk6-m6td1d2k4dik7e@resize_w900_nl.webp" alt="Daily Defense SPF 50">
+                        <div class="product-tag bestseller">Bestseller</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Daily Defense SPF 50</h3>
+                        <p class="product-description">A lightweight, broad-spectrum sunscreen that protects against UVA/UVB rays.</p>
+                        <div class="product-features">
+                            <span>Protection</span>
+                            <span>Lightweight</span>
+                        </div>
+                        <p class="product-price">Rp 179.000</p>
+                        <button class="btn related-add-to-cart" data-id="6" data-price="179000">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Related Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbkb-m95mw7a61ycd8e.webp" alt="Overnight Repair Mask">
+                        <div class="product-tag new">New</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Overnight Brightening Mask</h3>
+                        <p class="product-description">An intensive treatment mask that works while you sleep to reveal radiant skin by morning.</p>
+                        <div class="product-features">
+                            <span>Brightening</span>
+                            <span>Overnight</span>
+                        </div>
+                        <p class="product-price">Rp 219.000</p>
+                        <button class="btn related-add-to-cart" data-id="5" data-price="199000">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Logo -->
+            <a href="index.html" class="footer-logo">FinaFound</a>
+            
+            <!-- Blog Post Section -->
+            <div class="footer-blog">
+                <p class="blog-title">Latest Journal Entry</p>
+                <h3 class="blog-heading">Begin Your Skincare Journey</h3>
+                <p class="blog-text">Discover the transformative power of finding skincare that truly understands your unique needs. Your path to radiant, healthy skin starts here.</p>
+            </div>
+            
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+            
+            <!-- Links Section -->
+            <div class="footer-links-section">
+                <!-- Product Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Collections</h4>
+                    <ul class="links-list">
+                        <li><a href="products.html">Facial Care</a></li>
+                        <li><a href="products.html">Treatment Serums</a></li>
+                        <li><a href="products.html">Hydration</a></li>
+                        <li><a href="products.html">Body Essentials</a></li>
+                        <li><a href="products.html">Discovery Sets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Our World</h4>
+                    <ul class="links-list">
+                        <li><a href="index.html#about">Philosophy</a></li>
+                        <li><a href="index.html#about">Ingredient Standards</a></li>
+                        <li><a href="index.html#about">Sustainability Commitment</a></li>
+                        <li><a href="articles.html">Journal</a></li>
+                        <li><a href="index.html#about">Connect With Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright and Privacy -->
+            <div class="footer-copyright">© 2025 | Privacy — Terms</div>
+        </div>
+    </footer>
+
+    <script>
+        // Product data for quick view
+        const products = {
+            1: {
+                title: "SOY BRIGHT! Gel Moisturizer",
+                price: "Rp 239.000",
+                priceValue: 239000,
+                rating: "★★★★★",
+                reviews: "(124)",
+                image: "https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp",
+                description: "A revolutionary dual-action formula that delivers intense hydration while creating the perfect canvas for makeup application. This lightweight gel moisturizer absorbs quickly without leaving a greasy residue.",
+                features: [
+                    "Brightens and evens skin tone",
+                    "Provides 24-hour hydration",
+                    "Oil-free and non-comedogenic",
+                    "Suitable for all skin types"
+                ],
+                size: "50ml"
+            },
+            2: {
+                title: "HYDRICEING Essence Booster",
+                price: "Rp 149.000",
+                priceValue: 149000,
+                rating: "★★★★☆",
+                reviews: "(86)",
+                image: "https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp",
+                description: "An innovative serum-infused toner that delivers multiple benefits in one elegant step. This essence booster hydrates, preps, and enhances the effectiveness of subsequent skincare products.",
+                features: [
+                    "Balances skin's pH levels",
+                    "Enhances product absorption",
+                    "Contains 5 types of hyaluronic acid",
+                    "Alcohol-free formula"
+                ],
+                size: "150ml"
+            },
+            3: {
+                title: "Soy Clear Dark Spot Serum",
+                price: "Rp 288.000",
+                priceValue: 288000,
+                rating: "★★★★★",
+                reviews: "(97)",
+                image: "https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp",
+                description: "A powerful targeted treatment featuring 5% Micellar Cysteamine, 1% Kojic Acid, and Soybean Extract to visibly reduce the appearance of dark spots and hyperpigmentation.",
+                features: [
+                    "Targets stubborn dark spots",
+                    "Prevents new discoloration",
+                    "Evens overall skin tone",
+                    "Clinically tested for all skin types"
+                ],
+                size: "30ml"
+            },
+            4: {
+                title: "Gentle Foam Cleanser",
+                price: "Rp 129.000",
+                priceValue: 129000,
+                rating: "★★★★☆",
+                reviews: "(65)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7r98s-lq67fip9squmbc.webp",
+                description: "A pH-balanced foam cleanser that effectively removes impurities without stripping the skin's natural moisture. Leaves skin feeling clean, soft, and refreshed.",
+                features: [
+                    "Sulfate-free formula",
+                    "Removes makeup and impurities",
+                    "Maintains skin's natural pH",
+                    "Suitable for sensitive skin"
+                ],
+                size: "120ml"
+            },
+            5: {
+                title: "Brightening Eye Cream",
+                price: "Rp 199.000",
+                priceValue: 199000,
+                rating: "★★★★☆",
+                reviews: "(42)",
+                image: "https://down-id.img.susercontent.com/file/sg-11134201-7ra1u-m5cize6eqb9z38.webp",
+                description: "A targeted eye treatment that addresses dark circles, puffiness, and fine lines. This lightweight cream brightens and revitalizes the delicate eye area.",
+                features: [
+                    "Reduces appearance of dark circles",
+                    "Minimizes puffiness",
+                    "Hydrates and smooths fine lines",
+                    "Contains caffeine and peptides"
+                ],
+                size: "15ml"
+            },
+            6: {
+                title: "Daily Defense SPF 50",
+                price: "Rp 179.000",
+                priceValue: 179000,
+                rating: "★★★★★",
+                reviews: "(118)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rbk6-m6td1d2k4dik7e@resize_w900_nl.webp",
+                description: "A lightweight, broad-spectrum sunscreen that protects against UVA/UVB rays while providing antioxidant benefits. This non-greasy formula leaves no white cast.",
+                features: [
+                    "Broad-spectrum SPF 50 protection",
+                    "Contains antioxidants",
+                    "Water-resistant (40 minutes)",
+                    "Suitable for daily use"
+                ],
+                size: "50ml"
+            },
+            7: {
+                title: "Overnight Repair Mask",
+                price: "Rp 219.000",
+                priceValue: 219000,
+                rating: "★★★★☆",
+                reviews: "(73)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rbkb-m95mw7a61ycd8e.webp",
+                description: "An intensive overnight treatment that works while you sleep to repair, hydrate, and rejuvenate skin. Wake up to plump, radiant, and refreshed skin.",
+                features: [
+                    "Deeply hydrates overnight",
+                    "Repairs skin barrier",
+                    "Contains ceramides and peptides",
+                    "Non-greasy formula"
+                ],
+                size: "75ml"
+            },
+            8: {
+                title: "BERRY DEEP Exfoliating Serum",
+                price: "Rp 139.000",
+                priceValue: 139000,
+                rating: "★★★★☆",
+                reviews: "(58)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rasm-m4zxuuwm39ncdf.webp",
+                description: "An alcohol-free toner that balances and hydrates skin after cleansing. This gentle formula prepares skin for optimal absorption of subsequent products.",
+                features: [
+                    "Alcohol-free formula",
+                    "Balances skin's pH",
+                    "Contains hyaluronic acid",
+                    "Soothes and calms skin"
+                ],
+                size: "200ml"
+            },
+            9: {
+                title: "PEACH + VITAMIN B12 Double Barrier & Calming Serum",
+                price: "Rp 259.000",
+                priceValue: 259000,
+                rating: "★★★★★",
+                reviews: "(92)",
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7rasg-m500fhaongd97f.webp",
+                description: "A potent serum featuring 10% Niacinamide (Vitamin B3) to minimize pores, even skin tone, and strengthen the skin barrier. This lightweight formula absorbs quickly.",
+                features: [
+                    "Reduces appearance of pores",
+                    "Evens skin tone",
+                    "Strengthens skin barrier",
+                    "Oil-free formula"
+                ],
+                size: "30ml"
+            }
+        };
+
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Cart functionality
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const emptyCartMessage = document.getElementById('empty-cart');
+        const cartSection = document.querySelector('.cart-container');
+        const cartCountDisplay = document.getElementById('cart-count');
+        
+        // Price formatting function
+        function formatPrice(price) {
+            // Ensure price is a number
+            price = parseInt(price) || 0;
+            return 'Rp ' + price.toLocaleString('id-ID');
+        }
+        
+        // Load cart from localStorage
+        let cart = [];
+        if (localStorage.getItem('cart')) {
+            try {
+                cart = JSON.parse(localStorage.getItem('cart'));
+                // Ensure all cart items have the required properties with proper numeric values
+                cart = cart.map(item => {
+                    // Make sure priceValue is a number
+                    if (!item.priceValue || isNaN(item.priceValue)) {
+                        if (item.price) {
+                            // Extract numeric value from price string (e.g., "Rp 239.000" -> 239000)
+                            const priceString = item.price.replace(/\D/g, '');
+                            item.priceValue = parseInt(priceString) || 0;
+                        } else {
+                            item.priceValue = 0;
+                        }
+                    }
+                    
+                    // Make sure quantity is a number
+                    item.quantity = parseInt(item.quantity || 1);
+                    
+                    // If the item doesn't have a size, add a default one
+                    if (!item.size) {
+                        item.size = products[item.id]?.size || 'Standard';
+                    }
+                    
+                    return item;
+                });
+            } catch (e) {
+                console.error('Error parsing cart from localStorage:', e);
+                cart = [];
+            }
+        }
+        
+        // Render cart items
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartSection.style.display = 'none';
+                emptyCartMessage.style.display = 'block';
+                return;
+            }
+            
+            cartSection.style.display = 'grid';
+            emptyCartMessage.style.display = 'none';
+            
+            let itemCount = 0;
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                // Ensure priceValue is a number
+                const priceValue = parseInt(item.priceValue || 0);
+                const quantity = parseInt(item.quantity || 1);
+                const total = priceValue * quantity;
+                
+                subtotal += total;
+                itemCount += quantity;
+                
+                const tr = document.createElement('tr');
+                tr.className = 'cart-item';
+                tr.innerHTML = `
+                    <td class="product-info">
+                        <div class="product-image">
+                            <img src="${item.image}" alt="${item.title}">
+                        </div>
+                        <div class="product-details">
+                            <h3>${item.title}</h3>
+                            <p class="product-meta">Size: ${item.size || 'Standard'}</p>
+                        </div>
+                    </td>
+                    <td class="product-price">${formatPrice(priceValue)}</td>
+                    <td class="product-quantity">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <input type="text" value="${quantity}" class="quantity-input" data-id="${item.id}" readonly>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                    </td>
+                    <td class="product-total">${formatPrice(total)}</td>
+                    <td class="product-remove">
+                        <button class="remove-btn" data-id="${item.id}">×</button>
+                    </td>
+                `;
+                
+                cartItemsContainer.appendChild(tr);
+            });
+            
+            cartCountDisplay.textContent = itemCount;
+            
+            // Update summary
+            const shipping = subtotal > 0 ? 15000 : 0;
+            const total = subtotal + shipping;
+            
+            document.getElementById('subtotal').textContent = formatPrice(subtotal);
+            document.getElementById('shipping').textContent = formatPrice(shipping);
+            document.getElementById('total').textContent = formatPrice(total);
+            
+            // Add event listeners to quantity buttons and remove buttons
+            addCartEventListeners();
+        }
+        
+        function addCartEventListeners() {
+            // Quantity decrease
+            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
+            minusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const item = cart.find(item => item.id === id);
+                    
+                    if (item && item.quantity > 1) {
+                        item.quantity--;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        renderCart();
+                    }
+                });
+            });
+            
+            // Quantity increase
+            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
+            plusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const item = cart.find(item => item.id === id);
+                    
+                    if (item && item.quantity < 10) {
+                        item.quantity++;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        renderCart();
+                    }
+                });
+            });
+            
+            // Remove item
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const itemIndex = cart.findIndex(item => item.id === id);
+                    
+                    if (itemIndex !== -1) {
+                        const item = button.closest('.cart-item');
+                        
+                        // Animation for removal
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateX(20px)';
+                        
+                        setTimeout(() => {
+                            cart.splice(itemIndex, 1);
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            renderCart();
+                        }, 300);
+                    }
+                });
+            });
+        }
+        
+        // Update cart button
+        const updateCartButton = document.getElementById('update-cart');
+        updateCartButton.addEventListener('click', () => {
+            renderCart();
+            
+            // Show confirmation message
+            const message = document.createElement('div');
+            message.className = 'update-message';
+            message.textContent = 'Cart updated successfully!';
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    message.remove();
+                }, 500);
+            }, 2000);
+        });
+        
+        // Apply coupon button
+        const applyCouponButton = document.getElementById('apply-coupon');
+        const couponInput = document.getElementById('coupon-input');
+        const discountRow = document.getElementById('discount-row');
+        const discountAmount = document.getElementById('discount');
+        
+        applyCouponButton.addEventListener('click', () => {
+            const couponCode = couponInput.value.trim().toUpperCase();
+            
+            if (couponCode === 'WELCOME10') {
+                // Apply 10% discount
+                const subtotalText = document.getElementById('subtotal').textContent;
+                const subtotal = parseInt(subtotalText.replace(/\D/g, '')) || 0;
+                const discount = Math.round(subtotal * 0.1);
+                
+                discountAmount.textContent = '- ' + formatPrice(discount);
+                discountRow.style.display = 'flex';
+                
+                // Update total
+                const shippingText = document.getElementById('shipping').textContent;
+                const shipping = parseInt(shippingText.replace(/\D/g, '')) || 0;
+                const total = subtotal + shipping - discount;
+                
+                document.getElementById('total').textContent = formatPrice(total);
+                
+                // Show success message
+                alert('Coupon applied successfully! 10% discount added.');
+            } else if (couponCode === '') {
+                alert('Please enter a coupon code.');
+            } else {
+                alert('Invalid coupon code. Please try again.');
+            }
+        });
+
+        // Add to cart from related products
+        const relatedAddToCartButtons = document.querySelectorAll('.related-add-to-cart');
+        relatedAddToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-id');
+                const product = products[productId];
+                
+                if (!product) return;
+                
+                // Check if product already in cart
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        title: product.title,
+                        price: product.price,
+                        priceValue: product.priceValue,
+                        image: product.image,
+                        quantity: 1,
+                        size: product.size
+                    });
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Show notification
+                const message = document.createElement('div');
+                message.className = 'update-message';
+                message.textContent = 'Product added to cart!';
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 2000);
+                
+                // Refresh cart
+                renderCart();
+            });
+        });
+
+        // Checkout button
+        const checkoutBtn = document.getElementById('checkout-btn');
+        checkoutBtn.addEventListener('click', () => {
+            // Save cart data for checkout page
+            localStorage.setItem('checkoutCart', JSON.stringify(cart));
+            
+            // Get discount if applied
+            let discount = 0;
+            if (discountRow.style.display !== 'none') {
+                const discountText = discountAmount.textContent;
+                discount = parseInt(discountText.replace(/\D/g, '')) || 0;
+            }
+            
+            // Get shipping and total
+            const subtotalText = document.getElementById('subtotal').textContent;
+            const subtotal = parseInt(subtotalText.replace(/\D/g, '')) || 0;
+            const shippingText = document.getElementById('shipping').textContent;
+            const shipping = parseInt(shippingText.replace(/\D/g, '')) || 0;
+            
+            // Save order summary
+            localStorage.setItem('orderSummary', JSON.stringify({
+                subtotal: subtotal,
+                shipping: shipping,
+                discount: discount,
+                total: subtotal + shipping - discount
+            }));
+            
+            // Redirect to checkout page
+            window.location.href = 'checkout.html';
+        });
+        
+        // Render cart on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+        });
+        
+        // Reveal animations on scroll for product cards
+        const revealElements = document.querySelectorAll('.product-card');
+        
+        function reveal() {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+    </script>
+</body>
+</html>

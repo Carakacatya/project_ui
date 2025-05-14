@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles | Finally Found You</title>
+    <link rel="stylesheet" href="articles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- Hamburger Menu -->
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+        
+            <!-- Logo -->
+            <a href="index.html" class="logo">Finally Found You</a>
+        
+            <!-- Navigation -->
+            <nav class="navbar" id="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="articles.html" class="active">Articles</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+        
+            <!-- Shop Button -->
+            <a href="products.html" class="btn">Shop Now</a>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Beauty Journal & Guides</h1>
+            <p>Discover expert tips, skincare secrets, and beauty rituals for your radiant glow</p>
+        </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="articles-section">
+        <div class="container">
+            <!-- Filter Categories -->
+            <div class="article-filters">
+                <button class="filter-btn active" data-filter="all">All Articles</button>
+                <button class="filter-btn" data-filter="skincare">Skincare</button>
+                <button class="filter-btn" data-filter="ingredients">Ingredients</button>
+                <button class="filter-btn" data-filter="routines">Routines</button>
+                <button class="filter-btn" data-filter="tips">Tips & Tricks</button>
+            </div>
+
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <div class="article-card" data-category="skincare routines">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/6a/b3/8d/6ab38d01a89bf76b5421a3256bf1062f.jpg" alt="Morning Skincare">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date">May 10, 2025</span>
+                            <span class="article-category">Skincare</span>
+                        </div>
+                        <h3 class="article-title">Morning Skincare Rituals for Radiant Skin</h3>
+                        <p class="article-excerpt">Wake up your skin with these dermatologist-backed morning rituals that will leave your skin glowing all day long.</p>
+                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="article-card" data-category="skincare tips">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/c1/6f/9d/c16f9d303029e8dd9d5d6728f600d7ca.jpg" alt="SPF Guide">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date">May 5, 2025</span>
+                            <span class="article-category">Protection</span>
+                        </div> 
+                        <h3 class="article-title">Your Complete Guide to Sunscreens</h3>
+                        <p class="article-excerpt">Everything you need to know about protecting your skin with the right SPF, from application techniques to reapplication timing.</p>
+                        <a href="article-detail-1.html" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="article-card" data-category="ingredients">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/5c/03/e6/5c03e62e9ff75c0ba7c52f59bab9542a.jpg" alt="Niacinamide Benefits">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date">April 28, 2025</span>
+                            <span class="article-category">Ingredients</span>
+                        </div>
+                        <h3 class="article-title">Why Niacinamide Wins in Skincare</h3>
+                        <p class="article-excerpt">Discover why this superstar ingredient brightens, soothes, and transforms all skin types with its multi-benefit properties.</p>
+                        <a href="article-detail-2.html" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="article-card" data-category="routines">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/dc/4b/55/dc4b55b0f4e4dc62890bf1253afe571f.jpg" alt="Night Routine">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date">April 20, 2025</span>
+                            <span class="article-category">Routines</span>
+                        </div>
+                        <h3 class="article-title">The Perfect Evening Skincare Routine</h3>
+                        <p class="article-excerpt">Maximize your skin's overnight repair with this step-by-step evening routine that works while you sleep.</p>
+                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="article-card" data-category="ingredients tips">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/9a/b9/92/9ab9922f915387c4133893cf48f3188c.jpg" alt="Hyaluronic Acid">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date">April 15, 2025</span>
+                            <span class="article-category">Ingredients</span>
+                        </div>
+                        <h3 class="article-title">Hyaluronic Acid: Your Hydration Hero</h3>
+                        <p class="article-excerpt">Learn how to properly use hyaluronic acid in your routine for maximum hydration and plumping effects.</p>
+                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="article-card" data-category="skincare">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/a2/cc/55/a2cc55189457ddccadb0a6af7dfce51d.jpg" alt="Sensitive Skin">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date">April 8, 2025</span>
+                            <span class="article-category">Skincare</span>
+                        </div>
+                        <h3 class="article-title">Caring for Sensitive Skin</h3>
+                        <p class="article-excerpt">Gentle approaches and soothing ingredients to calm and strengthen sensitive, reactive skin types.</p>
+                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>...</span>
+                <a href="#">8</a>
+                <a href="#" class="next">Next →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated with Beauty Insights</h2>
+                <p>Subscribe to our newsletter for exclusive skincare tips, product launches, and special offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Logo -->
+            <a href="index.html" class="footer-logo">FinaFound</a>
+            
+            <!-- Blog Post Section -->
+            <div class="footer-blog">
+                <p class="blog-title">Latest Journal Entry</p>
+                <h3 class="blog-heading">Begin Your Skincare Journey</h3>
+                <p class="blog-text">Discover the transformative power of finding skincare that truly understands your unique needs. Your path to radiant, healthy skin starts here.</p>
+            </div>
+            
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+            
+            <!-- Links Section -->
+            <div class="footer-links-section">
+                <!-- Product Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Collections</h4>
+                    <ul class="links-list">
+                        <li><a href="products.html">Facial Care</a></li>
+                        <li><a href="products.html">Treatment Serums</a></li>
+                        <li><a href="products.html">Hydration</a></li>
+                        <li><a href="products.html">Body Essentials</a></li>
+                        <li><a href="products.html">Discovery Sets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Our World</h4>
+                    <ul class="links-list">
+                        <li><a href="index.html#about">Philosophy</a></li>
+                        <li><a href="index.html#about">Ingredient Standards</a></li>
+                        <li><a href="index.html#about">Sustainability Commitment</a></li>
+                        <li><a href="articles.html">Journal</a></li>
+                        <li><a href="index.html#about">Connect With Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright and Privacy -->
+            <div class="footer-copyright">© 2025 | Privacy — Terms</div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Article filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                articleCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.article-card');
+        
+        function reveal() {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+    </script>
+</body>
+</html>

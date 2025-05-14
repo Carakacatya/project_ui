@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Admin Finally Found You</title>
+<link rel="stylesheet" href="admin.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2 class="admin-logo">FinaFound</h2>
+                <p class="admin-subtitle">Admin Panel</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="admin-dashboard.html" class="nav-link active">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-products.html" class="nav-link">
+                            <span class="nav-icon">🧴</span>
+                            <span class="nav-text">Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-articles.html" class="nav-link">
+                            <span class="nav-icon">📝</span>
+                            <span class="nav-text">Artikel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-orders.html" class="nav-link">
+                            <span class="nav-icon">🛒</span>
+                            <span class="nav-text">Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-users.html" class="nav-link">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-text">Pengguna</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text">Kembali ke Website</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?img=32" alt="Admin Avatar">
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                </div>
+                <button class="logout-btn">Keluar</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-content">
+            <header class="content-header">
+                <div class="header-title">
+                    <h1>Dashboard</h1>
+                    <p>Selamat datang kembali, Admin!</p>
+                </div>
+                
+                <div class="header-actions">
+                    <select class="filter-select">
+                        <option value="today">Hari Ini</option>
+                        <option value="week">Minggu Ini</option>
+                        <option value="month" selected>Bulan Ini</option>
+                        <option value="year">Tahun Ini</option>
+                    </select>
+                    <button class="primary-btn" id="refresh-btn">🔄 Refresh Data</button>
+                </div>
+            </header>
+            
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-icon purple">💰</div>
+                    <div class="card-content">
+                        <h3>Rp 12,5 Juta</h3>
+                        <p>Total Pendapatan</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon green">🛒</div>
+                    <div class="card-content">
+                        <h3>48</h3>
+                        <p>Total Pesanan</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon blue">👥</div>
+                    <div class="card-content">
+                        <h3>156</h3>
+                        <p>Total Pengguna</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon orange">📦</div>
+                    <div class="card-content">
+                        <h3>12</h3>
+                        <p>Produk Terjual</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Pendapatan Bulanan</h3>
+                        <p class="chart-period">Mei 2025</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenue-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Produk Terlaris</h3>
+                        <p class="chart-period">Mei 2025</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="products-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Orders Section -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Pesanan Terbaru</h2>
+                    <a href="admin-orders.html" class="secondary-btn">Lihat Semua</a>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID Pesanan</th>
+                                <th>Pelanggan</th>
+                                <th>Tanggal</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ORD2025051</td>
+                                <td>Michael Tanjung</td>
+                                <td>13 Mei 2025, 09:30</td>
+                                <td>Rp 388.000</td>
+                                <td><span class="status-badge pending">Menunggu Pembayaran</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn view">👁️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ORD2025050</td>
+                                <td>Jessica Wijaya</td>
+                                <td>12 Mei 2025, 15:45</td>
+                                <td>Rp 527.000</td>
+                                <td><span class="status-badge processing">Diproses</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn view">👁️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ORD2025049</td>
+                                <td>Sarah Kusuma</td>
+                                <td>10 Mei 2025, 11:20</td>
+                                <td>Rp 239.000</td>
+                                <td><span class="status-badge shipped">Dikirim</span></td>
+                                <td class="action-cell">
+                                    <button class="action-btn view">👁️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Recent Activity and Low Stock Section -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Aktivitas Terbaru</h3>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #e7f3ff; color: #0a84ff;">🔑</div>
+                            <div class="activity-content">
+                                <h4>Jessica Wijaya melakukan login</h4>
+                                <p class="activity-time">Hari ini, 10:45</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #e1f5e9; color: #0d8a45;">🛒</div>
+                            <div class="activity-content">
+                                <h4>Michael Tanjung melakukan pembelian</h4>
+                                <p class="activity-time">Hari ini, 09:30</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #fff2e7; color: #ff9500;">⭐</div>
+                            <div class="activity-content">
+                                <h4>Sarah Kusuma memberikan ulasan</h4>
+                                <p class="activity-time">Kemarin, 15:20</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #f0e7ff; color: #6667ab;">👤</div>
+                            <div class="activity-content">
+                                <h4>Budi Santoso memperbarui profil</h4>
+                                <p class="activity-time">Kemarin, 11:15</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #e7f3ff; color: #0a84ff;">🔑</div>
+                            <div class="activity-content">
+                                <h4>Admin User melakukan login</h4>
+                                <p class="activity-time">Kemarin, 08:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Stok Menipis</h3>
+                        <a href="admin-products.html" class="secondary-btn">Kelola Stok</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Produk</th>
+                                    <th>Stok</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gentle Hydrating Cleanser</td>
+                                    <td>0</td>
+                                    <td><span class="status-badge out-of-stock">Stok Habis</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Soy Clear Dark Spot Serum</td>
+                                    <td>5</td>
+                                    <td><span class="status-badge pending">Stok Menipis</span></td>
+                                </tr>
+                                <tr>
+                                    <td>HYDRICEING Essence Booster</td>
+                                    <td>8</td>
+                                    <td><span class="status-badge pending">Stok Menipis</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenue-chart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1 Mei', '5 Mei', '10 Mei', '15 Mei', '20 Mei', '25 Mei', '30 Mei'],
+                    datasets: [{
+                        label: 'Pendapatan (Rp Juta)',
+                        data: [1.2, 2.5, 4.8, 6.3, 8.9, 10.7, 12.5],
+                        backgroundColor: 'rgba(102, 103, 171, 0.1)',
+                        borderColor: '#6667ab',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Products Chart
+            const productsCtx = document.getElementById('products-chart').getContext('2d');
+            const productsChart = new Chart(productsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['SOY BRIGHT! Gel Moisturizer', 'HYDRICEING Essence Booster', 'Soy Clear Dark Spot Serum', 'Overnight Brightening Mask', 'Gentle Hydrating Cleanser'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            '#6667ab',
+                            '#0a84ff',
+                            '#0d8a45',
+                            '#ff9500',
+                            '#d63031'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 15,
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+            
+            // Refresh button functionality
+            const refreshBtn = document.getElementById('refresh-btn');
+            
+            refreshBtn.addEventListener('click', function() {
+                // Simulate data refresh
+                refreshBtn.textContent = '🔄 Memperbarui...';
+                refreshBtn.disabled = true;
+                
+                setTimeout(function() {
+                    // Update charts with new random data
+                    revenueChart.data.datasets[0].data = [
+                        Math.random() * 3 + 1,
+                        Math.random() * 3 + 2,
+                        Math.random() * 3 + 4,
+                        Math.random() * 3 + 6,
+                        Math.random() * 3 + 8,
+                        Math.random() * 3 + 10,
+                        Math.random() * 3 + 12
+                    ];
+                    revenueChart.update();
+                    
+                    productsChart.data.datasets[0].data = [
+                        Math.floor(Math.random() * 20 + 25),
+                        Math.floor(Math.random() * 10 + 20),
+                        Math.floor(Math.random() * 10 + 15),
+                        Math.floor(Math.random() * 10 + 10),
+                        Math.floor(Math.random() * 5 + 5)
+                    ];
+                    productsChart.update();
+                    
+                    refreshBtn.textContent = '🔄 Refresh Data';
+                    refreshBtn.disabled = false;
+                    
+                    alert('Data berhasil diperbarui!');
+                }, 1500);
+            });
+            
+            // View order button functionality
+            const viewButtons = document.querySelectorAll('.action-btn.view');
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const orderId = row.cells[0].textContent;
+                    window.location.href = 'admin-orders.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
