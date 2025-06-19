@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Finally Found You</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+            <a href="index.html" class="logo">Finally Found You</a>
+            <nav class="navbar" id="navbar">
+                <ul class="nav-links">
+                    <li><a href="index-user.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+            <div class="account-dropdown">
+                <button class="account-btn" id="accountBtn">My Account ▾</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="profile.html" class="active">Profile</a>
+                    <a href="transaction-history.html">Order History</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="index.html">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-banner">
+        <div class="container">
+            <h1>My Profile</h1>
+            <p>Manage your account details and preferences</p>
+        </div>
+    </section>
+
+    <section class="profile-section">
+        <div class="container">
+            <div class="account-layout">
+                <aside class="account-sidebar">
+                    <div class="account-user">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/60" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h3 id="user-display-name">Loading...</h3>
+                            <p id="user-display-email">Loading...</p>
+                        </div>
+                    </div>
+                    <ul class="account-menu">
+                        <li><a href="profile.html" class="active">Profile</a></li>
+                        <li><a href="transaction-history.html">Order History</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="index.html">Sign Out</a></li>
+                    </ul>
+                </aside>
+
+                <div class="account-content">
+                    <div class="content-header">
+                        <h2>Profile Details</h2>
+                        <button type="button" class="btn" id="edit-profile-btn">Edit Profile</button>
+                    </div>
+                    <form class="profile-form" id="profile-form">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" disabled required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" disabled required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" disabled required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="apartment">Apartment, Suite, etc. (optional)</label>
+                            <input type="text" id="apartment" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal-code">Postal Code</label>
+                            <input type="text" id="postal-code" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" disabled>
+                                <option value="">Select a country</option>
+                                <option value="indonesia">Indonesia</option>
+                                <option value="malaysia">Malaysia</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="thailand">Thailand</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="province">Province</label>
+                            <select id="province" disabled>
+                                <option value="">Select a province</option>
+                                <option value="jakarta">DKI Jakarta</option>
+                                <option value="west-java">West Java</option>
+                                <option value="east-java">East Java</option>
+                                <option value="central-java">Central Java</option>
+                                <option value="yogyakarta">Yogyakarta</option>
+                                <option value="bali">Bali</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="member-since">Member Since</label>
+                            <input type="text" id="member-since" value="January 2024" disabled>
+                        </div>
+                        <div class="form-actions" id="form-actions" style="display: none;">
+                            <button type="button" class="btn" id="save-profile-btn">Save Changes</button>
+                            <button type="button" class="btn btn-outline" id="cancel-edit-btn">Cancel</button>
+                        </div>
+                    </form>
+
+                    <!-- Sync Status Notification -->
+                    <div class="sync-notification" id="sync-notification" style="display: none;">
+                        <div class="sync-message">
+                            <span class="sync-icon">✓</span>
+                            <span class="sync-text">Profile synced successfully! Your checkout information has been updated.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <!-- Logo -->
+            <a href="#" class="footer-logo">FinaFound</a>
+            
+            <!-- Blog Post Section -->
+            <div class="footer-blog">
+                <p class="blog-title">Latest Journal Entry</p>
+                <h3 class="blog-heading">Begin Your Skincare Journey</h3>
+                <p class="blog-text">Discover the transformative power of finding skincare that truly understands your unique needs. Your path to radiant, healthy skin starts here.</p>
+            </div>
+            
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+            
+            <!-- Links Section -->
+            <div class="footer-links-section">
+                <!-- Product Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Collections</h4>
+                    <ul class="links-list">
+                        <li><a href="#products">Facial Care</a></li>
+                        <li><a href="#products">Treatment Serums</a></li>
+                        <li><a href="#products">Hydration</a></li>
+                        <li><a href="#products">Body Essentials</a></li>
+                        <li><a href="#products">Discovery Sets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="links-column">
+                    <h4 class="links-title">Our World</h4>
+                    <ul class="links-list">
+                        <li><a href="#about">Philosophy</a></li>
+                        <li><a href="#about">Ingredient Standards</a></li>
+                        <li><a href="#about">Sustainability Commitment</a></li>
+                        <li><a href="#about">Journal</a></li>
+                        <li><a href="#about">Connect With Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright and Privacy -->
+            <div class="footer-copyright">© 2023 | Privacy — Terms</div>
+        </div>
+    </footer>
+
+    <script>
+        // Profile Management System
+        class ProfileManager {
+            constructor() {
+                this.isEditing = false;
+                this.originalData = {};
+                this.init();
+            }
+
+            init() {
+                this.loadUserProfile();
+                this.bindEvents();
+            }
+
+            // Load user profile data
+            loadUserProfile() {
+                const userProfile = localStorage.getItem('userProfile');
+                if (userProfile) {
+                    const profile = JSON.parse(userProfile);
+                    this.displayProfile(profile);
+                } else {
+                    // Show default/empty profile
+                    this.displayProfile({
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        phone: '',
+                        address: '',
+                        apartment: '',
+                        city: '',
+                        province: '',
+                        postalCode: '',
+                        country: ''
+                    });
+                }
+            }
+
+            // Display profile data
+            displayProfile(profile) {
+                document.getElementById('first-name').value = profile.firstName || '';
+                
+                document.getElementById('first-name').value = profile.firstName || '';
+                document.getElementById('last-name').value = profile.lastName || '';
+                document.getElementById('email').value = profile.email || '';
+                document.getElementById('phone').value = profile.phone || '';
+                document.getElementById('address').value = profile.address || '';
+                document.getElementById('apartment').value = profile.apartment || '';
+                document.getElementById('city').value = profile.city || '';
+                document.getElementById('province').value = profile.province || '';
+                document.getElementById('postal-code').value = profile.postalCode || '';
+                document.getElementById('country').value = profile.country || '';
+
+                // Update sidebar display
+                const displayName = `${profile.firstName || ''} ${profile.lastName || ''}`.trim() || 'User';
+                document.getElementById('user-display-name').textContent = displayName;
+                document.getElementById('user-display-email').textContent = profile.email || 'No email provided';
+            }
+
+            // Enable editing mode
+            enableEditing() {
+                this.isEditing = true;
+                this.originalData = this.getCurrentFormData();
+
+                // Enable all form inputs except member-since
+                const inputs = document.querySelectorAll('#profile-form input:not(#member-since), #profile-form select');
+                inputs.forEach(input => {
+                    input.disabled = false;
+                });
+
+                // Show form actions, hide edit button
+                document.getElementById('form-actions').style.display = 'flex';
+                document.getElementById('edit-profile-btn').style.display = 'none';
+            }
+
+            // Disable editing mode
+            disableEditing() {
+                this.isEditing = false;
+
+                // Disable all form inputs
+                const inputs = document.querySelectorAll('#profile-form input, #profile-form select');
+                inputs.forEach(input => {
+                    input.disabled = true;
+                });
+
+                // Hide form actions, show edit button
+                document.getElementById('form-actions').style.display = 'none';
+                document.getElementById('edit-profile-btn').style.display = 'inline-block';
+            }
+
+            // Get current form data
+            getCurrentFormData() {
+                return {
+                    firstName: document.getElementById('first-name').value,
+                    lastName: document.getElementById('last-name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    apartment: document.getElementById('apartment').value,
+                    city: document.getElementById('city').value,
+                    province: document.getElementById('province').value,
+                    postalCode: document.getElementById('postal-code').value,
+                    country: document.getElementById('country').value
+                };
+            }
+
+            // Save profile changes
+            saveProfile() {
+                const profileData = this.getCurrentFormData();
+
+                // Basic validation
+                if (!profileData.firstName.trim() || !profileData.lastName.trim() || !profileData.email.trim()) {
+                    alert('Please fill in at least your name and email address.');
+                    return;
+                }
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(profileData.email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // Save to localStorage
+                localStorage.setItem('userProfile', JSON.stringify(profileData));
+
+                // Update display
+                this.displayProfile(profileData);
+                this.disableEditing();
+
+                // Show sync notification
+                this.showSyncNotification();
+            }
+
+            // Cancel editing
+            cancelEditing() {
+                // Restore original data
+                this.displayProfile(this.originalData);
+                this.disableEditing();
+            }
+
+            // Show sync notification
+            showSyncNotification() {
+                const syncNotification = document.getElementById('sync-notification');
+                syncNotification.style.display = 'block';
+
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    syncNotification.style.display = 'none';
+                }, 3000);
+            }
+
+            // Bind events
+            bindEvents() {
+                // Menu toggle
+                document.getElementById('menu-toggle').addEventListener('click', () => {
+                    document.getElementById('navbar').classList.toggle('active');
+                });
+
+                // Account dropdown
+                document.getElementById('accountBtn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    document.getElementById('dropdownContent').classList.toggle('show');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.account-dropdown')) {
+                        document.getElementById('dropdownContent').classList.remove('show');
+                    }
+                });
+
+                // Edit profile button
+                document.getElementById('edit-profile-btn').addEventListener('click', () => {
+                    this.enableEditing();
+                });
+
+                // Save profile button
+                document.getElementById('save-profile-btn').addEventListener('click', () => {
+                    this.saveProfile();
+                });
+
+                // Cancel edit button
+                document.getElementById('cancel-edit-btn').addEventListener('click', () => {
+                    this.cancelEditing();
+                });
+            }
+        }
+
+        // Initialize profile manager when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ProfileManager();
+        });
+
+    </script>
+</body>
+</html>

@@ -140,13 +140,99 @@ header {
   width: 100%;
 }
 
-header .btn {
+/* Account Dropdown Styles */
+.account-dropdown {
   position: absolute;
   right: 0%;
   top: 50%;
   transform: translateY(-50%);
-  padding: 8px 20px;
-  font-size: 0.8rem;
+}
+
+.account-btn {
+  padding: 8px 16px;
+  background-color: #6667ab;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.account-btn:hover {
+  background-color: #5a5b9e;
+  transform: translateY(-1px);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  z-index: 1001;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content.show {
+  display: block;
+  animation: dropdownFadeIn 0.3s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #6667ab;
+  color: white;
+  padding-left: 20px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #6667ab;
+  color: white;
+  padding-left: 20px;
 }
 
 .menu-toggle {
@@ -771,9 +857,18 @@ footer {
       transform: none;
   }
 
-  header .btn {
+  .account-dropdown {
       position: static;
       transform: none;
+  }
+
+  .dropdown-content {
+      right: 50%;
+      transform: translateX(50%);
+  }
+
+  .dropdown-content.show {
+      transform: translateX(50%);
   }
 
   .article-title {

@@ -31,8 +31,16 @@
                 </ul>
             </nav>
         
-            <!-- Shop Button -->
-            <a href="products.html" class="btn">Shop Now</a>
+            <!-- My Account Dropdown (replacing Shop Button) -->
+            <div class="account-dropdown">
+                <button class="account-btn" id="accountBtn">My Account ▾</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="profile.html" class="active">Profile</a>
+                    <a href="transaction-history.html">Order History</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="index.html">Sign Out</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -108,7 +116,7 @@
                 <!-- Article 4 -->
                 <div class="article-card" data-category="routines">
                     <div class="article-image">
-                        <img src="https://i.pinimg.com/736x/dc/4b/55/dc4b55b0f4e4dc62890bf1253afe571f.jpg" alt="Night Routine">
+                        <img src="https://i.pinimg.com/736x/65/a1/56/65a156eb330b016c1648fe63e66e9658.jpg" alt="Night Routine">
                     </div>
                     <div class="article-content">
                         <div class="article-meta">
@@ -117,7 +125,7 @@
                         </div>
                         <h3 class="article-title">The Perfect Evening Skincare Routine</h3>
                         <p class="article-excerpt">Maximize your skin's overnight repair with this step-by-step evening routine that works while you sleep.</p>
-                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                        <a href="article-detail-3.html" class="btn btn-outline">Read More</a>
                     </div>
                 </div>
 
@@ -133,14 +141,14 @@
                         </div>
                         <h3 class="article-title">Hyaluronic Acid: Your Hydration Hero</h3>
                         <p class="article-excerpt">Learn how to properly use hyaluronic acid in your routine for maximum hydration and plumping effects.</p>
-                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                        <a href="article-detail-4.html" class="btn btn-outline">Read More</a>
                     </div>
                 </div>
 
                 <!-- Article 6 -->
                 <div class="article-card" data-category="skincare">
                     <div class="article-image">
-                        <img src="https://i.pinimg.com/736x/a2/cc/55/a2cc55189457ddccadb0a6af7dfce51d.jpg" alt="Sensitive Skin">
+                        <img src="https://i.pinimg.com/736x/b7/af/ef/b7afef8ca468b6d5baa159356c8f1c84.jpg" alt="Sensitive Skin">
                     </div>
                     <div class="article-content">
                         <div class="article-meta">
@@ -149,7 +157,7 @@
                         </div>
                         <h3 class="article-title">Caring for Sensitive Skin</h3>
                         <p class="article-excerpt">Gentle approaches and soothing ingredients to calm and strengthen sensitive, reactive skin types.</p>
-                        <a href="article-detail.html" class="btn btn-outline">Read More</a>
+                        <a href="article-detail-5.html" class="btn btn-outline">Read More</a>
                     </div>
                 </div>
             </div>
@@ -226,8 +234,35 @@
             <div class="footer-copyright">© 2025 | Privacy — Terms</div>
         </div>
     </footer>
-
+    <script src="articles.js"></script>
     <script>
+
+        // Account dropdown functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const accountBtn = document.getElementById('accountBtn');
+            const dropdownContent = document.getElementById('dropdownContent');
+
+            // Toggle dropdown when account button is clicked
+            accountBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdownContent.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!accountBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                    dropdownContent.classList.remove('show');
+                }
+            });
+
+            // Close dropdown when pressing Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    dropdownContent.classList.remove('show');
+                }
+            });
+        });
+
         // Hamburger menu toggle
         const menuToggle = document.getElementById('menu-toggle');
         const navbar = document.getElementById('navbar');
@@ -282,5 +317,5 @@
         window.addEventListener('scroll', reveal);
         window.addEventListener('load', reveal);
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d8a35ffb1fce5b',t:'MTc0OTU1NjA5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -132,26 +132,26 @@ header {
     margin: 0 15px;
 }
 
-/* Checkout Section */
-.checkout-section {
+/* Payment Section */
+.payment-section {
     padding: 60px 0;
 }
 
-.checkout-container {
+.payment-container {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 60px;
 }
 
-/* Checkout Form */
-.checkout-form {
+/* Payment Form */
+.payment-form {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     padding: 40px;
 }
 
-.checkout-form h1 {
+.payment-form h1 {
     font-size: 2rem;
     margin-bottom: 30px;
     color: #333;
@@ -179,6 +179,156 @@ header {
     background-color: #6667ab;
 }
 
+/* Info Summary */
+.info-summary {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #555;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.info-value {
+    flex: 1;
+    color: #333;
+}
+
+.edit-link {
+    color: #6667ab;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+/* Payment Options */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.payment-option {
+    position: relative;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.payment-option:hover {
+    border-color: #6667ab;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 103, 171, 0.1);
+}
+
+.payment-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.payment-option input:checked + .payment-option-content {
+    background-color: #f8f7ff;
+}
+
+.payment-option input:checked + .payment-option-content::before {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-color: #6667ab;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.payment-option-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.payment-option-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: #6667ab;
+    font-size: 1.2rem;
+}
+
+.payment-option-info {
+    flex: 1;
+}
+
+.payment-option-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 1rem;
+}
+
+.payment-option-description {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.payment-option-cards,
+.payment-option-wallets {
+    display: flex;
+    gap: 8px;
+}
+
+.card-icon,
+.wallet-icon {
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.payment-option input:checked + .payment-option-content .payment-option-name,
+.payment-option input:checked + .payment-option-content .payment-option-description {
+    color: #6667ab;
+}
+
+/* Form Group */
 .form-group {
     margin-bottom: 20px;
 }
@@ -218,27 +368,81 @@ select:focus {
     box-shadow: 0 0 0 2px rgba(102, 103, 171, 0.1);
 }
 
-input.error {
-    border-color: #ff6b6b;
+/* Bank Transfer Details */
+.bank-info {
+    background-color: #f8f9fa;
+    border-radius:103,171,0.1;
 }
 
-.checkbox-group {
-    display: flex;
-    align-items: center;
+/* Bank Transfer Details */
+.bank-info {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
 }
 
-.checkbox-label {
+.bank-info p {
+    margin-bottom: 15px;
+}
+
+.bank-details {
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.bank-detail-item {
     display: flex;
-    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bank-detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.bank-detail-label {
+    font-weight: 500;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.bank-detail-value {
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.bank-note {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* E-Wallet Details */
+.wallet-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.wallet-option {
     position: relative;
-    padding-left: 30px;
+    flex: 1;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0;
     cursor: pointer;
-    font-size: 0.95rem;
-    color: #555;
-    user-select: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.checkbox-label input {
+.wallet-option:hover {
+    border-color: #6667ab;
+    transform: translateY(-2px);
+}
+
+.wallet-option input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -246,43 +450,33 @@ input.error {
     width: 0;
 }
 
-.checkbox-custom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #f0f0f0;
-    border-radius: 3px;
-    transition: all 0.2s ease;
+.wallet-option input:checked + .wallet-option-content {
+    background-color: #f8f7ff;
+    border-color: #6667ab;
 }
 
-.checkbox-label:hover input ~ .checkbox-custom {
-    background-color: #e0e0e0;
+.wallet-option-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.checkbox-label input:checked ~ .checkbox-custom {
-    background-color: #6667ab;
+.wallet-option-icon {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-.checkbox-custom:after {
-    content: "";
-    position: absolute;
-    display: none;
+.wallet-option-name {
+    font-weight: 500;
 }
 
-.checkbox-label input:checked ~ .checkbox-custom:after {
-    display: block;
-}
-
-.checkbox-label .checkbox-custom:after {
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+.wallet-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
 }
 
 /* Form Actions */
@@ -426,6 +620,58 @@ input.error {
     margin-top: 15px;
 }
 
+/* Processing Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.processing-animation {
+    margin-bottom: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #6667ab;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #666;
+}
+
 /* Footer */
 footer {
     background-color: #f8f6f3;
@@ -463,7 +709,7 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 992px) {
-    .checkout-container {
+    .payment-container {
         grid-template-columns: 1fr;
     }
     
@@ -478,7 +724,7 @@ footer {
         display: none;
     }
     
-    .checkout-form {
+    .payment-form {
         padding: 30px 20px;
     }
     
@@ -499,5 +745,9 @@ footer {
     .continue-btn {
         order: 1;
         width: 100%;
+    }
+    
+    .wallet-options {
+        flex-direction: column;
     }
 }

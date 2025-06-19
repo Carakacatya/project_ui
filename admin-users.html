@@ -1,476 +1,726 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kelola Pengguna | Admin Finally Found You</title>
-<link rel="stylesheet" href="admin.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kelola Pengguna | Finally Found You</title>
+    <link rel="stylesheet" href="admin-modern.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        /* Tambahan styling untuk tombol aksi dan modal agar lebih menarik */
+        .btn-edit, .btn-delete {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 8px;
+            margin: 0 4px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        .btn-edit:hover {
+            background-color: #4ade80; /* hijau muda */
+            color: #065f46;
+        }
+        .btn-delete:hover {
+            background-color: #f87171; /* merah muda */
+            color: #7f1d1d;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            padding: 24px 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.4);
+            overflow-y: auto;
+            padding: 40px 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .close-modal {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #444;
+            transition: color 0.2s ease;
+            font-weight: 700;
+        }
+        .close-modal:hover {
+            color: #000;
+        }
+        .modal-actions button.primary-btn {
+            background-color: #22c55e;
+            border: none;
+            color: white;
+            padding: 10px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex-grow: 1;
+        }
+        .modal-actions button.primary-btn:hover {
+            background-color: #16a34a;
+        }
+        .modal-actions button.secondary-btn {
+            background-color: #e5e7eb;
+            border: none;
+            color: #374151;
+            padding: 10px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex-grow: 1;
+        }
+        .modal-actions button.secondary-btn:hover {
+            background-color: #d1d5db;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 1em;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-actions > * {
+            flex-shrink: 0;
+        }
+        .primary-btn {
+            background-color: #22c55e;
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .primary-btn:hover {
+            background-color: #16a34a;
+        }
+        .search-input {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 220px;
+            font-size: 14px;
+        }
+        .search-btn {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .search-btn:hover {
+            background: #2563eb;
+        }
+        table.data-table th, table.data-table td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .filter-container {
+            display: flex;
+            gap: 12px;
+        }
+        select.filter-select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            min-width: 140px;
+        }
+        .activity-list .activity-item {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+            font-size: 14px;
+            line-height: 1.4;
+            color: #374151;
+        }
+    </style>
 </head>
 <body>
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <h2 class="admin-logo">FinaFound</h2>
-                <p class="admin-subtitle">Admin Panel</p>
+<div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <h2 class="admin-logo">Finally Found You</h2>
+            <p class="admin-subtitle">Admin Beauty Panel</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="admin-dashboard.html" class="nav-link">
+                        <span class="nav-icon">✨</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-products.html" class="nav-link">
+                        <span class="nav-icon">🧴</span>
+                        <span class="nav-text">Kelola Produk</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-articles.html" class="nav-link">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Kelola Artikel</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-orders.html" class="nav-link">
+                        <span class="nav-icon">🛒</span>
+                        <span class="nav-text">Kelola Transaksi</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-users.html" class="nav-link active">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-text">Kelola Pengguna</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="profile-avatar">
+                    <img src="https://i.pravatar.cc/150?img=32" alt="Admin Avatar" />
+                </div>
+                <div class="profile-info">
+                    <p class="profile-name">Admin Beauty</p>
+                    <p class="profile-role">Super Administrator</p>
+                </div>
             </div>
-            
-            <nav class="sidebar-nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="admin-dashboard.html" class="nav-link">
-                            <span class="nav-icon">📊</span>
-                            <span class="nav-text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="admin-products.html" class="nav-link">
-                            <span class="nav-icon">🧴</span>
-                            <span class="nav-text">Produk</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="admin-articles.html" class="nav-link">
-                            <span class="nav-icon">📝</span>
-                            <span class="nav-text">Artikel</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="admin-orders.html" class="nav-link">
-                            <span class="nav-icon">🛒</span>
-                            <span class="nav-text">Transaksi</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="admin-users.html" class="nav-link active">
-                            <span class="nav-icon">👥</span>
-                            <span class="nav-text">Pengguna</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">
-                            <span class="nav-icon">🏠</span>
-                            <span class="nav-text">Kembali ke Website</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="admin-profile">
-                    <div class="profile-avatar">
-                        <img src="https://i.pravatar.cc/150?img=32" alt="Admin Avatar">
-                    </div>
-                    <div class="profile-info">
-                        <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
-                    </div>
-                </div>
-                <button class="logout-btn">Keluar</button>
+            <button class="logout-btn" onclick="logout()">
+                <span>✨</span> Keluar
+            </button>
+        </div>
+    </aside>
+    <!-- Konten Utama -->
+    <main class="admin-content">
+        <header class="content-header">
+            <div class="header-title">
+                <h1>Kelola Pengguna</h1>
+                <p>Kelola akun pengguna dan aktivitas mereka di website</p>
             </div>
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="admin-content">
-            <header class="content-header">
-                <div class="header-title">
-                    <h1>Kelola Pengguna</h1>
-                    <p>Lihat dan kelola akun pengguna website</p>
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Cari pengguna..." id="userSearch" />
+                    <button class="search-btn" id="btnSearch" aria-label="Cari pengguna">🔍</button>
                 </div>
-                
-                <div class="header-actions">
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Cari pengguna...">
-                        <button class="search-btn">🔍</button>
+                <button class="primary-btn" id="addUserBtn" aria-label="Tambah pengguna baru">
+                    <span class="material-icons" style="vertical-align: middle;">person_add</span> Tambah Pengguna
+                </button>
+                <button class="primary-btn" id="exportUsersBtn" aria-label="Export data pengguna">
+                    <span>📊</span>
+                    Export Data
+                </button>
+            </div>
+        </header>
+        <!-- Statistik Pengguna -->
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <div class="card-info">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Pengguna</p>
                     </div>
-                    <button class="primary-btn" id="add-user-btn">+ Tambah Pengguna</button>
+                    <div class="card-icon">👥</div>
                 </div>
-            </header>
-            
-            <section class="content-section">
-                <div class="section-header">
-                    <h2>Daftar Pengguna</h2>
-                    <div class="filter-container">
-                        <select class="filter-select">
-                            <option value="all">Semua Peran</option>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <div class="card-info">
+                        <h3 id="activeUsers">0</h3>
+                        <p>Pengguna Aktif</p>
+                    </div>
+                    <div class="card-icon">✅</div>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <div class="card-info">
+                        <h3 id="newUsersToday">0</h3>
+                        <p>Pendaftar Hari Ini</p>
+                    </div>
+                    <div class="card-icon">🆕</div>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <div class="card-info">
+                        <h3 id="totalOrders">0</h3>
+                        <p>Total Pesanan</p>
+                    </div>
+                    <div class="card-icon">🛒</div>
+                </div>
+            </div>
+        </div>
+        <!-- Daftar Pengguna -->
+        <section class="content-section" aria-label="Daftar pengguna">
+            <div class="section-header">
+                <h2>Daftar Pengguna Terdaftar</h2>
+                <div class="filter-container">
+                    <select class="filter-select" id="roleFilter" aria-label="Filter berdasarkan peran">
+                        <option value="all">Semua Peran</option>
+                        <option value="customer">Pelanggan</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <select class="filter-select" id="statusFilter" aria-label="Filter berdasarkan status">
+                        <option value="all">Semua Status</option>
+                        <option value="active">Aktif</option>
+                        <option value="inactive">Tidak Aktif</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table" aria-label="Tabel daftar pengguna terdaftar">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Pengguna</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Tanggal Daftar</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" style="min-width: 140px;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Data pengguna akan dimuat disini -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="pagination" aria-label="Navigasi halaman pengguna">
+                <!-- Pagination jika ingin ditambahkan -->
+            </div>
+        </section>
+        <!-- Aktivitas Pengguna Terbaru -->
+        <section class="content-section" aria-label="Aktivitas pengguna terbaru">
+            <div class="section-header">
+                <h2>Aktivitas Pengguna Terbaru</h2>
+                <select class="filter-select" id="activityFilter" aria-label="Filter jenis aktivitas pengguna">
+                    <option value="all">Semua Aktivitas</option>
+                    <option value="register">Pendaftaran</option>
+                    <option value="login">Login</option>
+                    <option value="purchase">Pembelian</option>
+                    <option value="profile_update">Update Profil</option>
+                </select>
+            </div>
+            <div class="activity-list" id="activityList" role="list" aria-live="polite">
+                <!-- Aktivitas akan dimuat disini -->
+            </div>
+        </section>
+
+        <!-- Modal Tambah/Edit User -->
+        <div id="editUserModal" class="modal" aria-hidden="true" aria-labelledby="editUserModalTitle" role="dialog">
+            <div class="modal-content" role="document">
+                <button class="close-modal" id="closeEditModal" aria-label="Tutup modal">&times;</button>
+                <h2 id="editUserModalTitle">Tambah Pengguna Baru</h2>
+                <form id="editUserForm">
+                    <input type="hidden" id="editUserId" />
+                    <div class="form-group">
+                        <label for="editUserName">Nama Lengkap</label>
+                        <input type="text" id="editUserName" required autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserEmail">Email</label>
+                        <input type="email" id="editUserEmail" required autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserRole">Peran</label>
+                        <select id="editUserRole">
                             <option value="customer">Pelanggan</option>
                             <option value="admin">Admin</option>
                         </select>
-                        <select class="filter-select">
-                            <option value="all">Semua Status</option>
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserStatus">Status</label>
+                        <select id="editUserStatus">
                             <option value="active">Aktif</option>
                             <option value="inactive">Tidak Aktif</option>
                         </select>
                     </div>
-                </div>
-                
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Peran</th>
-                                <th>Tanggal Daftar</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>USR001</td>
-                                <td class="user-name-cell">
-                                    <div class="user-avatar">
-                                        <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
-                                    </div>
-                                    <span>Jessica Wijaya</span>
-                                </td>
-                                <td>jessica.w@example.com</td>
-                                <td>Pelanggan</td>
-                                <td>12 Mei 2025</td>
-                                <td><span class="status-badge active">Aktif</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn edit">✏️</button>
-                                    <button class="action-btn view">👁️</button>
-                                    <button class="action-btn delete">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>USR002</td>
-                                <td class="user-name-cell">
-                                    <div class="user-avatar">
-                                        <img src="https://i.pravatar.cc/150?img=11" alt="User Avatar">
-                                    </div>
-                                    <span>Michael Tanjung</span>
-                                </td>
-                                <td>michael.t@example.com</td>
-                                <td>Pelanggan</td>
-                                <td>10 Mei 2025</td>
-                                <td><span class="status-badge active">Aktif</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn edit">✏️</button>
-                                    <button class="action-btn view">👁️</button>
-                                    <button class="action-btn delete">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>USR003</td>
-                                <td class="user-name-cell">
-                                    <div class="user-avatar">
-                                        <img src="https://i.pravatar.cc/150?img=5" alt="User Avatar">
-                                    </div>
-                                    <span>Sarah Kusuma</span>
-                                </td>
-                                <td>sarah.k@example.com</td>
-                                <td>Pelanggan</td>
-                                <td>5 Mei 2025</td>
-                                <td><span class="status-badge active">Aktif</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn edit">✏️</button>
-                                    <button class="action-btn view">👁️</button>
-                                    <button class="action-btn delete">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>USR004</td>
-                                <td class="user-name-cell">
-                                    <div class="user-avatar">
-                                        <img src="https://i.pravatar.cc/150?img=12" alt="User Avatar">
-                                    </div>
-                                    <span>Budi Santoso</span>
-                                </td>
-                                <td>budi.s@example.com</td>
-                                <td>Pelanggan</td>
-                                <td>1 Mei 2025</td>
-                                <td><span class="status-badge inactive">Tidak Aktif</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn edit">✏️</button>
-                                    <button class="action-btn view">👁️</button>
-                                    <button class="action-btn delete">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>USR005</td>
-                                <td class="user-name-cell">
-                                    <div class="user-avatar">
-                                        <img src="https://i.pravatar.cc/150?img=32" alt="User Avatar">
-                                    </div>
-                                    <span>Admin User</span>
-                                </td>
-                                <td>admin@finallyfoundyou.com</td>
-                                <td>Admin</td>
-                                <td>1 Jan 2025</td>
-                                <td><span class="status-badge active">Aktif</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn edit">✏️</button>
-                                    <button class="action-btn view">👁️</button>
-                                    <button class="action-btn delete" disabled>🗑️</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="pagination">
-                    <button class="pagination-btn prev">◀</button>
-                    <button class="pagination-btn active">1</button>
-                    <button class="pagination-btn">2</button>
-                    <button class="pagination-btn">3</button>
-                    <button class="pagination-btn next">▶</button>
-                </div>
-            </section>
-            
-            <!-- User Activity Section -->
-            <section class="content-section">
-                <div class="section-header">
-                    <h2>Aktivitas Pengguna Terbaru</h2>
-                    <select class="filter-select">
-                        <option value="all">Semua Aktivitas</option>
-                        <option value="login">Login</option>
-                        <option value="purchase">Pembelian</option>
-                        <option value="review">Ulasan</option>
-                        <option value="account">Perubahan Akun</option>
-                    </select>
-                </div>
-                
-                <div class="activity-list">
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background-color: #e7f3ff; color: #0a84ff;">🔑</div>
-                        <div class="activity-content">
-                            <h4>Jessica Wijaya melakukan login</h4>
-                            <p class="activity-time">Hari ini, 10:45</p>
-                        </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="primary-btn" id="saveUserBtn">Simpan</button>
+                        <button type="button" class="secondary-btn" id="cancelEditBtn">Batal</button>
                     </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background-color: #e1f5e9; color: #0d8a45;">🛒</div>
-                        <div class="activity-content">
-                            <h4>Michael Tanjung melakukan pembelian (Order #ORD2025051)</h4>
-                            <p class="activity-time">Hari ini, 09:30</p>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background-color: #fff2e7; color: #ff9500;">⭐</div>
-                        <div class="activity-content">
-                            <h4>Sarah Kusuma memberikan ulasan pada produk SOY BRIGHT! Gel Moisturizer</h4>
-                            <p class="activity-time">Kemarin, 15:20</p>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background-color: #f0e7ff; color: #6667ab;">👤</div>
-                        <div class="activity-content">
-                            <h4>Budi Santoso memperbarui informasi profil</h4>
-                            <p class="activity-time">Kemarin, 11:15</p>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon" style="background-color: #e7f3ff; color: #0a84ff;">🔑</div>
-                        <div class="activity-content">
-                            <h4>Admin User melakukan login</h4>
-                            <p class="activity-time">Kemarin, 08:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="section-footer">
-                    <button class="secondary-btn">Lihat Semua Aktivitas</button>
-                </div>
-            </section>
-            
-            <!-- User Form Modal -->
-            <div class="modal" id="user-modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Tambah Pengguna Baru</h2>
-                        <button class="close-btn">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="user-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="user-name">Nama Lengkap</label>
-                                    <input type="text" id="user-name" class="form-input" placeholder="Masukkan nama lengkap">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="user-email">Email</label>
-                                    <input type="email" id="user-email" class="form-input" placeholder="Masukkan email">
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="user-password">Password</label>
-                                    <input type="password" id="user-password" class="form-input" placeholder="Masukkan password">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="user-confirm-password">Konfirmasi Password</label>
-                                    <input type="password" id="user-confirm-password" class="form-input" placeholder="Konfirmasi password">
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="user-phone">Nomor Telepon</label>
-                                    <input type="tel" id="user-phone" class="form-input" placeholder="Masukkan nomor telepon">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="user-role">Peran</label>
-                                    <select id="user-role" class="form-input">
-                                        <option value="customer">Pelanggan</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="user-address">Alamat</label>
-                                <textarea id="user-address" class="form-input" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Status Akun</label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="user-status" value="active" checked>
-                                        <span>Aktif</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="user-status" value="inactive">
-                                        <span>Tidak Aktif</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Avatar Pengguna</label>
-                                <div class="image-upload-container">
-                                    <div class="image-preview">
-                                        <img id="avatar-preview" src="https://via.placeholder.com/150" alt="Preview">
-                                    </div>
-                                    <div class="upload-controls">
-                                        <button type="button" class="upload-btn">Pilih Gambar</button>
-                                        <input type="file" id="user-avatar" class="file-input" accept="image/*">
-                                        <p class="upload-info">Format: JPG, PNG. Maks: 1MB</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button type="button" class="secondary-btn cancel-btn">Batal</button>
-                                <button type="submit" class="primary-btn">Simpan Pengguna</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 
-    <script>
-        // Toggle sidebar on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            // Modal functionality
-            const modal = document.getElementById('user-modal');
-            const addUserBtn = document.getElementById('add-user-btn');
-            const closeBtn = document.querySelector('.close-btn');
-            const cancelBtn = document.querySelector('.cancel-btn');
-            
-            addUserBtn.addEventListener('click', function() {
-                modal.style.display = 'flex';
-            });
-            
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-            
-            cancelBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-            
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            
-            // Avatar preview functionality
-            const avatarInput = document.getElementById('user-avatar');
-            const avatarPreview = document.getElementById('avatar-preview');
-            const uploadBtn = document.querySelector('.upload-btn');
-            
-            uploadBtn.addEventListener('click', function() {
-                avatarInput.click();
-            });
-            
-            avatarInput.addEventListener('change', function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        avatarPreview.src = e.target.result;
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            // Form submission (prevent default for demo)
-            const userForm = document.querySelector('.user-form');
-            userForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Pengguna berhasil disimpan!');
-                modal.style.display = 'none';
-            });
-            
-            // Action buttons functionality
-            const editButtons = document.querySelectorAll('.action-btn.edit');
-            const deleteButtons = document.querySelectorAll('.action-btn.delete:not([disabled])');
-            const viewButtons = document.querySelectorAll('.action-btn.view');
-            
-            editButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    const userId = row.cells[0].textContent;
-                    const userName = row.cells[1].querySelector('span').textContent;
-                    alert(`Edit pengguna: ${userName} (${userId})`);
-                    // In a real app, you would populate the form with user data
-                    document.querySelector('.modal-header h2').textContent = 'Edit Pengguna';
-                    modal.style.display = 'flex';
-                });
-            });
-            
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    const userId = row.cells[0].textContent;
-                    const userName = row.cells[1].querySelector('span').textContent;
-                    if (confirm(`Apakah Anda yakin ingin menghapus pengguna: ${userName} (${userId})?`)) {
-                        alert('Pengguna berhasil dihapus!');
-                        // In a real app, you would send a delete request to the server
-                    }
-                });
-            });
-            
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    const userId = row.cells[0].textContent;
-                    const userName = row.cells[1].querySelector('span').textContent;
-                    alert(`Lihat detail pengguna: ${userName} (${userId})`);
-                    // In a real app, you would redirect to the user detail page
-                });
+<!-- Mobile Sidebar Toggle -->
+<button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Toggle sidebar">☰</button>
+
+<script>
+(() => {
+    'use strict';
+
+    // Elemen DOM utama
+    const usersTableBody = document.getElementById('usersTableBody');
+    const roleFilter = document.getElementById('roleFilter');
+    const statusFilter = document.getElementById('statusFilter');
+    const userSearch = document.getElementById('userSearch');
+    const activityFilter = document.getElementById('activityFilter');
+    const activityList = document.getElementById('activityList');
+    const totalUsersElem = document.getElementById('totalUsers');
+    const activeUsersElem = document.getElementById('activeUsers');
+    const newUsersTodayElem = document.getElementById('newUsersToday');
+    const totalOrdersElem = document.getElementById('totalOrders');
+    const exportUsersBtn = document.getElementById('exportUsersBtn');
+    const btnSearch = document.getElementById('btnSearch');
+    const addUserBtn = document.getElementById('addUserBtn');
+
+    // Modal dan form
+    const editUserModal = document.getElementById('editUserModal');
+    const closeEditModalBtn = document.getElementById('closeEditModal');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const editUserForm = document.getElementById('editUserForm');
+    const editUserId = document.getElementById('editUserId');
+    const editUserName = document.getElementById('editUserName');
+    const editUserEmail = document.getElementById('editUserEmail');
+    const editUserRole = document.getElementById('editUserRole');
+    const editUserStatus = document.getElementById('editUserStatus');
+    const editUserModalTitle = document.getElementById('editUserModalTitle');
+    const saveUserBtn = document.getElementById('saveUserBtn');
+
+    // Data users dan aktivitas dari localStorage
+    let users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+    let activities = JSON.parse(localStorage.getItem('userActivities') || '[]');
+    let filteredUsers = [...users];
+    let isEditMode = false; // false = tambah, true = edit
+
+    // Format tanggal pakai id-ID
+    function formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        if (isNaN(date)) return 'N/A';
+        return date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    // Update statistik pengguna di dashboard cards
+    function updateStats() {
+        totalUsersElem.textContent = users.length.toString();
+        activeUsersElem.textContent = users.filter(u => u.status === 'active').length.toString();
+        newUsersTodayElem.textContent = users.filter(u => {
+            const regDate = new Date(u.registeredAt);
+            const today = new Date();
+            return regDate.toDateString() === today.toDateString();
+        }).length.toString();
+        // Data total orders belum tersedia, set default 0
+        if (totalOrdersElem) totalOrdersElem.textContent = '0';
+    }
+
+    // Render tabel daftar pengguna dengan tombol aksi edit & hapus
+    function renderUsersTable(usersToRender) {
+        usersTableBody.innerHTML = '';
+        if (!usersToRender.length) {
+            usersTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center">Tidak ada data pengguna</td></tr>';
+            return;
+        }
+        usersToRender.forEach(user => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${user.name || 'N/A'}</td>
+                <td>${user.email || 'N/A'}</td>
+                <td>${formatDate(user.registeredAt)}</td>
+                <td>${user.status || 'N/A'}</td>
+                <td>
+                    <button class="btn-edit" data-id="${user.id}" aria-label="Edit data pengguna ${user.name}">
+                        <span class="material-icons" style="color:#16a34a;">edit</span>
+                    </button>
+                    <button class="btn-delete" data-id="${user.id}" aria-label="Hapus pengguna ${user.name}">
+                        <span class="material-icons" style="color:#dc2626;">delete</span>
+                    </button>
+                </td>
+            `;
+            usersTableBody.appendChild(tr);
+        });
+
+        // Event edit
+        usersTableBody.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const userId = e.currentTarget.getAttribute('data-id');
+                openEditModal(userId);
             });
         });
-    </script>
+
+        // Event hapus
+        usersTableBody.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const userId = e.currentTarget.getAttribute('data-id');
+                deleteUser(userId);
+            });
+        });
+    }
+
+    // Render daftar aktivitas berdasarkan filter tipe
+    function renderActivityList(selectedType = 'all') {
+        activityList.innerHTML = '';
+        let filteredActivities = activities;
+        if (selectedType !== 'all') {
+            filteredActivities = filteredActivities.filter(a => a.type === selectedType);
+        }
+        if (!filteredActivities.length) {
+            activityList.innerHTML = '<p style="text-align:center;">Tidak ada aktivitas pengguna.</p>';
+            return;
+        }
+        filteredActivities.forEach(act => {
+            const div = document.createElement('div');
+            div.classList.add('activity-item');
+            div.setAttribute('role', 'listitem');
+            div.innerHTML = `
+                <strong>${act.user || 'N/A'}</strong> (${act.email || 'N/A'})<br />
+                <small><em>${act.time || 'N/A'}</em></small><br />
+                <span>${act.description || ''}</span>
+            `;
+            activityList.appendChild(div);
+        });
+    }
+
+    // Filter dan cari users sesuai input
+    function filterAndSearchUsers() {
+        const roleVal = roleFilter.value;
+        const statusVal = statusFilter.value;
+        const searchVal = userSearch.value.trim().toLowerCase();
+        filteredUsers = users.filter(user => {
+            if(roleVal !== 'all' && user.role !== roleVal) return false;
+            if(statusVal !== 'all' && user.status !== statusVal) return false;
+            if(searchVal.length > 0){
+                const searchable = (user.name || '') + (user.email || '') + (user.role || '');
+                if(!searchable.toLowerCase().includes(searchVal)) return false;
+            }
+            return true;
+        });
+        renderUsersTable(filteredUsers);
+    }
+
+    // Buka modal edit user dengan isi data
+    function openEditModal(userId) {
+        isEditMode = true;
+        editUserModalTitle.textContent = 'Edit Data Pengguna';
+        saveUserBtn.textContent = 'Simpan Perubahan';
+
+        const user = users.find(u => u.id === userId);
+        if (!user) return;
+        editUserId.value = user.id;
+        editUserName.value = user.name || '';
+        editUserEmail.value = user.email || '';
+        editUserRole.value = user.role || 'customer';
+        editUserStatus.value = user.status || 'active';
+        showModal();
+    }
+
+    // Buka modal tambah user dengan form kosong
+    function openAddModal() {
+        isEditMode = false;
+        editUserModalTitle.textContent = 'Tambah Pengguna Baru';
+        saveUserBtn.textContent = 'Tambah Pengguna';
+
+        editUserForm.reset();
+        editUserId.value = '';
+        showModal();
+        editUserName.focus();
+    }
+
+    // Menampilkan modal
+    function showModal() {
+        editUserModal.style.display = 'block';
+        editUserModal.setAttribute('aria-hidden', 'false');
+    }
+
+    // Menutup modal
+    function closeModal() {
+        editUserModal.style.display = 'none';
+        editUserModal.setAttribute('aria-hidden', 'true');
+        editUserForm.reset();
+    }
+
+    // Simpan data user hasil tambah atau edit
+    function saveUser(e) {
+        e.preventDefault();
+        const id = editUserId.value;
+        const name = editUserName.value.trim();
+        const email = editUserEmail.value.trim();
+        const role = editUserRole.value;
+        const status = editUserStatus.value;
+
+        if(!name || !email){
+            alert('Nama dan email wajib diisi.');
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailRegex.test(email)){
+            alert('Email tidak valid.');
+            return;
+        }
+
+        if(isEditMode){
+            // Edit user
+            const userIndex = users.findIndex(u => u.id === id);
+            if(userIndex === -1) return;
+            users[userIndex].name = name;
+            users[userIndex].email = email;
+            users[userIndex].role = role;
+            users[userIndex].status = status;
+            alert('Data pengguna berhasil diperbarui.');
+        } else {
+            // Tambah user baru
+            // Cek duplikat email
+            if(users.some(u => u.email.toLowerCase() === email.toLowerCase())){
+                alert('Email sudah terdaftar.');
+                return;
+            }
+            const newUser = {
+                id: 'USER' + Date.now(),
+                name,
+                email,
+                username: email.split('@')[0],
+                password: '',
+                role,
+                status,
+                registeredAt: new Date().toISOString(),
+                lastLogin: null,
+                avatar: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`
+            };
+            users.push(newUser);
+            alert('Pengguna baru berhasil ditambahkan.');
+        }
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+        closeModal();
+        filterAndSearchUsers();
+        updateStats();
+    }
+
+    // Hapus user setelah konfirmasi
+    function deleteUser(userId) {
+        if(!confirm('Apakah Anda yakin ingin menghapus pengguna ini?')){
+            return;
+        }
+        users = users.filter(u => u.id !== userId);
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+        filterAndSearchUsers();
+        updateStats();
+        alert('Pengguna berhasil dihapus.');
+    }
+
+    // Export data users ke CSV
+    function exportUsersCSV() {
+        if(users.length === 0){
+            alert('Tidak ada data pengguna untuk diekspor.');
+            return;
+        }
+        const header = ['ID','Nama','Email','Role','Status','Tanggal Daftar'];
+        const csvRows = [header.join(',')];
+        users.forEach(u => {
+            const row = [
+                `"${u.id}"`,
+                `"${u.name}"`,
+                `"${u.email}"`,
+                `"${u.role}"`,
+                `"${u.status}"`,
+                `"${formatDate(u.registeredAt)}"`
+            ];
+            csvRows.push(row.join(','));
+        });
+        const csvString = csvRows.join('\n');
+        const blob = new Blob([csvString], {type: 'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'users-data.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Event listeners dan init fungsi
+    function init() {
+        updateStats();
+        filterAndSearchUsers();
+        renderActivityList();
+
+        roleFilter.addEventListener('change', filterAndSearchUsers);
+        statusFilter.addEventListener('change', filterAndSearchUsers);
+        activityFilter.addEventListener('change', () => {
+            renderActivityList(activityFilter.value);
+        });
+        btnSearch.addEventListener('click', filterAndSearchUsers);
+        userSearch.addEventListener('keyup', e => {
+            if(e.key === 'Enter'){
+                filterAndSearchUsers();
+            }
+        });
+        addUserBtn.addEventListener('click', openAddModal);
+        closeEditModalBtn.addEventListener('click', closeModal);
+        cancelEditBtn.addEventListener('click', closeModal);
+        editUserForm.addEventListener('submit', saveUser);
+
+        document.addEventListener('keydown', e => {
+            if(e.key === "Escape" && editUserModal.style.display === 'block'){
+                closeModal();
+            }
+        });
+
+        editUserModal.addEventListener('click', e => {
+            if(e.target === editUserModal){
+                closeModal();
+            }
+        });
+
+        exportUsersBtn.addEventListener('click', exportUsersCSV);
+    }
+
+    // Logout function
+    window.logout = function(){
+        if(confirm('Apakah Anda yakin ingin keluar?')){
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
 </body>
 </html>
+

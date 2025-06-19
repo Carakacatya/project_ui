@@ -4,190 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finally Found You | Your Beauty Discovery</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index-user.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <!-- Header-->
     <header>
-        <div class="container header-container">
-          <!-- Hamburger Menu -->
-          <div class="menu-toggle" id="menu-toggle">☰</div>
+        <div class="header-container">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#articles">ARTICLES</a></li>
+                    <li><a href="#brands">BRANDS</a></li>
+                    <li><a href="#products">PRODUCTS</a></li>
+                </ul>
+            </nav>
       
-          <!-- Logo -->
-          <a href="#" class="logo">Finally Found You</a>
+            <!-- Logo -->
+            <a href="#" class="logo">FINALLY FOUND YOU</a>
       
-          <!-- Navigation -->
-          <nav class="navbar" id="navbar">
-            <ul class="nav-links">
-              <li><a href="#home" class="active">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#articles">Articles</a></li>
-              <li><a href="#brands">Brands</a></li>
-              <li><a href="#products">Products</a></li>
-            </ul>
-          </nav>
-      
-          <!-- Auth Buttons (replacing Shop Now) -->
-          <div class="auth-buttons">
-            <button id="loginBtn" class="btn btn-login">Login</button>
-            <button id="registerBtn" class="btn btn-register">Register</button>
-          </div>
+            <!-- My Account Button (replacing auth buttons) -->
+            <div class="account-dropdown">
+                <button class="account-btn" id="accountBtn">My Account ▾</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="profile.html" class="active">Profile</a>
+                    <a href="transaction-history.html">Order History</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="index.html">Sign Out</a>
+                </div>
+            </div>
         </div>
     </header>
       
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginUsername">Username</label>
-                    <input type="text" id="loginUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <div class="form-group">
-                    <label for="userType">Login as:</label>
-                    <select id="userType">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-submit">Login</button>
-            </form>
-            <p class="form-footer">Don't have an account? <a href="#" id="showRegister">Register here</a></p>
-        </div>
-    </div>
-
-    <!-- Register Modal -->
-    <div id="registerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Register</h2>
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="registerName">Full Name</label>
-                    <input type="text" id="registerName" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerUsername">Username</label>
-                    <input type="text" id="registerUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" required>
-                </div>
-                <button type="submit" class="btn btn-submit">Register</button>
-            </form>
-            <p class="form-footer">Already have an account? <a href="#" id="showLogin">Login here</a></p>
-        </div>
-    </div>
-
-    <script>
-        // JavaScript untuk membuka/menutup menu hamburger
-        const menuToggle = document.getElementById('menu-toggle');
-        const navbar = document.getElementById('navbar');
-      
-        menuToggle.addEventListener('click', () => {
-          navbar.classList.toggle('active'); // Menambahkan/removing kelas active
-        });
-
-        // Modal functionality
-        const loginBtn = document.getElementById('loginBtn');
-        const registerBtn = document.getElementById('registerBtn');
-        const loginModal = document.getElementById('loginModal');
-        const registerModal = document.getElementById('registerModal');
-        const closeButtons = document.querySelectorAll('.close-modal');
-        const showRegister = document.getElementById('showRegister');
-        const showLogin = document.getElementById('showLogin');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-
-        // Open modals
-        loginBtn.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-        });
-
-        registerBtn.addEventListener('click', () => {
-            registerModal.style.display = 'flex';
-        });
-
-        // Close modals
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                loginModal.style.display = 'none';
-                registerModal.style.display = 'none';
-            });
-        });
-
-        // Switch between modals
-        showRegister.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.style.display = 'none';
-            registerModal.style.display = 'flex';
-        });
-
-        showLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            registerModal.style.display = 'none';
-            loginModal.style.display = 'flex';
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-            if (e.target === registerModal) {
-                registerModal.style.display = 'none';
-            }
-        });
-
-        // Handle login form submission
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userType = document.getElementById('userType').value;
-            
-            // Redirect based on user type
-            if (userType === 'admin') {
-                window.location.href = 'admin-dashboard.html';
-            } else {
-                window.location.href = 'index-user.html';
-            }
-        });
-
-        // Handle register form submission
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Redirect to user page after registration
-            window.location.href = 'index-user.html';
-        });
-      </script>             
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
@@ -249,52 +102,50 @@
         </div>
     </section>
 
-<!-- Articles Section -->
-<section class="articles-preview" id="articles">
-    <div class="container">
-      <h2 class="section-title">Beauty Journal & Guides</h2>
-      <p class="section-subtitle">Expert tips, skin secrets, and rituals for your radiant glow.</p>
-  
-      <div class="articles-grid">
-        <!-- Article 1 -->
-        <div class="article-card">
-          <img src="https://i.pinimg.com/736x/6a/b3/8d/6ab38d01a89bf76b5421a3256bf1062f.jpg" alt="Morning Skincare">
-          <div class="article-content">
-            <h3 class="article-title">Morning Skincare Rituals</h3>
-            <p class="article-excerpt">Wake up your skin with dermatologist-backed rituals for daily radiance.</p>
-            <a href="article-detail.html" class="btn btn-outline">See More</a>
-          </div>
+    <!-- Articles Section -->
+    <section class="articles-preview" id="articles">
+        <div class="container">
+            <h2 class="section-title">Beauty Journal & Guides</h2>
+            <p class="section-subtitle">Expert tips, skin secrets, and rituals for your radiant glow.</p>
+        
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <div class="article-card">
+                    <img src="https://i.pinimg.com/736x/6a/b3/8d/6ab38d01a89bf76b5421a3256bf1062f.jpg" alt="Morning Skincare">
+                    <div class="article-content">
+                        <h3 class="article-title">Morning Skincare Rituals</h3>
+                        <p class="article-excerpt">Wake up your skin with dermatologist-backed rituals for daily radiance.</p>
+                        <a href="article-detail.html" class="btn btn-outline">See More</a>
+                    </div>
+                </div>
+        
+                <!-- Article 2 -->
+                <div class="article-card">
+                    <img src="https://i.pinimg.com/736x/c1/6f/9d/c16f9d303029e8dd9d5d6728f600d7ca.jpg" alt="SPF Guide">
+                    <div class="article-content">
+                        <h3 class="article-title">Your Guide to Sunscreens</h3>
+                        <p class="article-excerpt">Everything you need to protect your glow with the right SPF.</p>
+                        <a href="article-detail-1.html" class="btn btn-outline">See More</a>
+                    </div>
+                </div>
+        
+                <!-- Article 3 -->
+                <div class="article-card">
+                    <img src="https://i.pinimg.com/736x/5c/03/e6/5c03e62e9ff75c0ba7c52f59bab9542a.jpg" alt="Niacinamide Benefits">
+                    <div class="article-content">
+                        <h3 class="article-title">Why Niacinamide Wins</h3>
+                        <p class="article-excerpt">Discover why this superstar brightens and soothes all skin types.</p>
+                        <a href="article-detail-2.html" class="btn btn-outline">See More</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="more-articles">
+                <a href="articles.html" class="btn">More Articles</a>
+            </div>
         </div>
+    </section>
   
-        <!-- Article 2 -->
-        <div class="article-card">
-          <img src="https://i.pinimg.com/736x/c1/6f/9d/c16f9d303029e8dd9d5d6728f600d7ca.jpg" alt="SPF Guide">
-          <div class="article-content">
-            <h3 class="article-title">Your Guide to Sunscreens</h3>
-            <p class="article-excerpt">Everything you need to protect your glow with the right SPF.</p>
-            <a href="article-detail-1.html" class="btn btn-outline">See More</a>
-          </div>
-        </div>
-  
-        <!-- Article 3 -->
-        <div class="article-card">
-          <img src="https://i.pinimg.com/736x/5c/03/e6/5c03e62e9ff75c0ba7c52f59bab9542a.jpg" alt="Niacinamide Benefits">
-          <div class="article-content">
-            <h3 class="article-title">Why Niacinamide Wins</h3>
-            <p class="article-excerpt">Discover why this superstar brightens and soothes all skin types.</p>
-            <a href="article-detail-2.html" class="btn btn-outline">See More</a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="more-articles">
-        <a href="articles.html" class="btn">More Articles</a>
-      </div>
-    </div>
-  </section>
-  
-  
-
     <!-- Brands Section -->
     <section class="feature-split" id="brands">
         <div class="feature-split-container">
@@ -360,7 +211,7 @@
         </div>
     </section>
 
-    <!-- Testimonial Section - More compact with better spacing -->
+    <!-- Testimonial Section -->
     <section class="testimonial" id="testimonial">
         <div class="container testimonial-container">
             <p class="testimonial-text">After years of frustration and disappointment with countless skincare products that promised miracles, I've finally discovered my perfect skincare ritual with Finally Found You.</p>
@@ -372,7 +223,7 @@
         </div>
     </section>
 
-    <!-- Products Section - More compact with better spacing -->
+    <!-- Products Section -->
     <section class="products" id="products">
         <div class="container">
             <h2 class="section-title">Signature Collections</h2>
@@ -430,7 +281,7 @@
         </div>
     </section>
 
-    <!-- Footer - More compact with better spacing -->
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <!-- Logo -->
@@ -478,193 +329,7 @@
     </footer>
 
     <script>
-        // JavaScript lengkap untuk halaman index.html (login dan register dengan sinkronisasi data real)
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Fungsi hash password sederhana (Jangan gunakan utk produksi)
-    function simpleHash(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            hash = ((hash << 5) - hash) + str.charCodeAt(i);
-            hash |= 0; // Convert to 32bit integer
-        }
-        return hash.toString();
-    }
-
-    // Modal elemen
-    const loginModal = document.getElementById('loginModal');
-    const registerModal = document.getElementById('registerModal');
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const closeButtons = document.querySelectorAll('.close-modal');
-    const showRegister = document.getElementById('showRegister');
-    const showLogin = document.getElementById('showLogin');
-
-    // Show and hide modal
-    loginBtn.addEventListener('click', () => loginModal.style.display = 'flex');
-    registerBtn.addEventListener('click', () => registerModal.style.display = 'flex');
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-            registerModal.style.display = 'none';
-        });
-    });
-    showRegister.addEventListener('click', e => {
-        e.preventDefault();
-        loginModal.style.display = 'none';
-        registerModal.style.display = 'flex';
-    });
-    showLogin.addEventListener('click', e => {
-        e.preventDefault();
-        registerModal.style.display = 'none';
-        loginModal.style.display = 'flex';
-    });
-    window.addEventListener('click', e => {
-        if (e.target === loginModal) loginModal.style.display = 'none';
-        if (e.target === registerModal) registerModal.style.display = 'none';
-    });
-
-    // Inisialisasi registeredUsers di localStorage jika belum ada admin
-    let users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-    if (!users.some(u => u.role === 'admin')) {
-        users.push({
-            id: 'ADMIN' + Date.now(),
-            name: 'Admin Beauty',
-            email: 'admin@example.com',
-            username: 'admin',
-            password: simpleHash('admin123'),
-            role: 'admin',
-            status: 'active',
-            registeredAt: new Date().toISOString(),
-            lastLogin: null,
-            avatar: 'https://i.pravatar.cc/150?img=1'
-        });
-        localStorage.setItem('registeredUsers', JSON.stringify(users));
-    }
-
-    // Fungsi mencatat aktivitas user
-    function logUserActivity(type, user, description) {
-        let activities = JSON.parse(localStorage.getItem('userActivities') || '[]');
-        const activity = {
-            type,
-            user: user.name,
-            email: user.email,
-            time: new Date().toISOString(),
-            description
-        };
-        activities.unshift(activity);
-        if (activities.length > 100) activities.splice(100);
-        localStorage.setItem('userActivities', JSON.stringify(activities));
-    }
-
-    // Register form handling
-    const registerForm = document.getElementById('registerForm');
-    registerForm.addEventListener('submit', e => {
-        e.preventDefault();
-        const name = document.getElementById('registerName').value.trim();
-        const email = document.getElementById('registerEmail').value.trim();
-        const username = document.getElementById('registerUsername').value.trim();
-        const password = document.getElementById('registerPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-
-        if (password !== confirmPassword) {
-            alert('Password tidak cocok!');
-            return;
-        }
-        if (users.some(u => u.email.toLowerCase() === email.toLowerCase() || u.username.toLowerCase() === username.toLowerCase())) {
-            alert('Email atau username sudah terdaftar!');
-            return;
-        }
-        const newUser = {
-            id: 'USER' + Date.now(),
-            name,
-            email,
-            username,
-            password: simpleHash(password),
-            role: 'customer',
-            status: 'active',
-            registeredAt: new Date().toISOString(),
-            lastLogin: null,
-            avatar: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`
-        };
-        users.push(newUser);
-        localStorage.setItem('registeredUsers', JSON.stringify(users));
-
-        logUserActivity('register', newUser, 'Mendaftar sebagai pengguna baru.');
-
-        const currentUser = {
-            id: newUser.id,
-            name: newUser.name,
-            email: newUser.email,
-            username: newUser.username,
-            userType: newUser.role,
-            role: newUser.role,
-            loggedIn: true,
-            loginTime: new Date().toISOString()
-        };
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        alert('Registrasi berhasil! Selamat datang, ' + name);
-        window.location.href = 'index-user.html';
-    });
-
-    // Login form handling
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', e => {
-        e.preventDefault();
-        const usernameOrEmail = document.getElementById('loginUsername').value.trim();
-        const password = document.getElementById('loginPassword').value;
-        const userType = document.getElementById('userType').value;
-
-        users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-
-        let user;
-        if (userType === 'admin') {
-            user = users.find(u =>
-                (u.username.toLowerCase() === usernameOrEmail.toLowerCase() || u.email.toLowerCase() === usernameOrEmail.toLowerCase())
-                && u.password === simpleHash(password) && u.role === 'admin' && u.status === 'active');
-            if (!user) {
-                alert('Login admin gagal: Username/email, password, atau status tidak valid.');
-                return;
-            }
-        } else {
-            user = users.find(u =>
-                (u.username.toLowerCase() === usernameOrEmail.toLowerCase() || u.email.toLowerCase() === usernameOrEmail.toLowerCase())
-                && u.password === simpleHash(password) && u.status === 'active');
-            if (!user) {
-                alert('Login gagal: Username/email, password, atau status tidak valid.');
-                return;
-            }
-        }
-
-        user.lastLogin = new Date().toISOString();
-        const index = users.findIndex(u => u.id === user.id);
-        users[index] = user;
-        localStorage.setItem('registeredUsers', JSON.stringify(users));
-
-        const currentUser = {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            username: user.username,
-            userType: user.role,
-            role: user.role,
-            loggedIn: true,
-            loginTime: new Date().toISOString()
-        };
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-        logUserActivity('login', user, 'Berhasil login ke sistem.');
-
-        alert('Login berhasil! Selamat datang, ' + user.name);
-        if (user.role === 'admin') {
-            window.location.href = 'admin-users.html';
-        } else {
-            window.location.href = 'index-user.html';
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
     // Fungsi sederhana untuk hash password (demo only, jangan gunakan di produksi)
     function simpleHash(str) {
         let hash = 0;
@@ -872,9 +537,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
     if (currentUser && currentUser.loggedIn) {
         // Update UI untuk user yang sudah login
-        const loginBtn = document.querySelector('a[href="#login"]');
-        const registerBtn = document.querySelector('a[href="#register"]');
-        
+
         if (loginBtn) loginBtn.style.display = 'none';
         if (registerBtn) registerBtn.style.display = 'none';
         
@@ -921,63 +584,183 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+
+    // Account dropdown functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const accountBtn = document.getElementById('accountBtn');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        // Toggle dropdown when account button is clicked
+        accountBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownContent.classList.toggle('show');
         });
 
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section[id]');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!accountBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                dropdownContent.classList.remove('show');
+            }
         });
 
-        // Reveal animations on scroll
-        const revealElements = document.querySelectorAll('.product-card, .foundation-item');
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Active navigation link highlighting
+    const sections = document.querySelectorAll('section[id]');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
         
-        function reveal() {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('revealed');
-                }
-            });
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= (sectionTop - 100)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Reveal animations on scroll
+    const revealElements = document.querySelectorAll('.product-card, .foundation-item, .article-card');
+
+    function reveal() {
+        revealElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('revealed');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+
+    // Header scroll effect
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up
+            header.style.transform = 'translateY(0)';
         }
         
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('load', reveal);
-          
+        lastScrollTop = scrollTop;
+    });
+
+    // Add loading animation for images
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img');
+        
+        images.forEach(img => {
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+            });
+            
+            // If image is already loaded
+            if (img.complete) {
+                img.style.opacity = '1';
+            }
+        });
+    });
+
+    // Intersection Observer for better performance on scroll animations
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements that need reveal animation
+        document.querySelectorAll('.product-card, .foundation-item, .article-card').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Preload critical images
+    const criticalImages = [
+        'https://images.tokopedia.net/img/cache/1200/BgtCLw/2025/1/28/8e5f70ba-495b-487c-9616-5f415d7ac3cf.jpg'
+    ];
+
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
+    // Add focus management for accessibility
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+
+    // Performance optimization: Debounce scroll events
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Apply debounce to scroll-heavy functions
+    const debouncedReveal = debounce(reveal, 10);
+    window.addEventListener('scroll', debouncedReveal);
     </script>
 </body>
 </html>

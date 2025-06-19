@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Produk | Finally Found You</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .desktop-only {
+          display: block;
+        }
+
+        .mobile-only {
+          display: none;
+        }
+
+        @media (max-width: 768px) {
+          .desktop-only {
+            display: none !important;
+          }
+
+          .mobile-only {
+            display: block !important;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <h2 class="admin-logo">Finally Found You</h2>
+                <p class="admin-subtitle">Admin Beauty Panel</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="admin-dashboard.html" class="nav-link">
+                            <span class="nav-icon">✨</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-products.html" class="nav-link active">
+                            <span class="nav-icon">🧴</span>
+                            <span class="nav-text">Kelola Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-articles.html" class="nav-link">
+                            <span class="nav-icon">📝</span>
+                            <span class="nav-text">Kelola Artikel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-orders.html" class="nav-link">
+                            <span class="nav-icon">🛒</span>
+                            <span class="nav-text">Kelola Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-users.html" class="nav-link">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-text">Kelola Pengguna</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?img=32" alt="Admin Avatar">
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-name">Admin Beauty</p>
+                        <p class="profile-role">Super Administrator</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <span>✨</span> Keluar
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Konten Utama -->
+        <main class="admin-content">
+            <header class="content-header">
+                <div class="header-title">
+                    <h1>Kelola Produk</h1>
+                    <p>Kelola semua produk skincare dan kecantikan Anda</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" placeholder="Cari produk..." class="search-input" id="productSearch">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <button class="primary-btn" id="addProductBtn">
+                        <span>➕</span>
+                        Tambah Produk
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Statistik Produk -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <div class="card-info">
+                            <h3 id="totalProducts">0</h3>
+                            <p>Total Produk</p>
+                        </div>
+                        <div class="card-icon">🧴</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <div class="card-info">
+                            <h3 id="activeProducts">0</h3>
+                            <p>Produk Aktif</p>
+                        </div>
+                        <div class="card-icon">✅</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <div class="card-info">
+                            <h3 id="lowStockProducts">0</h3>
+                            <p>Stok Rendah</p>
+                        </div>
+                        <div class="card-icon">⚠️</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabel Produk -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Daftar Produk</h2>
+                    <div class="filter-container">
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="">Semua Kategori</option>
+                            <option value="Cleanser">Cleanser</option>
+                            <option value="Moisturizer">Moisturizer</option>
+                            <option value="Serum">Serum</option>
+                            <option value="Essence">Essence</option>
+                            <option value="Sunscreen">Sunscreen</option>
+                            <option value="Toner">Toner</option>
+                            <option value="Eye Cream">Eye Cream</option>
+                            <option value="Mask">Mask</option>
+                        </select>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">Semua Status</option>
+                            <option value="active">Aktif</option>
+                            <option value="inactive">Tidak Aktif</option>
+                        </select>
+                        <button class="primary-btn" onclick="exportProducts()">
+                            <span>📊</span> Export Data
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Ganti bagian table dan mobile cards dengan struktur yang lebih jelas -->
+                <div class="table-container desktop-only">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Gambar</th>
+                                <th>Produk</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTable">
+                            <!-- Data produk akan dimuat di sini -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Cards - Improved Layout -->
+                <div class="mobile-cards-container mobile-only">
+                    <div id="mobileProductsContainer">
+                        <!-- Mobile cards akan dimuat di sini -->
+                    </div>
+                </div>
+
+                <div class="pagination" id="productsPagination">
+                    <!-- Pagination akan dimuat di sini -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Tambah/Edit Produk -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Tambah Produk Baru</h2>
+                <button class="close-btn" onclick="closeProductModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="editProductId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">Nama Produk *</label>
+                            <input type="text" id="productName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Kategori *</label>
+                            <select id="productCategory" class="form-input" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="Cleanser">Cleanser</option>
+                                <option value="Moisturizer">Moisturizer</option>
+                                <option value="Serum">Serum</option>
+                                <option value="Essence">Essence</option>
+                                <option value="Sunscreen">Sunscreen</option>
+                                <option value="Toner">Toner</option>
+                                <option value="Eye Cream">Eye Cream</option>
+                                <option value="Mask">Mask</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Harga (Rp) *</label>
+                            <input type="number" id="productPrice" class="form-input" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="productStock">Stok *</label>
+                            <input type="number" id="productStock" class="form-input" required min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productSize">Ukuran</label>
+                            <input type="text" id="productSize" class="form-input" placeholder="50ml">
+                        </div>
+                        <div class="form-group">
+                            <label for="productSkinType">Jenis Kulit</label>
+                            <input type="text" id="productSkinType" class="form-input" placeholder="All Skin Types">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productDescription">Deskripsi</label>
+                        <textarea id="productDescription" class="form-input" rows="4" placeholder="Deskripsi produk..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productIngredients">Ingredients</label>
+                        <textarea id="productIngredients" class="form-input" rows="3" placeholder="Daftar bahan-bahan..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productFeatures">Fitur Utama (pisahkan dengan koma)</label>
+                        <input type="text" id="productFeatures" class="form-input" placeholder="Brightening, Hydrating, Anti-aging">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productConcerns">Masalah Kulit</label>
+                        <input type="text" id="productConcerns" class="form-input" placeholder="Dullness, Dehydration, Uneven Texture">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productHowToUse">Cara Penggunaan</label>
+                        <textarea id="productHowToUse" class="form-input" rows="3" placeholder="Cara menggunakan produk..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Gambar Produk</label>
+                        <div class="image-upload-container">
+                            <div class="image-preview" id="imagePreview">
+                                <span style="color: #999;">Tidak ada gambar</span>
+                            </div>
+                            <div class="upload-controls">
+                                <button type="button" class="upload-btn" onclick="document.getElementById('productImage').click()">
+                                    Pilih Gambar
+                                </button>
+                                <input type="file" id="productImage" class="file-input" accept="image/*">
+                                <p class="upload-info">Format: JPG, PNG, WebP. Maksimal 2MB.</p>
+                                <input type="url" id="productImageUrl" class="form-input" placeholder="Atau masukkan URL gambar..." style="margin-top: 8px;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productStatus">Status</label>
+                            <select id="productStatus" class="form-input">
+                                <option value="active">Aktif</option>
+                                <option value="inactive">Tidak Aktif</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productTag">Tag</label>
+                            <select id="productTag" class="form-input">
+                                <option value="">Tidak ada tag</option>
+                                <option value="bestseller">Bestseller</option>
+                                <option value="new">New</option>
+                                <option value="popular">Popular</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="closeProductModal()">Batal</button>
+                        <button type="submit" class="primary-btn">Simpan Produk</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lihat Produk -->
+    <div class="modal" id="viewProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detail Produk</h2>
+                <button class="close-btn" onclick="closeViewModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="viewProductContent">
+                    <!-- Konten detail produk akan dimuat di sini -->
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeViewModal()">Tutup</button>
+                    <button type="button" class="primary-btn" id="editFromViewBtn">Edit Produk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">☰</button>
+
+    <script>
+        // Enhanced Product Management System
+        class ProductManager {
+            constructor() {
+                this.products = this.loadProducts();
+                this.currentEditId = null;
+                this.currentViewId = null;
+                this.currentPage = 1;
+                this.itemsPerPage = 10;
+                this.init();
+            }
+
+            init() {
+                this.initializeDefaultProducts();
+                this.renderTable();
+                this.updateStatistics();
+                this.bindEvents();
+                this.renderPagination();
+            }
+
+            initializeDefaultProducts() {
+                // Force reload products jika kosong
+                if (this.products.length === 0) {
+                    const defaultProducts = [
+                        {
+                            id: 'PROD001',
+                            name: 'SOY BRIGHT! Gel Moisturizer',
+                            category: 'Moisturizer',
+                            price: 239000,
+                            stock: 25,
+                            status: 'active',
+                            description: 'A revolutionary dual-action formula that delivers intense hydration while creating the perfect canvas for makeup application. Infused with soy extract and niacinamide for brightening benefits.',
+                            ingredients: 'Aqua, Glycerin, Niacinamide, Glycine Soja (Soybean) Seed Extract, Sodium Hyaluronate, Panthenol, Allantoin',
+                            image: 'https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 5,
+                            reviews: 124,
+                            tag: 'bestseller',
+                            size: '50ml',
+                            skinType: 'All Skin Types',
+                            concerns: 'Dullness, Dehydration, Uneven Texture',
+                            features: ['Brightening', 'Smoothing', 'Hydrating', 'Oil-free', 'Non-comedogenic'],
+                            howToUse: 'Apply to clean skin morning and evening. Massage gently until absorbed.',
+                            keyBenefits: [
+                                'Brightens and evens skin tone',
+                                'Provides 24-hour hydration', 
+                                'Oil-free and non-comedogenic',
+                                'Suitable for all skin types'
+                            ]
+                        },
+                        {
+                            id: 'PROD002',
+                            name: 'HYDRICEING Essence Booster',
+                            category: 'Essence',
+                            price: 149000,
+                            stock: 30,
+                            status: 'active',
+                            description: 'An innovative serum-infused toner that delivers multiple benefits in one elegant step. This essence booster hydrates, preps, and enhances the effectiveness of subsequent skincare products.',
+                            ingredients: 'Aqua, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Ceramides, Panthenol',
+                            image: 'https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 4,
+                            reviews: 86,
+                            tag: 'new',
+                            size: '150ml',
+                            skinType: 'All Skin Types',
+                            concerns: 'Dehydration, Dullness',
+                            features: ['Calming', 'Brightening', 'Hydrating'],
+                            howToUse: 'Apply after cleansing, before serum. Pat gently into skin.',
+                            keyBenefits: [
+                                'Balances skin pH levels',
+                                'Enhances product absorption',
+                                'Contains 5 types of hyaluronic acid',
+                                'Alcohol-free formula'
+                            ]
+                        },
+                        {
+                            id: 'PROD003',
+                            name: 'Soy Clear Dark Spot Serum',
+                            category: 'Serum',
+                            price: 288000,
+                            stock: 20,
+                            status: 'active',
+                            description: 'A powerful targeted treatment featuring 5% Micellar Cysteamine, 1% Kojic Acid, and Soybean Extract to visibly reduce the appearance of dark spots and hyperpigmentation.',
+                            ingredients: 'Aqua, Micellar Cysteamine 5%, Kojic Acid 1%, Glycine Soja Extract, Niacinamide',
+                            image: 'https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 5,
+                            reviews: 97,
+                            tag: 'popular',
+                            size: '30ml',
+                            skinType: 'All Skin Types',
+                            concerns: 'Dark Spots, Hyperpigmentation, Uneven Tone',
+                            features: ['Brightening', 'Anti-spot', 'Targeted Treatment'],
+                            howToUse: 'Apply 2-3 drops to clean skin in the evening. Use sunscreen during the day.',
+                            keyBenefits: [
+                                'Targets stubborn dark spots',
+                                'Prevents new discoloration',
+                                'Evens overall skin tone',
+                                'Clinically tested for all skin types'
+                            ]
+                        },
+                        {
+                            id: 'PROD004',
+                            name: 'Gentle Foam Cleanser',
+                            category: 'Cleanser',
+                            price: 129000,
+                            stock: 40,
+                            status: 'active',
+                            description: 'A pH-balanced foam cleanser that effectively removes impurities without stripping the skin\'s natural moisture. Leaves skin feeling clean, soft, and refreshed.',
+                            ingredients: 'Aqua, Sodium Cocoyl Glutamate, Glycerin, Ceramides, Panthenol, Allantoin',
+                            image: 'https://down-id.img.susercontent.com/file/id-11134207-7r98s-lq67fip9squmbc.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 4,
+                            reviews: 65,
+                            tag: '',
+                            size: '120ml',
+                            skinType: 'All Skin Types, Sensitive Skin',
+                            concerns: 'Cleansing, Sensitivity',
+                            features: ['Gentle', 'Hydrating', 'pH-Balanced'],
+                            howToUse: 'Wet face, apply small amount, massage gently, rinse thoroughly.',
+                            keyBenefits: [
+                                'Sulfate-free formula',
+                                'Removes makeup and impurities',
+                                'Maintains skin natural pH',
+                                'Suitable for sensitive skin'
+                            ]
+                        },
+                        {
+                            id: 'PROD005',
+                            name: 'Brightening Eye Cream',
+                            category: 'Eye Cream',
+                            price: 199000,
+                            stock: 15,
+                            status: 'active',
+                            description: 'A targeted eye treatment that addresses dark circles, puffiness, and fine lines. This lightweight cream brightens and revitalizes the delicate eye area.',
+                            ingredients: 'Aqua, Glycerin, Caffeine, Peptides, Vitamin C, Hyaluronic Acid',
+                            image: 'https://down-id.img.susercontent.com/file/sg-11134201-7ra1u-m5cize6eqb9z38.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 4,
+                            reviews: 42,
+                            tag: 'new',
+                            size: '15ml',
+                            skinType: 'All Skin Types',
+                            concerns: 'Dark Circles, Puffiness, Fine Lines',
+                            features: ['Brightening', 'Anti-aging', 'Hydrating'],
+                            howToUse: 'Gently pat around eye area morning and evening.',
+                            keyBenefits: [
+                                'Reduces appearance of dark circles',
+                                'Minimizes puffiness',
+                                'Hydrates and smooths fine lines',
+                                'Contains caffeine and peptides'
+                            ]
+                        },
+                        {
+                            id: 'PROD006',
+                            name: 'Daily Defense SPF 50',
+                            category: 'Sunscreen',
+                            price: 179000,
+                            stock: 35,
+                            status: 'active',
+                            description: 'A lightweight, broad-spectrum sunscreen that protects against UVA/UVB rays while providing antioxidant benefits. This non-greasy formula leaves no white cast.',
+                            ingredients: 'Aqua, Zinc Oxide, Titanium Dioxide, Niacinamide, Vitamin E, Antioxidants',
+                            image: 'https://down-id.img.susercontent.com/file/id-11134207-7rbk6-m6td1d2k4dik7e@resize_w900_nl.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 5,
+                            reviews: 118,
+                            tag: 'bestseller',
+                            size: '50ml',
+                            skinType: 'All Skin Types',
+                            concerns: 'Sun Protection, Anti-aging',
+                            features: ['SPF 50', 'Broad Spectrum', 'Antioxidant'],
+                            howToUse: 'Apply generously 15 minutes before sun exposure. Reapply every 2 hours.',
+                            keyBenefits: [
+                                'Broad-spectrum SPF 50 protection',
+                                'Contains antioxidants',
+                                'Water-resistant (40 minutes)',
+                                'Suitable for daily use'
+                            ]
+                        },
+                        {
+                            id: 'PROD007',
+                            name: 'RICE + MANDELIC + NIACINAMIDE Brightening Powder Mask',
+                            category: 'Mask',
+                            price: 219000,
+                            stock: 18,
+                            status: 'active',
+                            description: 'An intensive overnight treatment that works while you sleep to repair, hydrate, and rejuvenate skin. Wake up to plump, radiant, and refreshed skin.',
+                            ingredients: 'Rice Powder, Mandelic Acid, Niacinamide, Glycerin, Ceramides, Peptides, Hyaluronic Acid, Squalane',
+                            image: 'https://down-id.img.susercontent.com/file/id-11134207-7rbkb-m95mw7a61ycd8e.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 4,
+                            reviews: 73,
+                            tag: '',
+                            size: '75ml',
+                            skinType: 'All Skin Types',
+                            concerns: 'Brightening & Hydrating, Improves skin texture, Gently exfoliate',
+                            features: ['Brightening & Hydrating', 'Improves skin texture', 'Gently exfoliate', 'Rich in Antioxidant'],
+                            howToUse: 'Apply thick layer before bed, leave overnight, rinse in morning.',
+                            keyBenefits: [
+                                'Deeply hydrates overnight',
+                                'Repairs skin barrier',
+                                'Contains ceramides and peptides',
+                                'Non-greasy formula'
+                            ]
+                        },
+                        {
+                            id: 'PROD008',
+                            name: 'BERRY DEEP Exfoliating Serum',
+                            category: 'Serum',
+                            price: 139000,
+                            stock: 22,
+                            status: 'active',
+                            description: 'A gentle exfoliating serum with berry extracts and AHA/BHA that smooths skin texture and brightens complexion. Perfect for weekly use.',
+                            ingredients: 'Aqua, Glycolic Acid, Salicylic Acid, Berry Extract, Niacinamide, Aloe Vera',
+                            image: 'https://down-id.img.susercontent.com/file/id-11134207-7rasm-m4zxuuwm39ncdf.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 4,
+                            reviews: 58,
+                            tag: '',
+                            size: '20ml',
+                            skinType: 'Normal to Oily Skin',
+                            concerns: 'Smoothing & Brightening, Cleans pores & removes dead skin cells, Improves skin texture',
+                            features: ['Smoothing & Brightening', 'Cleans pores & removes dead skin cells', 'Improves skin texture', 'Rich in Antioxidant'],
+                            howToUse: 'Use 2-3 times per week in the evening. Always use sunscreen.',
+                            keyBenefits: [
+                                'Gently exfoliates dead skin cells',
+                                'Smooths skin texture',
+                                'Brightens complexion',
+                                'Contains natural berry extracts'
+                            ]
+                        },
+                        {
+                            id: 'PROD009',
+                            name: 'PEACH + VITAMIN B12 Double Barrier & Calming Serum',
+                            category: 'Serum',
+                            price: 259000,
+                            stock: 12,
+                            status: 'active',
+                            description: 'A potent serum featuring 10% Niacinamide (Vitamin B3) and Peach Extract to minimize pores, even skin tone, and strengthen the skin barrier while providing calming benefits.',
+                            ingredients: 'Aqua, Niacinamide 10%, Peach Extract, Vitamin B12, Ceramides, Panthenol',
+                            image: 'https://down-id.img.susercontent.com/file/id-11134207-7rasg-m500fhaongd97f.webp',
+                            createdAt: new Date().toISOString(),
+                            rating: 5,
+                            reviews: 92,
+                            tag: 'popular',
+                            size: '20ml',
+                            skinType: 'All Skin Types, Sensitive Skin',
+                            concerns: 'Boost skin hydration, Calms & soothe acnes, Strengthens skin-barrier',
+                            features: ['Boost skin hydration', 'Calms & soothe acnes', 'Strengthens skin-barrier', 'Rich in Antioxidant', 'Safe for Pregnant & Breastfeeding Women'],
+                            howToUse: 'Apply 2-3 drops morning and evening after cleansing.',
+                            keyBenefits: [
+                                'Reduces appearance of pores',
+                                'Evens skin tone',
+                                'Strengthens skin barrier',
+                                'Safe for pregnant & breastfeeding women'
+                            ]
+                        }
+                    ];
+                    
+                    this.products = defaultProducts;
+                    this.saveProducts();
+                    this.syncWithProductsPage();
+                    
+                    // Force update statistics immediately
+                    setTimeout(() => {
+                        this.updateStatistics();
+                        this.renderTable();
+                    }, 100);
+                }
+            }
+
+            generateId() {
+                return 'PROD' + Date.now() + Math.random().toString(36).substr(2, 5);
+            }
+
+            loadProducts() {
+                const stored = localStorage.getItem('adminProducts');
+                return stored ? JSON.parse(stored) : [];
+            }
+
+            saveProducts() {
+                localStorage.setItem('adminProducts', JSON.stringify(this.products));
+                this.syncWithProductsPage();
+            }
+
+            // Sync data dengan halaman products
+            syncWithProductsPage() {
+                const productsForDisplay = {};
+                this.products.forEach((product, index) => {
+                    if (product.status === 'active') {
+                        productsForDisplay[index + 1] = {
+                            id: index + 1,
+                            title: product.name,
+                            price: `Rp ${product.price.toLocaleString('id-ID')}`,
+                            priceValue: product.price,
+                            rating: '★'.repeat(product.rating) + '☆'.repeat(5 - product.rating),
+                            reviews: `(${product.reviews})`,
+                            image: product.image,
+                            description: product.description,
+                            features: product.features || [],
+                            size: product.size,
+                            category: product.category.toLowerCase(),
+                            tag: product.tag,
+                            skinType: product.skinType,
+                            concerns: product.concerns,
+                            keyBenefits: product.keyBenefits || [],
+                            howToUse: product.howToUse,
+                            ingredients: product.ingredients
+                        };
+                    }
+                });
+                localStorage.setItem('productsData', JSON.stringify(productsForDisplay));
+            }
+
+            bindEvents() {
+                // Add product button
+                document.getElementById('addProductBtn').addEventListener('click', () => {
+                    this.openAddModal();
+                });
+
+                // Form submission
+                document.getElementById('productForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveProduct();
+                });
+
+                // Image upload
+                document.getElementById('productImage').addEventListener('change', (e) => {
+                    this.handleImageUpload(e);
+                });
+
+                // Image URL input
+                document.getElementById('productImageUrl').addEventListener('input', (e) => {
+                    this.handleImageUrl(e.target.value);
+                });
+
+                // Search functionality
+                document.getElementById('productSearch').addEventListener('input', (e) => {
+                    this.currentPage = 1;
+                    this.filterProducts();
+                });
+
+                // Filter functionality
+                document.getElementById('categoryFilter').addEventListener('change', () => {
+                    this.currentPage = 1;
+                    this.filterProducts();
+                });
+
+                document.getElementById('statusFilter').addEventListener('change', () => {
+                    this.currentPage = 1;
+                    this.filterProducts();
+                });
+
+                // Edit from view modal
+                document.getElementById('editFromViewBtn').addEventListener('click', () => {
+                    this.closeViewModal();
+                    this.openEditModal(this.currentViewId);
+                });
+            }
+
+            renderMobileCards() {
+                const container = document.getElementById('mobileProductsContainer');
+                const filteredProducts = this.getFilteredProducts();
+                const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+                const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+                
+                container.innerHTML = '';
+
+                if (paginatedProducts.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <p>Tidak ada produk yang ditemukan</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                paginatedProducts.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'mobile-product-card';
+                    card.innerHTML = `
+                        <div class="mobile-card-header">
+                            <img src="${product.image}" alt="${product.name}" class="mobile-product-image" 
+                                 onerror="this.src='/placeholder.svg?height=60&width=60'">
+                            <div class="mobile-product-info">
+                                <h4 class="mobile-product-name">${product.name}</h4>
+                                <p class="mobile-product-id">${product.id} • ${product.size || 'N/A'}</p>
+                                <div class="mobile-product-meta">
+                                    <span class="mobile-category-badge">${product.category}</span>
+                                    <span class="mobile-status-badge ${product.status}">
+                                        ${product.status === 'active' ? 'Aktif' : 'Tidak Aktif'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-card-body">
+                            <div class="mobile-product-details">
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">Harga:</span>
+                                    <span class="mobile-detail-value">Rp ${product.price.toLocaleString('id-ID')}</span>
+                                </div>
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">Stok:</span>
+                                    <span class="mobile-detail-value ${product.stock < 10 ? 'low-stock' : ''}">${product.stock}</span>
+                                </div>
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">Rating:</span>
+                                    <span class="mobile-detail-value">
+                                        ${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)} (${product.reviews})
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mobile-card-actions">
+                                <button class="mobile-action-btn view" onclick="productManager.viewProduct('${product.id}')" title="Lihat Detail">
+                                    👁️ Lihat
+                                </button>
+                                <button class="mobile-action-btn edit" onclick="productManager.editProduct('${product.id}')" title="Edit">
+                                    ✏️ Edit
+                                </button>
+                                <button class="mobile-action-btn delete" onclick="productManager.deleteProduct('${product.id}')" title="Hapus">
+                                    🗑️ Hapus
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            renderTable() {
+                const tbody = document.getElementById('productsTable');
+                const filteredProducts = this.getFilteredProducts();
+                const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+                const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+                
+                // Desktop table rendering
+                tbody.innerHTML = '';
+
+                if (paginatedProducts.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="9" style="text-align: center; padding: 2rem; color: #666;">
+                                Tidak ada produk yang ditemukan
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    paginatedProducts.forEach(product => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td><strong>${product.id}</strong></td>
+                            <td>
+                                <img src="${product.image}" alt="${product.name}" class="product-image-small" 
+                                     onerror="this.src='/placeholder.svg?height=40&width=40'">
+                            </td>
+                            <td>
+                                <div class="product-cell">
+                                    <div class="product-info">
+                                        <h4>${product.name}</h4>
+                                        <p style="font-size: 0.8rem; color: #666;">${product.size || 'N/A'}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge category-badge">
+                                    ${product.category}
+                                </span>
+                            </td>
+                            <td><strong>Rp ${product.price.toLocaleString('id-ID')}</strong></td>
+                            <td>
+                                <span class="${product.stock < 10 ? 'status-badge out-of-stock' : 'status-badge active'}" 
+                                      style="padding: 4px 8px; border-radius: 12px; font-size: 0.8rem;">
+                                    ${product.stock}
+                                </span>
+                            </td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <span style="color: #f7b731;">${'★'.repeat(product.rating)}</span>
+                                    <span style="color: #ddd;">${'☆'.repeat(5 - product.rating)}</span>
+                                    <small style="color: #666;">(${product.reviews})</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge ${product.status}">
+                                    ${product.status === 'active' ? 'Aktif' : 'Tidak Aktif'}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-cell">
+                                    <button class="action-btn view" onclick="productManager.viewProduct('${product.id}')" title="Lihat Detail">
+                                        👁️
+                                    </button>
+                                    <button class="action-btn edit" onclick="productManager.editProduct('${product.id}')" title="Edit">
+                                        ✏️
+                                    </button>
+                                    <button class="action-btn delete" onclick="productManager.deleteProduct('${product.id}')" title="Hapus">
+                                        🗑️
+                                    </button>
+                                </div>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+
+                // Render mobile cards
+                this.renderMobileCards();
+                this.renderPagination();
+            }
+
+            renderPagination() {
+                const pagination = document.getElementById('productsPagination');
+                const filteredProducts = this.getFilteredProducts();
+                const totalPages = Math.ceil(filteredProducts.length / this.itemsPerPage);
+                
+                if (totalPages <= 1) {
+                    pagination.innerHTML = '';
+                    return;
+                }
+
+                let paginationHTML = '';
+                
+                // Previous button
+                if (this.currentPage > 1) {
+                    paginationHTML += `<a href="#" class="pagination-btn prev" onclick="productManager.goToPage(${this.currentPage - 1})">‹ Prev</a>`;
+                }
+
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === this.currentPage) {
+                        paginationHTML += `<a href="#" class="pagination-btn active">${i}</a>`;
+                    } else {
+                        paginationHTML += `<a href="#" class="pagination-btn" onclick="productManager.goToPage(${i})">${i}</a>`;
+                    }
+                }
+
+                // Next button
+                if (this.currentPage < totalPages) {
+                    paginationHTML += `<a href="#" class="pagination-btn next" onclick="productManager.goToPage(${this.currentPage + 1})">Next ›</a>`;
+                }
+
+                pagination.innerHTML = paginationHTML;
+            }
+
+            goToPage(page) {
+                this.currentPage = page;
+                this.renderTable();
+            }
+
+            getFilteredProducts() {
+                const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+                const categoryFilter = document.getElementById('categoryFilter').value;
+                const statusFilter = document.getElementById('statusFilter').value;
+
+                return this.products.filter(product => {
+                    const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
+                                        product.category.toLowerCase().includes(searchTerm) ||
+                                        product.id.toLowerCase().includes(searchTerm);
+                    const matchesCategory = !categoryFilter || product.category === categoryFilter;
+                    const matchesStatus = !statusFilter || product.status === statusFilter;
+
+                    return matchesSearch && matchesCategory && matchesStatus;
+                });
+            }
+
+            filterProducts() {
+                this.renderTable();
+            }
+
+            updateStatistics() {
+                const totalProducts = this.products.length;
+                const activeProducts = this.products.filter(p => p.status === 'active').length;
+                const lowStockProducts = this.products.filter(p => p.stock < 10).length;
+
+                document.getElementById('totalProducts').textContent = totalProducts;
+                document.getElementById('activeProducts').textContent = activeProducts;
+                document.getElementById('lowStockProducts').textContent = lowStockProducts;
+            }
+
+            openAddModal() {
+                this.currentEditId = null;
+                document.getElementById('modalTitle').textContent = 'Tambah Produk Baru';
+                document.getElementById('productForm').reset();
+                document.getElementById('editProductId').value = '';
+                document.getElementById('imagePreview').innerHTML = '<span style="color: #999;">Tidak ada gambar</span>';
+                document.getElementById('productModal').style.display = 'flex';
+            }
+
+            openEditModal(productId) {
+                const product = this.products.find(p => p.id === productId);
+                if (!product) return;
+
+                this.currentEditId = productId;
+                document.getElementById('modalTitle').textContent = 'Edit Produk';
+                document.getElementById('editProductId').value = productId;
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productCategory').value = product.category;
+                document.getElementById('productPrice').value = product.price;
+                document.getElementById('productStock').value = product.stock;
+                document.getElementById('productSize').value = product.size || '';
+                document.getElementById('productSkinType').value = product.skinType || '';
+                document.getElementById('productDescription').value = product.description || '';
+                document.getElementById('productIngredients').value = product.ingredients || '';
+                document.getElementById('productFeatures').value = product.features ? product.features.join(', ') : '';
+                document.getElementById('productConcerns').value = product.concerns || '';
+                document.getElementById('productHowToUse').value = product.howToUse || '';
+                document.getElementById('productImageUrl').value = product.image || '';
+                document.getElementById('productStatus').value = product.status;
+                document.getElementById('productTag').value = product.tag || '';
+
+                if (product.image) {
+                    document.getElementById('imagePreview').innerHTML = `<img src="${product.image}" alt="Preview">`;
+                }
+
+                document.getElementById('productModal').style.display = 'flex';
+            }
+
+            editProduct(productId) {
+                this.openEditModal(productId);
+            }
+
+            viewProduct(productId) {
+                const product = this.products.find(p => p.id === productId);
+                if (!product) return;
+
+                this.currentViewId = productId;
+                
+                const content = `
+                    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div>
+                            <img src="${product.image}" alt="${product.name}" style="width: 100%; border-radius: 12px; border: 2px solid #e0e0e0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            ${product.tag ? `<div style="margin-top: 1rem;"><span class="status-badge ${product.tag}" style="text-transform: uppercase;">${this.getTagLabel(product.tag)}</span></div>` : ''}
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 1rem; color: #6667ab; font-size: 1.5rem;">${product.name}</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div><strong>ID:</strong> ${product.id}</div>
+                                <div><strong>Kategori:</strong> ${product.category}</div>
+                                <div><strong>Harga:</strong> Rp ${product.price.toLocaleString('id-ID')}</div>
+                                <div><strong>Stok:</strong> ${product.stock}</div>
+                                <div><strong>Status:</strong> <span class="status-badge ${product.status}">${product.status === 'active' ? 'Aktif' : 'Tidak Aktif'}</span></div>
+                                <div><strong>Ukuran:</strong> ${product.size || 'N/A'}</div>
+                                <div><strong>Jenis Kulit:</strong> ${product.skinType || 'N/A'}</div>
+                                <div><strong>Rating:</strong> ${'★'.repeat(product.rating)}${'☆'.repeat(5-product.rating)} (${product.reviews || 0} reviews)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${product.description ? `
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem; color: #6667ab;">Deskripsi:</h4>
+                            <p style="line-height: 1.6; color: #555;">${product.description}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${product.keyBenefits && product.keyBenefits.length > 0 ? `
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem; color: #6667ab;">Manfaat Utama:</h4>
+                            <ul style="line-height: 1.6; color: #555; padding-left: 1.5rem;">
+                                ${product.keyBenefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    
+                    ${product.features && product.features.length > 0 ? `
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem; color: #6667ab;">Fitur:</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                ${product.features.map(feature => `<span style="background: #f0f0ff; color: #6667ab; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">${feature}</span>`).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${product.ingredients ? `
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem; color: #6667ab;">Ingredients:</h4>
+                            <p style="line-height: 1.6; color: #555; font-size: 0.9rem;">${product.ingredients}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${product.howToUse ? `
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem; color: #6667ab;">Cara Penggunaan:</h4>
+                            <p style="line-height: 1.6; color: #555;">${product.howToUse}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid #f0f0f0;">
+                        <div>
+                            <strong>Dibuat:</strong><br>
+                            ${new Date(product.createdAt).toLocaleDateString('id-ID')}
+                        </div>
+                        ${product.concerns ? `
+                            <div>
+                                <strong>Masalah Kulit:</strong><br>
+                                ${product.concerns}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+
+                document.getElementById('viewProductContent').innerHTML = content;
+                document.getElementById('viewProductModal').style.display = 'flex';
+            }
+
+            getTagLabel(tag) {
+                const tagLabels = {
+                    'bestseller': 'Bestseller',
+                    'new': 'New',
+                    'popular': 'Popular'
+                };
+                return tagLabels[tag] || tag;
+            }
+
+            deleteProduct(productId) {
+                const product = this.products.find(p => p.id === productId);
+                if (!product) return;
+
+                if (confirm(`Apakah Anda yakin ingin menghapus produk "${product.name}"?`)) {
+                    this.products = this.products.filter(p => p.id !== productId);
+                    this.saveProducts();
+                    this.renderTable();
+                    this.updateStatistics();
+                    
+                    // Show success message
+                    this.showMessage('Produk berhasil dihapus!', 'success');
+                }
+            }
+
+            saveProduct() {
+                const formData = {
+                    name: document.getElementById('productName').value,
+                    category: document.getElementById('productCategory').value,
+                    price: parseInt(document.getElementById('productPrice').value),
+                    stock: parseInt(document.getElementById('productStock').value),
+                    size: document.getElementById('productSize').value,
+                    skinType: document.getElementById('productSkinType').value,
+                    description: document.getElementById('productDescription').value,
+                    ingredients: document.getElementById('productIngredients').value,
+                    features: document.getElementById('productFeatures').value ? 
+                             document.getElementById('productFeatures').value.split(',').map(f => f.trim()) : [],
+                    concerns: document.getElementById('productConcerns').value,
+                    howToUse: document.getElementById('productHowToUse').value,
+                    image: document.getElementById('productImageUrl').value || '/placeholder.svg?height=250&width=250',
+                    status: document.getElementById('productStatus').value,
+                    tag: document.getElementById('productTag').value
+                };
+
+                if (this.currentEditId) {
+                    // Update existing product
+                    const index = this.products.findIndex(p => p.id === this.currentEditId);
+                    if (index !== -1) {
+                        this.products[index] = {
+                            ...this.products[index],
+                            ...formData,
+                            updatedAt: new Date().toISOString()
+                        };
+                        this.showMessage('Produk berhasil diperbarui!', 'success');
+                    }
+                } else {
+                    // Add new product
+                    const newProduct = {
+                        id: this.generateId(),
+                        ...formData,
+                        createdAt: new Date().toISOString(),
+                        rating: 5,
+                        reviews: 0,
+                        keyBenefits: formData.features
+                    };
+                    this.products.push(newProduct);
+                    this.showMessage('Produk berhasil ditambahkan!', 'success');
+                }
+
+                this.saveProducts();
+                this.renderTable();
+                this.updateStatistics();
+                this.closeProductModal();
+            }
+
+            handleImageUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar. Maksimal 2MB.');
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const imageUrl = e.target.result;
+                        document.getElementById('productImageUrl').value = imageUrl;
+                        document.getElementById('imagePreview').innerHTML = `<img src="${imageUrl}" alt="Preview">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            handleImageUrl(url) {
+                if (url) {
+                    document.getElementById('imagePreview').innerHTML = `<img src="${url}" alt="Preview" onerror="this.parentElement.innerHTML='<span style=\\'color: #999;\\'>Gambar tidak valid</span>'">`;
+                } else {
+                    document.getElementById('imagePreview').innerHTML = '<span style="color: #999;">Tidak ada gambar</span>';
+                }
+            }
+
+            showMessage(message, type = 'success') {
+                // Create and show notification
+                const notification = document.createElement('div');
+                notification.className = `message ${type}`;
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 3000;
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    font-weight: 500;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    animation: slideInRight 0.3s ease;
+                    background: ${type === 'success' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)'};
+                    color: ${type === 'success' ? '#16a34a' : '#dc2626'};
+                    border: 1px solid ${type === 'success' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'};
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        }
+
+        // Modal functions
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewProductModal').style.display = 'none';
+        }
+
+        function exportProducts() {
+            const products = productManager.products;
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "ID,Nama,Kategori,Harga,Stok,Status,Rating,Reviews,Dibuat\n"
+                + products.map(p => 
+                    `${p.id},"${p.name}",${p.category},${p.price},${p.stock},${p.status},${p.rating},${p.reviews},"${new Date(p.createdAt).toLocaleDateString('id-ID')}"`
+                ).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `products_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Initialize the product manager
+        let productManager;
+        document.addEventListener('DOMContentLoaded', () => {
+            productManager = new ProductManager();
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // Mobile sidebar toggle
+        document.getElementById('mobileSidebarToggle')?.addEventListener('click', () => {
+            document.getElementById('adminSidebar').classList.toggle('mobile-open');
+        });
+    </script>
+</body>
+</html>

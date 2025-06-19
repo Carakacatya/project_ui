@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping | Finally Found You</title>
+    <link rel="stylesheet" href="shipping.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">Finally Found You</a>
+            
+            <!-- Checkout Steps -->
+            <div class="checkout-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Information</div>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Shipping Section -->
+    <section class="shipping-section">
+        <div class="container">
+            <div class="shipping-container">
+                <!-- Shipping Form -->
+                <div class="shipping-form">
+                    <h1>Shipping</h1>
+                    
+                    <!-- Contact Information Summary -->
+                    <div class="form-section">
+                        <h2>Contact Information</h2>
+                        <div class="info-summary">
+                            <div class="info-item">
+                                <span class="info-label">Contact:</span>
+                                <span class="info-value" id="contact-email">Loading...</span>
+                                <a href="checkout.html" class="edit-link">Change</a>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Ship to:</span>
+                                <span class="info-value" id="shipping-address">Loading...</span>
+                                <a href="checkout.html" class="edit-link">Change</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shipping Method -->
+                    <div class="form-section">
+                        <h2>Shipping Method</h2>
+                        <div class="shipping-options">
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="standard" data-cost="15000" checked>
+                                <div class="shipping-option-content">
+                                    <div class="shipping-option-icon">🚚</div>
+                                    <div class="shipping-option-info">
+                                        <div class="shipping-option-name">Standard Shipping</div>
+                                        <div class="shipping-option-description">Estimated delivery: 3-5 business days</div>
+                                    </div>
+                                    <div class="shipping-option-price">Rp 15.000</div>
+                                </div>
+                            </label>
+                            
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="express" data-cost="35000">
+                                <div class="shipping-option-content">
+                                    <div class="shipping-option-icon">⏱️</div>
+                                    <div class="shipping-option-info">
+                                        <div class="shipping-option-name">Express Shipping</div>
+                                        <div class="shipping-option-description">Estimated delivery: 1-2 business days</div>
+                                    </div>
+                                    <div class="shipping-option-price">Rp 35.000</div>
+                                </div>
+                            </label>
+                            
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="same-day" data-cost="50000">
+                                <div class="shipping-option-content">
+                                    <div class="shipping-option-icon">⚡</div>
+                                    <div class="shipping-option-info">
+                                        <div class="shipping-option-name">Same Day Delivery</div>
+                                        <div class="shipping-option-description">Available for Jakarta area only</div>
+                                    </div>
+                                    <div class="shipping-option-price">Rp 50.000</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <a href="checkout.html" class="back-link">← Return to information</a>
+                        <button type="button" class="btn continue-btn" id="continue-to-payment">Continue to Payment</button>
+                    </div>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="order-items" id="order-items">
+                        <!-- Order items will be dynamically added here -->
+                    </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="promo-code">
+                        <div class="promo-form">
+                            <input type="text" class="promo-input" placeholder="Promo code" id="promo-input">
+                            <button class="btn-outline" id="apply-promo">Apply</button>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="summary-row">
+                        <div class="summary-label">Subtotal</div>
+                        <div class="summary-value" id="subtotal">Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <div class="summary-label">Shipping</div>
+                        <div class="summary-value" id="shipping">Rp 15.000</div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <div class="summary-label">Tax (10%)</div>
+                        <div class="summary-value" id="tax">Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row discount-row" id="discount-row" style="display: none;">
+                        <div class="summary-label">Discount</div>
+                        <div class="summary-value" id="discount">- Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row summary-total">
+                        <div class="summary-label">Total</div>
+                        <div class="summary-value" id="total">Rp 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="index.html#about">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-copyright">© 2025 Finally Found You. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="shipping.js"></script>
+</body>
+
+<script>
+// Shipping Data Management System
+class ShippingManager {
+  constructor() {
+    this.checkoutData = {}
+    this.selectedShipping = {
+      method: "standard",
+      cost: 15000,
+      name: "Standard Shipping",
+      description: "Estimated delivery: 3-5 business days",
+    }
+    this.init()
+  }
+
+  init() {
+    this.loadCheckoutData()
+    this.displayContactInfo()
+    this.renderOrderItems()
+    this.updateOrderSummary()
+    this.bindEvents()
+  }
+
+  // Load checkout data from previous step
+  loadCheckoutData() {
+    const savedData = localStorage.getItem("checkoutData")
+    if (savedData) {
+      this.checkoutData = JSON.parse(savedData)
+    } else {
+      // Redirect back to checkout if no data
+      alert("Please complete the checkout information first.")
+      window.location.href = "checkout.html"
+      return
+    }
+  }
+
+  // Display contact information from previous step
+  displayContactInfo() {
+    const { contactInfo } = this.checkoutData
+    if (contactInfo) {
+      document.getElementById("contact-email").textContent = contactInfo.email
+
+      let address = contactInfo.address
+      if (contactInfo.apartment) {
+        address += `, ${contactInfo.apartment}`
+      }
+      address += `, ${contactInfo.city}, ${contactInfo.province}, ${contactInfo.postalCode}`
+
+      document.getElementById("shipping-address").textContent = address
+    }
+  }
+
+  // Render order items
+  renderOrderItems() {
+    const orderItemsContainer = document.getElementById("order-items")
+    orderItemsContainer.innerHTML = ""
+
+    if (!this.checkoutData.cart) return
+
+    this.checkoutData.cart.forEach((item) => {
+      const itemPrice = this.parsePrice(item.price || item.priceValue)
+      const itemTotal = itemPrice * item.quantity
+
+      const orderItemElement = document.createElement("div")
+      orderItemElement.className = "order-item"
+      orderItemElement.innerHTML = `
+                <div class="order-item-image">
+                    <img src="${item.image}" alt="${item.title}">
+                    <span class="item-quantity">${item.quantity}</span>
+                </div>
+                <div class="order-item-details">
+                    <h3>${item.title}</h3>
+                    <p>Size: ${item.size || "50ml"}</p>
+                </div>
+                <div class="order-item-price">${this.formatCurrency(itemTotal)}</div>
+            `
+
+      orderItemsContainer.appendChild(orderItemElement)
+    })
+  }
+
+  // Update order summary with shipping cost
+  updateOrderSummary() {
+    if (!this.checkoutData.orderSummary) return
+
+    const { subtotal, tax, discount = 0 } = this.checkoutData.orderSummary
+    const total = subtotal + tax + this.selectedShipping.cost - discount
+
+    document.getElementById("subtotal").textContent = this.formatCurrency(subtotal)
+    document.getElementById("shipping").textContent = this.formatCurrency(this.selectedShipping.cost)
+    document.getElementById("tax").textContent = this.formatCurrency(tax)
+    document.getElementById("total").textContent = this.formatCurrency(total)
+
+    // Show discount if applicable
+    if (discount > 0) {
+      document.getElementById("discount").textContent = `- ${this.formatCurrency(discount)}`
+      document.getElementById("discount-row").style.display = "flex"
+    }
+
+    // Update checkout data
+    this.checkoutData.orderSummary.shipping = this.selectedShipping.cost
+    this.checkoutData.orderSummary.total = total
+    this.checkoutData.shippingInfo = this.selectedShipping
+  }
+
+  // Parse price from string
+  parsePrice(priceString) {
+    if (typeof priceString === "number") return priceString
+    return Number.parseInt(priceString.toString().replace(/\D/g, "")) || 0
+  }
+
+  // Format currency
+  formatCurrency(amount) {
+    return `Rp ${Number.parseInt(amount).toLocaleString("id-ID")}`
+  }
+
+  // Handle shipping method change
+  handleShippingChange(option) {
+    const cost = Number.parseInt(option.dataset.cost)
+    const method = option.value
+
+    let name, description
+    switch (method) {
+      case "express":
+        name = "Express Shipping"
+        description = "Estimated delivery: 1-2 business days"
+        break
+      case "same-day":
+        name = "Same Day Delivery"
+        description = "Available for Jakarta area only"
+        break
+      default:
+        name = "Standard Shipping"
+        description = "Estimated delivery: 3-5 business days"
+    }
+
+    this.selectedShipping = { method, cost, name, description }
+    this.updateOrderSummary()
+  }
+
+  // Save shipping data and continue to payment
+  continueToPayment() {
+    // Save updated checkout data
+    localStorage.setItem("checkoutData", JSON.stringify(this.checkoutData))
+
+    // Also save individual shipping data for backward compatibility
+    localStorage.setItem("shippingMethod", this.selectedShipping.method)
+    localStorage.setItem("shippingCost", this.selectedShipping.cost)
+    localStorage.setItem("shippingInfo", JSON.stringify(this.selectedShipping))
+
+    // Redirect to payment
+    window.location.href = "payment.html"
+  }
+
+  // Apply promo code
+  applyPromoCode() {
+    const promoCode = document.getElementById("promo-input").value.trim().toUpperCase()
+    const discountRow = document.getElementById("discount-row")
+    const discountElement = document.getElementById("discount")
+
+    if (promoCode === "WELCOME10") {
+      const subtotal = this.checkoutData.orderSummary.subtotal
+      const discount = Math.round(subtotal * 0.1)
+
+      discountElement.textContent = `- ${this.formatCurrency(discount)}`
+      discountRow.style.display = "flex"
+
+      this.checkoutData.orderSummary.discount = discount
+      this.updateOrderSummary()
+      alert("Promo code applied successfully! 10% discount added.")
+    } else if (promoCode === "SAVE15") {
+      const subtotal = this.checkoutData.orderSummary.subtotal
+      const discount = Math.round(subtotal * 0.15)
+
+      discountElement.textContent = `- ${this.formatCurrency(discount)}`
+      discountRow.style.display = "flex"
+
+      this.checkoutData.orderSummary.discount = discount
+      this.updateOrderSummary()
+      alert("Promo code applied successfully! 15% discount added.")
+    } else if (promoCode === "") {
+      alert("Please enter a promo code.")
+    } else {
+      alert("Invalid promo code. Please try again.")
+    }
+  }
+
+  // Bind events
+  bindEvents() {
+    // Shipping method selection
+    const shippingOptions = document.querySelectorAll('input[name="shipping"]')
+    shippingOptions.forEach((option) => {
+      option.addEventListener("change", () => {
+        this.handleShippingChange(option)
+      })
+    })
+
+    // Continue to payment button
+    document.getElementById("continue-to-payment").addEventListener("click", () => {
+      this.continueToPayment()
+    })
+
+    // Apply promo code
+    document.getElementById("apply-promo").addEventListener("click", () => {
+      this.applyPromoCode()
+    })
+
+    // Enter key for promo code
+    document.getElementById("promo-input").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        this.applyPromoCode()
+      }
+    })
+  }
+}
+
+// Initialize shipping manager when page loads
+document.addEventListener("DOMContentLoaded", () => {
+  new ShippingManager()
+})
+</script>
+</html>

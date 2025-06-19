@@ -1,157 +1,704 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard | Admin Finally Found You</title>
-<link rel="stylesheet" href="admin.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin | Finally Found You</title>
+    <link rel="stylesheet" href="admin-modern.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Aesthetic Dashboard Styles */
+        .aesthetic-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .aesthetic-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(102, 103, 171, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(102, 103, 171, 0.1),
+                0 2px 8px rgba(102, 103, 171, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aesthetic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6667ab, #8b8cc7, #a8a9d4);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .aesthetic-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(102, 103, 171, 0.2),
+                0 8px 24px rgba(102, 103, 171, 0.1);
+            border-color: rgba(102, 103, 171, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7);
+            color: white;
+            box-shadow: 0 8px 24px rgba(102, 103, 171, 0.3);
+            position: relative;
+        }
+
+        .card-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7, #a8a9d4);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .aesthetic-card:hover .card-icon-wrapper::after {
+            opacity: 1;
+        }
+
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-label {
+            font-size: 1rem;
+            color: #6c757d;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .card-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            color: #16a34a;
+        }
+
+        .trend-down {
+            color: #dc2626;
+        }
+
+        .trend-neutral {
+            color: #6667ab;
+        }
+
+        /* Quick Actions Section */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .action-card {
+            background: linear-gradient(135deg, #6667ab 0%, #8b8cc7 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(102, 103, 171, 0.3);
+        }
+
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .action-card:hover::before {
+            left: 100%;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(102, 103, 171, 0.4);
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .action-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Enhanced Charts Container */
+        .enhanced-charts {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-card-enhanced {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(102, 103, 171, 0.1);
+            box-shadow: 0 8px 32px rgba(102, 103, 171, 0.1);
+        }
+
+        .chart-header-enhanced {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(102, 103, 171, 0.1);
+        }
+
+        .chart-title-enhanced {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Activity List Enhanced */
+        .activity-enhanced {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .activity-item-enhanced {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, rgba(102, 103, 171, 0.05) 0%, rgba(139, 140, 199, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(102, 103, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .activity-item-enhanced:hover {
+            transform: translateX(8px);
+            background: linear-gradient(135deg, rgba(102, 103, 171, 0.1) 0%, rgba(139, 140, 199, 0.1) 100%);
+            border-color: rgba(102, 103, 171, 0.2);
+        }
+
+        .activity-icon-enhanced {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 103, 171, 0.3);
+        }
+
+        /* Remove scrollbar styling */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .enhanced-charts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .aesthetic-cards {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .aesthetic-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Compact Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(102, 103, 171, 0.1);
+            box-shadow: 0 4px 20px rgba(102, 103, 171, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6667ab, #8b8cc7);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(102, 103, 171, 0.15);
+            border-color: rgba(102, 103, 171, 0.2);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 103, 171, 0.3);
+            flex-shrink: 0;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #6667ab, #8b8cc7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-trend {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .stat-trend.positive {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+        }
+
+        .stat-trend.neutral {
+            background: rgba(102, 103, 171, 0.1);
+            color: #6667ab;
+        }
+
+        /* Compact Quick Actions */
+        .quick-actions-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card-compact {
+            background: linear-gradient(135deg, #6667ab 0%, #8b8cc7 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(102, 103, 171, 0.2);
+        }
+
+        .action-card-compact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .action-card-compact:hover::before {
+            left: 100%;
+        }
+
+        .action-card-compact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(102, 103, 171, 0.3);
+        }
+
+        .action-icon-compact {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
+        }
+
+        .action-content-compact {
+            flex: 1;
+        }
+
+        .action-content-compact h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-content-compact p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .action-arrow {
+            font-size: 1.25rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .action-card-compact:hover .action-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+            
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            
+            .quick-actions-compact {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .action-card-compact {
+                padding: 1.25rem;
+            }
+            
+            .action-icon-compact {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
+        <!-- Sidebar Modern -->
+        <aside class="admin-sidebar" id="adminSidebar">
             <div class="sidebar-header">
-                <h2 class="admin-logo">FinaFound</h2>
-                <p class="admin-subtitle">Admin Panel</p>
+                <h2 class="admin-logo">Finally Found You</h2>
+                <p class="admin-subtitle">Admin Beauty Panel</p>
             </div>
             
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="admin-dashboard.html" class="nav-link active">
-                            <span class="nav-icon">📊</span>
+                            <span class="nav-icon">✨</span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="admin-products.html" class="nav-link">
                             <span class="nav-icon">🧴</span>
-                            <span class="nav-text">Produk</span>
+                            <span class="nav-text">Kelola Produk</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="admin-articles.html" class="nav-link">
                             <span class="nav-icon">📝</span>
-                            <span class="nav-text">Artikel</span>
+                            <span class="nav-text">Kelola Artikel</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="admin-orders.html" class="nav-link">
                             <span class="nav-icon">🛒</span>
-                            <span class="nav-text">Transaksi</span>
+                            <span class="nav-text">Kelola Transaksi</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="admin-users.html" class="nav-link">
                             <span class="nav-icon">👥</span>
-                            <span class="nav-text">Pengguna</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">
-                            <span class="nav-icon">🏠</span>
-                            <span class="nav-text">Kembali ke Website</span>
+                            <span class="nav-text">Kelola Pengguna</span>
                         </a>
                     </li>
                 </ul>
             </nav>
-            
+
             <div class="sidebar-footer">
                 <div class="admin-profile">
                     <div class="profile-avatar">
                         <img src="https://i.pravatar.cc/150?img=32" alt="Admin Avatar">
                     </div>
                     <div class="profile-info">
-                        <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
+                        <p class="profile-name">Admin Beauty</p>
+                        <p class="profile-role">Super Administrator</p>
                     </div>
                 </div>
-                <button class="logout-btn">Keluar</button>
+                <button class="logout-btn" onclick="logout()">
+                    <span>✨</span> Keluar
+                </button>
             </div>
         </aside>
+
         
-        <!-- Main Content -->
+        <!-- Konten Utama -->
         <main class="admin-content">
             <header class="content-header">
                 <div class="header-title">
-                    <h1>Dashboard</h1>
-                    <p>Selamat datang kembali, Admin!</p>
+                    <h1>Dashboard Kecantikan</h1>
+                    <p>Selamat datang kembali! Kelola bisnis skincare Anda dengan mudah</p>
                 </div>
                 
                 <div class="header-actions">
-                    <select class="filter-select">
-                        <option value="today">Hari Ini</option>
-                        <option value="week">Minggu Ini</option>
-                        <option value="month" selected>Bulan Ini</option>
-                        <option value="year">Tahun Ini</option>
-                    </select>
-                    <button class="primary-btn" id="refresh-btn">🔄 Refresh Data</button>
+                    <div class="search-container">
+                        <input type="text" placeholder="Cari data..." class="search-input" id="globalSearch">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <button class="primary-btn" id="refreshBtn">
+                        <span>🔄</span>
+                        Refresh Data
+                    </button>
                 </div>
             </header>
             
-            <!-- Dashboard Cards -->
-            <div class="dashboard-cards">
-                <div class="dashboard-card">
-                    <div class="card-icon purple">💰</div>
-                    <div class="card-content">
-                        <h3>Rp 12,5 Juta</h3>
-                        <p>Total Pendapatan</p>
+            <!-- Kartu Statistik Compact & Aesthetic -->
+            <div class="stats-grid">
+                <div class="stat-card revenue">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="totalRevenue">Rp 0</div>
+                        <div class="stat-label">Total Pendapatan</div>
+                        <div class="stat-trend positive">↗️ +12.5%</div>
                     </div>
                 </div>
                 
-                <div class="dashboard-card">
-                    <div class="card-icon green">🛒</div>
-                    <div class="card-content">
-                        <h3>48</h3>
-                        <p>Total Pesanan</p>
+                <div class="stat-card orders">
+                    <div class="stat-icon">🛒</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="totalOrders">0</div>
+                        <div class="stat-label">Total Pesanan</div>
+                        <div class="stat-trend positive">↗️ +8.2%</div>
                     </div>
                 </div>
                 
-                <div class="dashboard-card">
-                    <div class="card-icon blue">👥</div>
-                    <div class="card-content">
-                        <h3>156</h3>
-                        <p>Total Pengguna</p>
+                <div class="stat-card users">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="totalUsers">0</div>
+                        <div class="stat-label">Total Pengguna</div>
+                        <div class="stat-trend neutral">📈 Stabil</div>
                     </div>
                 </div>
                 
-                <div class="dashboard-card">
-                    <div class="card-icon orange">📦</div>
-                    <div class="card-content">
-                        <h3>12</h3>
-                        <p>Produk Terjual</p>
+                <div class="stat-card products">
+                    <div class="stat-icon">🧴</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="totalProducts">0</div>
+                        <div class="stat-label">Total Produk</div>
+                        <div class="stat-trend positive">✨ Lengkap</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Compact -->
+            <div class="quick-actions-compact">
+                <a href="admin-users.html" class="action-card-compact users">
+                    <div class="action-icon-compact">👥</div>
+                    <div class="action-content-compact">
+                        <h3>Kelola Pengguna</h3>
+                        <p>Kelola akun & data pelanggan</p>
+                    </div>
+                    <div class="action-arrow">→</div>
+                </a>
+                
+                <a href="admin-orders.html" class="action-card-compact orders">
+                    <div class="action-icon-compact">🛒</div>
+                    <div class="action-content-compact">
+                        <h3>Kelola Transaksi</h3>
+                        <p>Pantau pesanan & pembayaran</p>
+                    </div>
+                    <div class="action-arrow">→</div>
+                </a>
+                
+                <a href="admin-products.html" class="action-card-compact products">
+                    <div class="action-icon-compact">🧴</div>
+                    <div class="action-content-compact">
+                        <h3>Kelola Produk</h3>
+                        <p>Tambah & kelola stok produk</p>
+                    </div>
+                    <div class="action-arrow">→</div>
+                </a>
+                
+                <a href="admin-articles.html" class="action-card-compact articles">
+                    <div class="action-icon-compact">📝</div>
+                    <div class="action-content-compact">
+                        <h3>Kelola Artikel</h3>
+                        <p>Buat konten beauty tips</p>
+                    </div>
+                    <div class="action-arrow">→</div>
+                </a>
+            </div>
+            
+            <!-- Container Chart & Aktivitas Enhanced -->
+            <div class="enhanced-charts">
+                <div class="chart-card-enhanced">
+                    <div class="chart-header-enhanced">
+                        <h3 class="chart-title-enhanced">Pendapatan Bulanan</h3>
+                        <p class="chart-period" id="currentMonth">Mei 2025</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card-enhanced">
+                    <div class="chart-header-enhanced">
+                        <h3 class="chart-title-enhanced">Aktivitas Terbaru</h3>
+                    </div>
+                    <div class="activity-enhanced" id="activityList">
+                        <!-- Aktivitas akan dimuat di sini -->
                     </div>
                 </div>
             </div>
             
-            <!-- Charts Section -->
-            <div class="charts-container">
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Pendapatan Bulanan</h3>
-                        <p class="chart-period">Mei 2025</p>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="revenue-chart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Produk Terlaris</h3>
-                        <p class="chart-period">Mei 2025</p>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="products-chart"></canvas>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Recent Orders Section -->
+            <!-- Pesanan Terbaru -->
             <section class="content-section">
                 <div class="section-header">
                     <h2>Pesanan Terbaru</h2>
@@ -159,7 +706,7 @@
                 </div>
                 
                 <div class="table-container">
-                    <table class="data-table">
+                    <table class="data-table compact-table">
                         <thead>
                             <tr>
                                 <th>ID Pesanan</th>
@@ -170,256 +717,506 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>ORD2025051</td>
-                                <td>Michael Tanjung</td>
-                                <td>13 Mei 2025, 09:30</td>
-                                <td>Rp 388.000</td>
-                                <td><span class="status-badge pending">Menunggu Pembayaran</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn view">👁️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ORD2025050</td>
-                                <td>Jessica Wijaya</td>
-                                <td>12 Mei 2025, 15:45</td>
-                                <td>Rp 527.000</td>
-                                <td><span class="status-badge processing">Diproses</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn view">👁️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ORD2025049</td>
-                                <td>Sarah Kusuma</td>
-                                <td>10 Mei 2025, 11:20</td>
-                                <td>Rp 239.000</td>
-                                <td><span class="status-badge shipped">Dikirim</span></td>
-                                <td class="action-cell">
-                                    <button class="action-btn view">👁️</button>
-                                </td>
-                            </tr>
+                        <tbody id="recentOrdersTable">
+                            <!-- Data pesanan akan dimuat di sini -->
                         </tbody>
                     </table>
                 </div>
             </section>
             
-            <!-- Recent Activity and Low Stock Section -->
-            <div class="charts-container">
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Aktivitas Terbaru</h3>
-                    </div>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-icon" style="background-color: #e7f3ff; color: #0a84ff;">🔑</div>
-                            <div class="activity-content">
-                                <h4>Jessica Wijaya melakukan login</h4>
-                                <p class="activity-time">Hari ini, 10:45</p>
-                            </div>
-                        </div>
-                        
-                        <div class="activity-item">
-                            <div class="activity-icon" style="background-color: #e1f5e9; color: #0d8a45;">🛒</div>
-                            <div class="activity-content">
-                                <h4>Michael Tanjung melakukan pembelian</h4>
-                                <p class="activity-time">Hari ini, 09:30</p>
-                            </div>
-                        </div>
-                        
-                        <div class="activity-item">
-                            <div class="activity-icon" style="background-color: #fff2e7; color: #ff9500;">⭐</div>
-                            <div class="activity-content">
-                                <h4>Sarah Kusuma memberikan ulasan</h4>
-                                <p class="activity-time">Kemarin, 15:20</p>
-                            </div>
-                        </div>
-                        
-                        <div class="activity-item">
-                            <div class="activity-icon" style="background-color: #f0e7ff; color: #6667ab;">👤</div>
-                            <div class="activity-content">
-                                <h4>Budi Santoso memperbarui profil</h4>
-                                <p class="activity-time">Kemarin, 11:15</p>
-                            </div>
-                        </div>
-                        
-                        <div class="activity-item">
-                            <div class="activity-icon" style="background-color: #e7f3ff; color: #0a84ff;">🔑</div>
-                            <div class="activity-content">
-                                <h4>Admin User melakukan login</h4>
-                                <p class="activity-time">Kemarin, 08:00</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Produk Stok Rendah -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Stok Produk Rendah</h2>
+                    <a href="admin-products.html" class="secondary-btn">Kelola Stok</a>
                 </div>
                 
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Stok Menipis</h3>
-                        <a href="admin-products.html" class="secondary-btn">Kelola Stok</a>
-                    </div>
-                    <div class="table-container">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Produk</th>
-                                    <th>Stok</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Gentle Hydrating Cleanser</td>
-                                    <td>0</td>
-                                    <td><span class="status-badge out-of-stock">Stok Habis</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Soy Clear Dark Spot Serum</td>
-                                    <td>5</td>
-                                    <td><span class="status-badge pending">Stok Menipis</span></td>
-                                </tr>
-                                <tr>
-                                    <td>HYDRICEING Essence Booster</td>
-                                    <td>8</td>
-                                    <td><span class="status-badge pending">Stok Menipis</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="table-container">
+                    <table class="data-table compact-table">
+                        <thead>
+                            <tr>
+                                <th>Produk</th>
+                                <th>Stok Tersisa</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lowStockTable">
+                            <!-- Data stok rendah akan dimuat di sini -->
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
 
+    <!-- Mobile Sidebar Toggle -->
+    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">☰</button>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Revenue Chart
-            const revenueCtx = document.getElementById('revenue-chart').getContext('2d');
-            const revenueChart = new Chart(revenueCtx, {
-                type: 'line',
-                data: {
-                    labels: ['1 Mei', '5 Mei', '10 Mei', '15 Mei', '20 Mei', '25 Mei', '30 Mei'],
-                    datasets: [{
-                        label: 'Pendapatan (Rp Juta)',
-                        data: [1.2, 2.5, 4.8, 6.3, 8.9, 10.7, 12.5],
-                        backgroundColor: 'rgba(102, 103, 171, 0.1)',
-                        borderColor: '#6667ab',
-                        borderWidth: 2,
-                        tension: 0.3,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+                // Simpan scroll posisi saat klik menu
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function () {
+            sessionStorage.setItem('scrollPos', window.scrollY);
+            });
+        });
+
+        // Kembalikan posisi scroll setelah pindah halaman
+        window.addEventListener('load', function () {
+            const scrollY = sessionStorage.getItem('scrollPos');
+            if (scrollY !== null) {
+            window.scrollTo(0, parseInt(scrollY));
+            sessionStorage.removeItem('scrollPos');
+            }
+        });
+        // Sistem Manajemen Data Admin Modern dengan Data Real
+        class ModernAdminDashboard {
+            constructor() {
+                this.initializeData();
+                this.loadDashboard();
+                this.setupEventListeners();
+            }
+
+            // Inisialisasi data dari localStorage (data real dari user)
+            initializeData() {
+                // Ambil data real dari website user - pastikan tidak ada data dummy
+                this.users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                this.orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                this.products = JSON.parse(localStorage.getItem('products') || '[]');
+                this.activities = JSON.parse(localStorage.getItem('userActivities') || '[]');
+                
+                // Log untuk debugging - pastikan data real
+                console.log('Real Users Data:', this.users);
+                console.log('Real Orders Data:', this.orders);
+                
+                // Jika tidak ada data produk, buat data default
+                if (this.products.length === 0) {
+                    this.initializeDefaultProducts();
+                }
+            }
+
+            // Inisialisasi produk default jika belum ada
+            initializeDefaultProducts() {
+                const defaultProducts = [
+                    {
+                        id: 'PROD001',
+                        name: 'SOY BRIGHT! Gel Moisturizer',
+                        price: 239000,
+                        stock: 25,
+                        category: 'Moisturizer',
+                        status: 'active',
+                        image: 'https://down-bs-id.img.susercontent.com/id-11134210-7rbk9-m7kfjqfp38ba7f.webp'
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
-                            }
-                        },
-                        x: {
-                            grid: {
+                    {
+                        id: 'PROD002',
+                        name: 'HYDRICEING Essence Booster',
+                        price: 149000,
+                        stock: 8,
+                        category: 'Essence',
+                        status: 'active',
+                        image: 'https://down-bs-id.img.susercontent.com/id-11134210-7rbk8-m7mjbla8vnu1b6.webp'
+                    },
+                    {
+                        id: 'PROD003',
+                        name: 'Soy Clear Dark Spot Serum',
+                        price: 288000,
+                        stock: 5,
+                        category: 'Serum',
+                        status: 'active',
+                        image: 'https://down-bs-id.img.susercontent.com/id-11134210-7rbk3-m7kfjqfp4mvq94.webp'
+                    },
+                    {
+                        id: 'PROD004',
+                        name: 'Gentle Foam Cleanser',
+                        price: 129000,
+                        stock: 0,
+                        category: 'Cleanser',
+                        status: 'out-of-stock',
+                        image: 'https://images.tokopedia.net/img/cache/500-square/VqbcmM/2025/3/5/24807ff1-685b-4f26-9aad-ea590855e67e.jpg.webp?ect=4g'
+                    }
+                ];
+                
+                localStorage.setItem('products', JSON.stringify(defaultProducts));
+                this.products = defaultProducts;
+            }
+
+            // Muat dashboard dengan data real
+            loadDashboard() {
+                this.updateStatistics();
+                this.loadRecentOrders();
+                this.loadLowStock();
+                this.loadActivities();
+                this.initializeChart();
+                
+                // Set bulan saat ini
+                const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                const now = new Date();
+                document.getElementById('currentMonth').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
+            }
+
+            // Update statistik dengan data real
+            updateStatistics() {
+                // Hitung total pendapatan dari orders real
+                const totalRevenue = this.orders.reduce((sum, order) => sum + (order.total || 0), 0);
+                document.getElementById('totalRevenue').textContent = this.formatCurrency(totalRevenue);
+                
+                // Update statistik lainnya dengan data real
+                document.getElementById('totalOrders').textContent = this.orders.length;
+                document.getElementById('totalUsers').textContent = this.users.length;
+                document.getElementById('totalProducts').textContent = this.products.length;
+            }
+
+            // Muat pesanan terbaru dari data real
+            loadRecentOrders() {
+                const tableBody = document.getElementById('recentOrdersTable');
+                const recentOrders = this.orders.slice(-5).reverse(); // 5 pesanan terbaru dari data real
+    
+                if (recentOrders.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 1.5rem; color: #666;">
+                                Belum ada pesanan dari pengguna yang terdaftar.<br>
+                                <small>Data akan muncul setelah ada pengguna yang melakukan checkout.</small>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+    
+                tableBody.innerHTML = recentOrders.map(order => `
+                    <tr>
+                        <td><strong>${order.id}</strong></td>
+                        <td>${order.customerName || order.name || 'Pelanggan'}</td>
+                        <td>${this.formatDate(order.date)}</td>
+                        <td><strong style="color: #6667ab;">${this.formatCurrency(order.total)}</strong></td>
+                        <td><span class="status-badge ${order.status || 'pending'}">${this.getStatusText(order.status || 'pending')}</span></td>
+                        <td class="action-cell">
+                            <button class="action-btn view" onclick="viewOrder('${order.id}')">👁️</button>
+                            <button class="action-btn edit" onclick="editOrder('${order.id}')">✏️</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // Muat stok rendah dari data real
+            loadLowStock() {
+                const tableBody = document.getElementById('lowStockTable');
+                const lowStockProducts = this.products.filter(product => product.stock <= 10);
+                
+                if (lowStockProducts.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 1.5rem; color: #666;">
+                                Semua produk memiliki stok yang cukup
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                tableBody.innerHTML = lowStockProducts.map(product => `
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <img src="${product.image}" alt="${product.name}" style="width: 36px; height: 36px; object-fit: cover; border-radius: 6px; margin-right: 8px;">
+                                <span><strong>${product.name}</strong></span>
+                            </div>
+                        </td>
+                        <td><strong style="color: ${product.stock === 0 ? '#dc2626' : '#d97706'};">${product.stock}</strong></td>
+                        <td><span class="status-badge ${product.stock === 0 ? 'cancelled' : 'pending'}">${product.stock === 0 ? 'Habis' : 'Stok Rendah'}</span></td>
+                        <td class="action-cell">
+                            <button class="action-btn edit" onclick="editProduct('${product.id}')">✏️</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // Muat aktivitas dari data real
+            loadActivities() {
+                const activityList = document.getElementById('activityList');
+                
+                // Gabungkan aktivitas dari berbagai sumber real
+                const allActivities = [
+                    ...this.activities,
+                    ...this.users.slice(-3).map(user => ({
+                        type: 'user_register',
+                        user: user.name || user.username,
+                        time: user.registeredAt || new Date(),
+                        description: 'mendaftar sebagai pengguna baru'
+                    })),
+                    ...this.orders.slice(-3).map(order => ({
+                        type: 'order_placed',
+                        user: order.customerName || 'Pelanggan',
+                        time: order.date || new Date(),
+                        description: `melakukan pemesanan ${order.id}`
+                    }))
+                ].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 8);
+                
+                if (allActivities.length === 0) {
+                    activityList.innerHTML = `
+                        <div style="text-align: center; padding: 1.5rem; color: #666;">
+                            Belum ada aktivitas terbaru
+                        </div>
+                    `;
+                    return;
+                }
+                
+                activityList.innerHTML = allActivities.map(activity => `
+                    <div class="activity-item-enhanced">
+                        <div class="activity-icon-enhanced">${this.getActivityIcon(activity.type)}</div>
+                        <div class="activity-content">
+                            <h4>${activity.user} ${activity.description}</h4>
+                            <p class="activity-time">${this.getTimeAgo(activity.time)}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Inisialisasi chart dengan data real
+            initializeChart() {
+                const ctx = document.getElementById('revenueChart').getContext('2d');
+                
+                // Data pendapatan bulanan dari orders real
+                const monthlyData = this.generateMonthlyRevenueData();
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                        datasets: [{
+                            label: 'Pendapatan (Rp)',
+                            data: monthlyData,
+                            borderColor: '#6667ab',
+                            backgroundColor: 'rgba(102, 103, 171, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#6667ab',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
                                 display: false
                             }
-                        }
-                    }
-                }
-            });
-            
-            // Products Chart
-            const productsCtx = document.getElementById('products-chart').getContext('2d');
-            const productsChart = new Chart(productsCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['SOY BRIGHT! Gel Moisturizer', 'HYDRICEING Essence Booster', 'Soy Clear Dark Spot Serum', 'Overnight Brightening Mask', 'Gentle Hydrating Cleanser'],
-                    datasets: [{
-                        data: [35, 25, 20, 15, 5],
-                        backgroundColor: [
-                            '#6667ab',
-                            '#0a84ff',
-                            '#0d8a45',
-                            '#ff9500',
-                            '#d63031'
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                boxWidth: 15,
-                                padding: 15,
-                                font: {
-                                    size: 12
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(102, 103, 171, 0.1)'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'Rp ' + (value / 1000000).toFixed(1) + 'M';
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
                                 }
                             }
+                        },
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
                         }
-                    },
-                    cutout: '70%'
-                }
-            });
-            
-            // Refresh button functionality
-            const refreshBtn = document.getElementById('refresh-btn');
-            
-            refreshBtn.addEventListener('click', function() {
-                // Simulate data refresh
-                refreshBtn.textContent = '🔄 Memperbarui...';
-                refreshBtn.disabled = true;
-                
-                setTimeout(function() {
-                    // Update charts with new random data
-                    revenueChart.data.datasets[0].data = [
-                        Math.random() * 3 + 1,
-                        Math.random() * 3 + 2,
-                        Math.random() * 3 + 4,
-                        Math.random() * 3 + 6,
-                        Math.random() * 3 + 8,
-                        Math.random() * 3 + 10,
-                        Math.random() * 3 + 12
-                    ];
-                    revenueChart.update();
-                    
-                    productsChart.data.datasets[0].data = [
-                        Math.floor(Math.random() * 20 + 25),
-                        Math.floor(Math.random() * 10 + 20),
-                        Math.floor(Math.random() * 10 + 15),
-                        Math.floor(Math.random() * 10 + 10),
-                        Math.floor(Math.random() * 5 + 5)
-                    ];
-                    productsChart.update();
-                    
-                    refreshBtn.textContent = '🔄 Refresh Data';
-                    refreshBtn.disabled = false;
-                    
-                    alert('Data berhasil diperbarui!');
-                }, 1500);
-            });
-            
-            // View order button functionality
-            const viewButtons = document.querySelectorAll('.action-btn.view');
-            
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    const orderId = row.cells[0].textContent;
-                    window.location.href = 'admin-orders.html';
+                    }
                 });
-            });
+            }
+
+            // Generate data pendapatan bulanan dari orders real
+            generateMonthlyRevenueData() {
+                const currentMonth = new Date().getMonth();
+                const data = [];
+                
+                for (let i = 0; i < 6; i++) {
+                    const monthOrders = this.orders.filter(order => {
+                        const orderDate = new Date(order.date);
+                        return orderDate.getMonth() === (currentMonth - 5 + i);
+                    });
+                    
+                    const monthlyRevenue = monthOrders.reduce((sum, order) => sum + (order.total || 0), 0);
+                    data.push(monthlyRevenue);
+                }
+                
+                // Jika tidak ada data real, buat data simulasi yang realistis
+                if (data.every(val => val === 0)) {
+                    return [1200000, 1500000, 1800000, 1600000, 2100000, 2500000];
+                }
+                
+                return data;
+            }
+
+            // Setup event listeners
+            setupEventListeners() {
+                // Refresh button
+                document.getElementById('refreshBtn').addEventListener('click', () => {
+                    this.refreshData();
+                });
+
+                // Global search
+                document.getElementById('globalSearch').addEventListener('input', (e) => {
+                    this.performGlobalSearch(e.target.value);
+                });
+
+                // Mobile sidebar toggle
+                document.getElementById('mobileSidebarToggle').addEventListener('click', () => {
+                    document.getElementById('adminSidebar').classList.toggle('mobile-open');
+                });
+
+                // Auto refresh data setiap 30 detik untuk data real-time
+                setInterval(() => {
+                    this.initializeData();
+                    this.updateStatistics();
+                    this.loadRecentOrders();
+                    this.loadActivities();
+                }, 30000);
+            }
+
+            // Refresh data
+            refreshData() {
+                const btn = document.getElementById('refreshBtn');
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '<span>⏳</span> Memuat...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    this.initializeData();
+                    this.loadDashboard();
+                    
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    this.showMessage('Data berhasil diperbarui!', 'success');
+                }, 1000);
+            }
+
+            // Pencarian global
+            performGlobalSearch(query) {
+                if (query.length < 2) return;
+                
+                // Implementasi pencarian sederhana
+                console.log('Mencari:', query);
+                // Bisa ditambahkan logika pencarian yang lebih kompleks
+            }
+
+            // Utility functions
+            formatCurrency(amount) {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 0
+                }).format(amount || 0);
+            }
+
+            formatDate(date) {
+                return new Date(date).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            }
+
+            getStatusText(status) {
+                const statusMap = {
+                    'pending': 'Menunggu',
+                    'processing': 'Diproses',
+                    'shipped': 'Dikirim',
+                    'delivered': 'Selesai',
+                    'cancelled': 'Dibatalkan'
+                };
+                return statusMap[status] || status;
+            }
+
+            getActivityIcon(type) {
+                const iconMap = {
+                    'user_register': '👤',
+                    'order_placed': '🛒',
+                    'product_added': '🧴',
+                    'login': '🔑',
+                    'purchase': '💳',
+                    'register': '👤'
+                };
+                return iconMap[type] || '📝';
+            }
+
+            getTimeAgo(date) {
+                const now = new Date();
+                const diff = now - new Date(date);
+                const minutes = Math.floor(diff / 60000);
+                const hours = Math.floor(diff / 3600000);
+                const days = Math.floor(diff / 86400000);
+
+                if (days > 0) return `${days} hari yang lalu`;
+                if (hours > 0) return `${hours} jam yang lalu`;
+                if (minutes > 0) return `${minutes} menit yang lalu`;
+                return 'Baru saja';
+            }
+
+            showMessage(text, type = 'success') {
+                const message = document.createElement('div');
+                message.className = `message ${type}`;
+                message.textContent = text;
+                message.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 3000;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    font-weight: 500;
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                    animation: slideInRight 0.3s ease;
+                    background: ${type === 'success' ? 'rgba(102, 103, 171, 0.1)' : 'rgba(239, 68, 68, 0.1)'};
+                    color: ${type === 'success' ? '#6667ab' : '#dc2626'};
+                    border: 1px solid ${type === 'success' ? 'rgba(102, 103, 171, 0.3)' : 'rgba(239, 68, 68, 0.3)'};
+                `;
+                
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => message.remove(), 300);
+                }, 3000);
+            }
+        }
+
+        // Global functions
+        function viewOrder(orderId) {
+            window.location.href = `admin-orders.html?view=${orderId}`;
+        }
+
+        function editOrder(orderId) {
+            window.location.href = `admin-orders.html?edit=${orderId}`;
+        }
+
+        function editProduct(productId) {
+            window.location.href = `admin-products.html?edit=${productId}`;
+        }
+
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                localStorage.removeItem('adminSession');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Inisialisasi dashboard saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            new ModernAdminDashboard();
         });
     </script>
 </body>

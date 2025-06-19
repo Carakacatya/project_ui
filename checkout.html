@@ -50,11 +50,11 @@
                         <h2>Contact Information</h2>
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="Enter your email address">
+                            <input type="email" id="email" placeholder="Enter your email address" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" placeholder="Enter your phone number">
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
                         </div>
                     </div>
                     
@@ -64,16 +64,16 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="first-name">First Name</label>
-                                <input type="text" id="first-name" placeholder="Enter your first name">
+                                <input type="text" id="first-name" placeholder="Enter your first name" required>
                             </div>
                             <div class="form-group">
                                 <label for="last-name">Last Name</label>
-                                <input type="text" id="last-name" placeholder="Enter your last name">
+                                <input type="text" id="last-name" placeholder="Enter your last name" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" id="address" placeholder="Enter your street address">
+                            <input type="text" id="address" placeholder="Enter your street address" required>
                         </div>
                         <div class="form-group">
                             <label for="apartment">Apartment, suite, etc. (optional)</label>
@@ -82,16 +82,16 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="city">City</label>
-                                <input type="text" id="city" placeholder="Enter your city">
+                                <input type="text" id="city" placeholder="Enter your city" required>
                             </div>
                             <div class="form-group">
                                 <label for="postal-code">Postal Code</label>
-                                <input type="text" id="postal-code" placeholder="Enter postal code">
+                                <input type="text" id="postal-code" placeholder="Enter postal code" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="country">Country</label>
-                            <select id="country">
+                            <select id="country" required>
                                 <option value="">Select a country</option>
                                 <option value="indonesia" selected>Indonesia</option>
                                 <option value="malaysia">Malaysia</option>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="form-group">
                             <label for="province">Province</label>
-                            <select id="province">
+                            <select id="province" required>
                                 <option value="">Select a province</option>
                                 <option value="jakarta">DKI Jakarta</option>
                                 <option value="west-java">West Java</option>
@@ -120,46 +120,9 @@
                         </div>
                     </div>
                     
-                    <!-- Shipping Method -->
-                    <div class="form-section">
-                        <h2>Shipping Method</h2>
-                        <div class="shipping-options">
-                            <label class="shipping-option">
-                                <input type="radio" name="shipping" value="standard" checked>
-                                <div class="shipping-option-content">
-                                    <div class="shipping-option-info">
-                                        <div class="shipping-option-name">Standard Shipping</div>
-                                        <div class="shipping-option-description">Estimated delivery: 3-5 business days</div>
-                                    </div>
-                                    <div class="shipping-option-price">Rp 15.000</div>
-                                </div>
-                            </label>
-                            <label class="shipping-option">
-                                <input type="radio" name="shipping" value="express">
-                                <div class="shipping-option-content">
-                                    <div class="shipping-option-info">
-                                        <div class="shipping-option-name">Express Shipping</div>
-                                        <div class="shipping-option-description">Estimated delivery: 1-2 business days</div>
-                                    </div>
-                                    <div class="shipping-option-price">Rp 35.000</div>
-                                </div>
-                            </label>
-                            <label class="shipping-option">
-                                <input type="radio" name="shipping" value="same-day">
-                                <div class="shipping-option-content">
-                                    <div class="shipping-option-info">
-                                        <div class="shipping-option-name">Same Day Delivery</div>
-                                        <div class="shipping-option-description">Available for Jakarta area only</div>
-                                    </div>
-                                    <div class="shipping-option-price">Rp 50.000</div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    
                     <div class="form-actions">
                         <a href="cart.html" class="back-link">← Return to cart</a>
-                        <a href="payment.html" class="btn continue-btn">Continue to Payment</a>
+                        <button type="button" class="btn continue-btn" id="continue-to-shipping">Continue to Shipping</button>
                     </div>
                 </div>
                 
@@ -175,8 +138,8 @@
                     
                     <div class="promo-code">
                         <div class="promo-form">
-                            <input type="text" class="promo-input" placeholder="Promo code">
-                            <button class="btn-outline">Apply</button>
+                            <input type="text" class="promo-input" placeholder="Promo code" id="promo-input">
+                            <button class="btn-outline" id="apply-promo">Apply</button>
                         </div>
                     </div>
                     
@@ -195,6 +158,11 @@
                     <div class="summary-row">
                         <div class="summary-label">Tax (10%)</div>
                         <div class="summary-value" id="tax">Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row discount-row" id="discount-row" style="display: none;">
+                        <div class="summary-label">Discount</div>
+                        <div class="summary-value" id="discount">- Rp 0</div>
                     </div>
                     
                     <div class="summary-row summary-total">
@@ -220,118 +188,6 @@
         </div>
     </footer>
 
-    <script>
-        // Load cart from localStorage
-        let cart = [];
-        const orderItemsContainer = document.getElementById('order-items');
-        const subtotalElement = document.getElementById('subtotal');
-        const taxElement = document.getElementById('tax');
-        const totalElement = document.getElementById('total');
-        const shippingElement = document.getElementById('shipping');
-        
-        function loadCart() {
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-                renderOrderItems();
-                updateOrderSummary();
-            }
-        }
-        
-        function renderOrderItems() {
-            orderItemsContainer.innerHTML = '';
-            
-            cart.forEach(item => {
-                const itemPrice = parseInt(item.price.replace(/\D/g, '')) || parseInt(item.price);
-                const itemTotal = itemPrice * item.quantity;
-                
-                const orderItemElement = document.createElement('div');
-                orderItemElement.className = 'order-item';
-                orderItemElement.innerHTML = `
-                    <div class="order-item-image">
-                        <img src="${item.image}" alt="${item.title}">
-                        <span class="item-quantity">${item.quantity}</span>
-                    </div>
-                    <div class="order-item-details">
-                        <h3>${item.title}</h3>
-                        <p>Size: 50ml</p>
-                    </div>
-                    <div class="order-item-price">Rp ${itemTotal.toLocaleString('id-ID')}</div>
-                `;
-                
-                orderItemsContainer.appendChild(orderItemElement);
-            });
-        }
-        
-        function updateOrderSummary() {
-            let subtotal = 0;
-            
-            cart.forEach(item => {
-                const itemPrice = parseInt(item.price.replace(/\D/g, '')) || parseInt(item.price);
-                subtotal += itemPrice * item.quantity;
-            });
-            
-            const tax = subtotal * 0.1;
-            const shipping = 15000; // Default shipping cost
-            const total = subtotal + tax + shipping;
-            
-            subtotalElement.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
-            taxElement.textContent = `Rp ${tax.toLocaleString('id-ID')}`;
-            totalElement.textContent = `Rp ${total.toLocaleString('id-ID')}`;
-        }
-        
-        // Shipping method selection
-        const shippingOptions = document.querySelectorAll('input[name="shipping"]');
-        
-        shippingOptions.forEach(option => {
-            option.addEventListener('change', () => {
-                let shippingCost = 15000; // Default
-                
-                if (option.value === 'express') {
-                    shippingCost = 35000;
-                } else if (option.value === 'same-day') {
-                    shippingCost = 50000;
-                }
-                
-                shippingElement.textContent = `Rp ${shippingCost.toLocaleString('id-ID')}`;
-                
-                // Recalculate total
-                const subtotal = parseInt(subtotalElement.textContent.replace(/\D/g, '')) || 0;
-                const tax = parseInt(taxElement.textContent.replace(/\D/g, '')) || 0;
-                const total = subtotal + tax + shippingCost;
-                
-                totalElement.textContent = `Rp ${total.toLocaleString('id-ID')}`;
-            });
-        });
-        
-        // Form validation
-        const continueBtn = document.querySelector('.continue-btn');
-        const requiredFields = [
-            'email', 'phone', 'first-name', 'last-name', 
-            'address', 'city', 'postal-code', 'country', 'province'
-        ];
-        
-        continueBtn.addEventListener('click', (e) => {
-            let isValid = true;
-            
-            requiredFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (!field.value.trim()) {
-                    field.classList.add('error');
-                    isValid = false;
-                } else {
-                    field.classList.remove('error');
-                }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields.');
-            }
-        });
-        
-        // Load cart on page load
-        window.addEventListener('load', loadCart);
-    </script>
+    <script src="checkout.js"></script>
 </body>
 </html>

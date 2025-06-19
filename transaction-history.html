@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - Finally Found You</title>
+    <link rel="stylesheet" href="transaction-history.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <span class="menu-toggle">☰</span>
+            <a href="#" class="logo">Finally Found You</a>
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index-user.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+            <div class="account-dropdown">
+                <button class="account-btn" onclick="toggleDropdown()">My Account ▾</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="profile.html" class="dropdown-item">Profile</a>
+                    <a href="order-history.html" class="dropdown-item active">Order History</a>
+                    <a href="wishlist.html" class="dropdown-item">Wishlist</a>
+                    <a href="index.html" class="dropdown-item">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="container">
+            <h1>Order History</h1>
+            <p>Track and manage your previous orders</p>
+        </div>
+    </div>
+
+    <!-- Order History Section -->
+    <section class="order-history-section">
+        <div class="container">
+            <div class="account-layout">
+                <aside class="account-sidebar">
+                    <div class="account-user">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/60" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h3>Loading...</h3>
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                    <ul class="account-menu">
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="transaction-history.html" class="active">Order History</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="index.html">Sign Out</a></li>
+                    </ul>
+                </aside>
+                <main class="account-content">
+                    <div class="content-header">
+                        <h2>Your Orders</h2>
+                        <div class="filter-options">
+                            <label for="order-filter">Filter by:</label>
+                            <select id="order-filter" onchange="filterOrders()">
+                                <option value="all">All Orders</option>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="orders-list" id="orders-list">
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">Order #FF-10293</div>
+                                    <div class="order-date">May 10, 2025</div>
+                                </div>
+                                <span class="order-status delivered">Delivered</span>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="SOY BRIGHT! Gel Moisturizer">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>SOY BRIGHT! Gel Moisturizer</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 239.000</div>
+                                </div>
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="HYDRICEING Essence Booster">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>HYDRICEING Essence Booster</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 149.000</div>
+                                </div>
+                            </div>
+                            <div class="order-footer">
+                                <div class="order-total">Total: <span class="total-amount">Rp 388.000</span></div>
+                                <div class="order-actions">
+                                    <a href="#" class="btn btn-outline">View Order</a>
+                                    <a href="#" class="btn btn-outline">Buy Again</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">Order #FF-10285</div>
+                                    <div class="order-date">April 28, 2025</div>
+                                </div>
+                                <span class="order-status shipped">Shipped</span>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="Soy Clear Dark Spot Serum">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>Soy Clear Dark Spot Serum</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 288.000</div>
+                                </div>
+                            </div>
+                            <div class="order-footer">
+                                <div class="order-total">Total: <span class="total-amount">Rp 288.000</span></div>
+                                <div class="order-actions">
+                                    <a href="#" class="btn btn-outline">Track Order</a>
+                                    <a href="#" class="btn btn-outline">Buy Again</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">Order #FF-10274</div>
+                                    <div class="order-date">April 15, 2025</div>
+                                </div>
+                                <span class="order-status delivered">Delivered</span>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="Gentle Foam Cleanser">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>Gentle Foam Cleanser</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 129.000</div>
+                                </div>
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="Brightening Eye Cream">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>Brightening Eye Cream</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 199.000</div>
+                                </div>
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="Daily Defense SPF 50">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>Daily Defense SPF 50</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 179.000</div>
+                                </div>
+                            </div>
+                            <div class="order-footer">
+                                <div class="order-total">Total: <span class="total-amount">Rp 507.000</span></div>
+                                <div class="order-actions">
+                                    <a href="#" class="btn btn-outline">View Order</a>
+                                    <a href="#" class="btn btn-outline">Buy Again</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">Order #FF-10268</div>
+                                    <div class="order-date">April 5, 2025</div>
+                                </div>
+                                <span class="order-status cancelled">Cancelled</span>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <div class="product-image">
+                                        <img src="https://via.placeholder.com/60" alt="Overnight Repair Mask">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>Overnight Repair Mask</h3>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                    <div class="product-price">Rp 219.000</div>
+                                </div>
+                            </div>
+                            <div class="order-footer">
+                                <div class="order-total">Total: <span class="total-amount">Rp 219.000</span></div>
+                                <div class="order-actions">
+                                    <a href="#" class="btn btn-outline">View Order</a>
+                                    <a href="#" class="btn btn-outline">Buy Again</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#" class="next">Next →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <a href="#" class="footer-logo">FINALLY FOUND YOU</a>
+            <div class="footer-blog">
+                <div class="blog-title">Latest Journal Entry</div>
+                <div class="blog-heading">Begin Your Skincare Journey</div>
+                <div class="blog-text">Discover the transformative power of finding skincare that truly understands your unique needs. Your path to radiant, healthy skin starts here.</div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-links-section">
+                <div>
+                    <div class="links-title">Collections</div>
+                    <ul class="links-list">
+                        <li><a href="#">Facial Care</a></li>
+                        <li><a href="#">Treatment Serums</a></li>
+                        <li><a href="#">Hydration</a></li>
+                        <li><a href="#">Body Essentials</a></li>
+                        <li><a href="#">Discovery Sets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="links-title">Our World</div>
+                    <ul class="links-list">
+                        <li><a href="#">Philosophy</a></li>
+                        <li><a href="#">Ingredient Standards</a></li>
+                        <li><a href="#">Sustainability Commitment</a></li>
+                        <li><a href="#">Journal</a></li>
+                        <li><a href="#">Connect With Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">© 2025 | Privacy — Terms</div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle dropdown menu
+        function toggleDropdown() {
+            const dropdown = document.getElementById("dropdown-content");
+            dropdown.classList.toggle("show");
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            const dropdown = document.getElementById("dropdown-content");
+            const btn = document.querySelector(".account-btn");
+            if (!event.target.matches(".account-btn") && !dropdown.contains(event.target)) {
+                dropdown.classList.remove("show");
+            }
+        }
+
+        // Placeholder filter function
+        function filterOrders() {
+            const filter = document.getElementById("order-filter").value;
+            const orders = document.querySelectorAll(".order-card");
+            orders.forEach(order => {
+                const status = order.querySelector(".order-status").className.split(" ").pop();
+                if (filter === "all" || filter === status) {
+                    order.style.display = "block";
+                } else {
+                    order.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

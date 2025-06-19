@@ -791,7 +791,119 @@ header .btn {
 
 /* Footer */
 footer {
-    background-color: #222;
-    color: white;
+  background-color: #222;
+  color: white;
+  padding: 100px 0 60px;
+  position: relative;
 }
 
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1px 2fr;
+  gap: 60px;
+}
+
+.footer-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  grid-column: 1;
+  letter-spacing: 1px;
+}
+
+.footer-blog {
+  grid-column: 2;
+}
+
+.blog-title {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.blog-heading {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.blog-text {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.footer-divider {
+  grid-column: 3;
+  height: 100%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-links-section {
+  grid-column: 4;
+  display: flex;
+  gap: 80px;
+}
+
+.links-title {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.links-list {
+  list-style: none;
+}
+
+.links-list li {
+  margin-bottom: 15px;
+}
+
+.links-list a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-weight: 300;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.links-list a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background-color: #6667ab;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.links-list a:hover {
+  color: #6667ab;
+}
+
+.links-list a:hover::after {
+  width: 100%;
+}
+
+.footer-copyright {
+  grid-column: 4;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 60px;
+  letter-spacing: 1px;
+}

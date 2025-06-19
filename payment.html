@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | Finally Found You</title>
+    <link rel="stylesheet" href="payment.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">Finally Found You</a>
+            
+            <!-- Checkout Steps -->
+            <div class="checkout-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Information</div>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step active">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-container">
+                <!-- Payment Form -->
+                <div class="payment-form">
+                    <h1>Payment</h1>
+                    
+                    <!-- Order Information Summary -->
+                    <div class="form-section">
+                        <h2>Order Information</h2>
+                        <div class="info-summary">
+                            <div class="info-item">
+                                <span class="info-label">Contact:</span>
+                                <span class="info-value" id="contact-email">Loading...</span>
+                                <a href="checkout.html" class="edit-link">Change</a>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Ship to:</span>
+                                <span class="info-value" id="shipping-address">Loading...</span>
+                                <a href="checkout.html" class="edit-link">Change</a>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Method:</span>
+                                <span class="info-value" id="shipping-method">Loading...</span>
+                                <a href="shipping.html" class="edit-link">Change</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Method -->
+                    <div class="form-section">
+                        <h2>Payment Method</h2>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="credit-card" checked>
+                                <div class="payment-option-content">
+                                    <div class="payment-option-icon">💳</div>
+                                    <div class="payment-option-info">
+                                        <div class="payment-option-name">Credit / Debit Card</div>
+                                        <div class="payment-option-description">Pay securely with your card</div>
+                                    </div>
+                                    <div class="payment-option-cards">
+                                        <span class="card-icon">Visa</span>
+                                        <span class="card-icon">MC</span>
+                                        <span class="card-icon">Amex</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="bank-transfer">
+                                <div class="payment-option-content">
+                                    <div class="payment-option-icon">🏦</div>
+                                    <div class="payment-option-info">
+                                        <div class="payment-option-name">Bank Transfer</div>
+                                        <div class="payment-option-description">Pay via bank transfer</div>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="e-wallet">
+                                <div class="payment-option-content">
+                                    <div class="payment-option-icon">📱</div>
+                                    <div class="payment-option-info">
+                                        <div class="payment-option-name">E-Wallet</div>
+                                        <div class="payment-option-description">Pay with GoPay, OVO, or DANA</div>
+                                    </div>
+                                    <div class="payment-option-wallets">
+                                        <span class="wallet-icon">GoPay</span>
+                                        <span class="wallet-icon">OVO</span>
+                                        <span class="wallet-icon">DANA</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Credit Card Details -->
+                    <div class="form-section" id="credit-card-details">
+                        <h2>Card Information</h2>
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-name">Cardholder Name</label>
+                            <input type="text" id="card-name" placeholder="Name as it appears on card">
+                        </div>
+                    </div>
+                    
+                    <!-- Bank Transfer Details -->
+                    <div class="form-section" id="bank-transfer-details" style="display: none;">
+                        <h2>Bank Transfer Information</h2>
+                        <div class="bank-info">
+                            <p>Please transfer the total amount to the following bank account:</p>
+                            <div class="bank-details">
+                                <div class="bank-detail-item">
+                                    <span class="bank-detail-label">Bank Name:</span>
+                                    <span class="bank-detail-value">Bank Central Asia (BCA)</span>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span class="bank-detail-label">Account Name:</span>
+                                    <span class="bank-detail-value">PT Finally Found You Indonesia</span>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span class="bank-detail-label">Account Number:</span>
+                                    <span class="bank-detail-value">1234567890</span>
+                                </div>
+                            </div>
+                            <p class="bank-note">Please include your order number in the transfer description. Your order will be processed once payment is confirmed.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- E-Wallet Details -->
+                    <div class="form-section" id="e-wallet-details" style="display: none;">
+                        <h2>E-Wallet Payment</h2>
+                        <div class="wallet-options">
+                            <label class="wallet-option">
+                                <input type="radio" name="wallet" value="gopay" checked>
+                                <div class="wallet-option-content">
+                                    <div class="wallet-option-icon">GoPay</div>
+                                    <div class="wallet-option-name">GoPay</div>
+                                </div>
+                            </label>
+                            
+                            <label class="wallet-option">
+                                <input type="radio" name="wallet" value="ovo">
+                                <div class="wallet-option-content">
+                                    <div class="wallet-option-icon">OVO</div>
+                                    <div class="wallet-option-name">OVO</div>
+                                </div>
+                            </label>
+                            
+                            <label class="wallet-option">
+                                <input type="radio" name="wallet" value="dana">
+                                <div class="wallet-option-content">
+                                    <div class="wallet-option-icon">DANA</div>
+                                    <div class="wallet-option-name">DANA</div>
+                                </div>
+                            </label>
+                        </div>
+                        <p class="wallet-note">You will be redirected to the selected e-wallet to complete your payment.</p>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <a href="shipping.html" class="back-link">← Return to shipping</a>
+                        <button class="btn continue-btn" id="complete-order-btn">Complete Order</button>
+                    </div>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="order-items" id="order-items">
+                        <!-- Order items will be dynamically added here -->
+                    </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="summary-row">
+                        <div class="summary-label">Subtotal</div>
+                        <div class="summary-value" id="subtotal">Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <div class="summary-label">Shipping</div>
+                        <div class="summary-value" id="shipping">Rp 15.000</div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <div class="summary-label">Tax (10%)</div>
+                        <div class="summary-value" id="tax">Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row discount-row" id="discount-row" style="display: none;">
+                        <div class="summary-label">Discount</div>
+                        <div class="summary-value" id="discount">- Rp 0</div>
+                    </div>
+                    
+                    <div class="summary-row summary-total">
+                        <div class="summary-label">Total</div>
+                        <div class="summary-value" id="total">Rp 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processing Modal -->
+    <div class="modal" id="processing-modal">
+        <div class="modal-content">
+            <div class="processing-animation">
+                <div class="spinner"></div>
+            </div>
+            <h2>Processing Your Order</h2>
+            <p>Please wait while we process your payment...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="index.html#about">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-copyright">© 2025 Finally Found You. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="payment.js"></script>
+</body>
+</html>

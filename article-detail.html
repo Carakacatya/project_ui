@@ -31,8 +31,16 @@
                 </ul>
             </nav>
         
-            <!-- Shop Button -->
-            <a href="products.html" class="btn">Shop Now</a>
+            <!-- My Account Dropdown (replacing Shop Button) -->
+            <div class="account-dropdown">
+                <button class="account-btn" id="accountBtn">My Account ▾</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="profile.html" class="active">Profile</a>
+                    <a href="transaction-history.html">Transaction History</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="index.html">Sign Out</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -318,6 +326,32 @@
     </footer>
 
     <script>
+        // Account dropdown functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const accountBtn = document.getElementById('accountBtn');
+            const dropdownContent = document.getElementById('dropdownContent');
+
+            // Toggle dropdown when account button is clicked
+            accountBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdownContent.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!accountBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                    dropdownContent.classList.remove('show');
+                }
+            });
+
+            // Close dropdown when pressing Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    dropdownContent.classList.remove('show');
+                }
+            });
+        });
+
         // Hamburger menu toggle
         const menuToggle = document.getElementById('menu-toggle');
         const navbar = document.getElementById('navbar');
